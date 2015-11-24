@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DB" targetNamespace="http://tempuri.org/DB.xsd" xmlns:mstns="http://tempuri.org/DB.xsd" xmlns="http://tempuri.org/DB.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="contract1ConnectionString1" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="contract1ConnectionString1 (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.contract.Properties.Settings.GlobalReference.Default.contract1ConnectionString1" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="InvoiceDataSouceTableAdapter" GeneratorDataComponentClassName="InvoiceDataSouceTableAdapter" Name="InvoiceDataSouce" UserDataComponentName="InvoiceDataSouceTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="contract1ConnectionString1 (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT T2.GNAME,T2.GCZ,T2.GXH,T2.GDW1,T2.GDW2,T2.GJM,T2.HTH,T1.*
+                                            FROM[Invioce] T0 INNER JOIN  [InvoiceRows] T1 ON T0.InvID=T1.InvID
+                                            INNER JOIN ASP T2 ON T1.SpID=T2.InvID</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="GNAME" DataSetColumn="GNAME" />
+              <Mapping SourceColumn="GCZ" DataSetColumn="GCZ" />
+              <Mapping SourceColumn="GXH" DataSetColumn="GXH" />
+              <Mapping SourceColumn="GDW1" DataSetColumn="GDW1" />
+              <Mapping SourceColumn="GDW2" DataSetColumn="GDW2" />
+              <Mapping SourceColumn="GJM" DataSetColumn="GJM" />
+              <Mapping SourceColumn="HTH" DataSetColumn="HTH" />
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn="Price" DataSetColumn="Price" />
+              <Mapping SourceColumn="Qua" DataSetColumn="Qua" />
+              <Mapping SourceColumn="Tax" DataSetColumn="Tax" />
+              <Mapping SourceColumn="Todo" DataSetColumn="Todo" />
+              <Mapping SourceColumn="SpID" DataSetColumn="SpID" />
+              <Mapping SourceColumn="InvID" DataSetColumn="InvID" />
+              <Mapping SourceColumn="EtcCost" DataSetColumn="EtcCost" />
+              <Mapping SourceColumn="Total" DataSetColumn="Total" />
+              <Mapping SourceColumn="Unit" DataSetColumn="Unit" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DataTable1TableAdapter" GeneratorDataComponentClassName="DataTable1TableAdapter" Name="DataTable1" UserDataComponentName="DataTable1TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="contract1ConnectionString1 (Settings)" DbObjectName="SELECT 合同号,客户名,结算金额,HKH 客户码, dbo.GetCustomerCate(HKH) AS 客户类型,HLX,HDW ,(SELECT YEAR(MAX(DATE)) FROM AFKXX WHERE HTH = T0.合同号) AS 年 ,ISNULL((SELECT SUM(RMB) FROM AFKXX WHERE HTH = T0.合同号 AND TYPE = dbo.GetPayType(HLX,0) AND YEAR(DATE)&lt;@RYEAR),0.00) AS A1 ,ISNULL((SELECT SUM(RMB) FROM AFKXX WHERE HTH = T0.合同号 AND TYPE = dbo.GetPayType(HLX,0) AND YEAR(DATE)=@RYEAR AND MONTH(DATE)=@RMONTH),0.00) AS A2 ,ISNULL((SELECT SUM(RMB) FROM AFKXX WHERE HTH = T0.合同号 AND TYPE = dbo.GetPayType(HLX,0) AND YEAR(DATE)=@RYEAR AND MONTH(DATE)&lt;= @RMONTH),0.00) AS A3 ,ISNULL((SELECT SUM(RMB) FROM AFKXX WHERE HTH = T0.合同号 AND TYPE = dbo.GetPayType(HLX,1) AND YEAR(DATE)&lt;@RYEAR),0.00) AS B1 ,ISNULL((SELECT SUM(RMB) FROM AFKXX WHERE HTH = T0.合同号 AND TYPE = dbo.GetPayType(HLX,1) AND YEAR(DATE)=@RYEAR AND MONTH(DATE)=@RMONTH),0.00) AS B2 ,ISNULL((SELECT SUM(RMB) FROM AFKXX WHERE HTH = T0.合同号 AND TYPE = dbo.GetPayType(HLX,1) AND YEAR(DATE)=@RYEAR AND MONTH(DATE)&lt;= @RMONTH),0.00) AS B3 ,ISNULL((SELECT hjsje FROM ACONTRACT WHERE hcode = T0.合同号 AND YEAR(HDATE)&lt;@RYEAR),0.00) AS 合同前 ,ISNULL((SELECT hjsje FROM ACONTRACT WHERE hcode = T0.合同号 AND YEAR(HDATE)=@RYEAR AND MONTH(HDATE)=@RMONTH),0.00) AS 合同本月 ,ISNULL((SELECT hjsje FROM ACONTRACT WHERE hcode = T0.合同号 AND YEAR(HDATE)=@RYEAR AND MONTH(HDATE)&lt;= @RMONTH),0.00) AS 合同本年 FROM VCONTRACTS T0" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT *
+,A1+A3 AS A4
+,结算金额-A1-A3 AS A5
+,(结算金额-A1-A3)/结算金额-A1-A3 AS A6
+,B1+B3 AS B4
+,结算金额-B1-B3 AS B5
+,(结算金额-B1-B3)/结算金额-B1-B3 AS B6
+,B1+B3-A1-A3 AS C
+ FROM (SELECT 合同号,客户名,结算金额,HKH 客户码, dbo.GetCustomerCate(HKH) as 客户类型,HLX,HDW
+,(SELECT YEAR(MAX(DATE)) FROM AFKXX WHERE HTH = T0.合同号) AS 年
+,ISNULL((SELECT SUM(RMB) FROM AFKXX WHERE HTH = T0.合同号 AND TYPE = dbo.GetPayType(HLX,0) AND YEAR(DATE)&lt;@RYEAR),0.00) AS A1
+,ISNULL((SELECT SUM(RMB) FROM AFKXX WHERE HTH = T0.合同号 AND TYPE = dbo.GetPayType(HLX,0) AND YEAR(DATE)=@RYEAR AND MONTH(DATE)=@RMONTH),0.00) AS A2
+,ISNULL((SELECT SUM(RMB) FROM AFKXX WHERE HTH = T0.合同号 AND TYPE = dbo.GetPayType(HLX,0) AND YEAR(DATE)=@RYEAR AND MONTH(DATE)&lt;= @RMONTH),0.00) AS A3
+,ISNULL((SELECT SUM(RMB) FROM AFKXX WHERE HTH = T0.合同号 AND TYPE = dbo.GetPayType(HLX,1) AND YEAR(DATE)&lt;@RYEAR),0.00) AS B1
+,ISNULL((SELECT SUM(RMB) FROM AFKXX WHERE HTH = T0.合同号 AND TYPE = dbo.GetPayType(HLX,1) AND YEAR(DATE)=@RYEAR AND MONTH(DATE)=@RMONTH),0.00) AS B2
+,ISNULL((SELECT SUM(RMB) FROM AFKXX WHERE HTH = T0.合同号 AND TYPE = dbo.GetPayType(HLX,1) AND YEAR(DATE)=@RYEAR AND MONTH(DATE)&lt;= @RMONTH),0.00) AS B3
+,ISNULL((SELECT hjsje FROM ACONTRACT where hcode = T0.合同号 AND YEAR(HDATE)&lt;@RYEAR),0.00) AS 合同前
+,ISNULL((SELECT hjsje FROM ACONTRACT where hcode = T0.合同号 AND YEAR(HDATE)=@RYEAR AND MONTH(HDATE)=@RMONTH),0.00) AS 合同本月
+,ISNULL((SELECT hjsje FROM ACONTRACT where hcode = T0.合同号 AND YEAR(HDATE)=@RYEAR AND MONTH(HDATE)&lt;= @RMONTH),0.00) AS 合同本年
+FROM VCONTRACTS T0) T
+WHERE (B1+B3-A1-A3&lt;&gt;0 OR A1+A3&lt;&gt;结算金额 OR 结算金额&lt;&gt;B1+B3) OR 年&gt;=@RYEAR</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="RYEAR" ColumnName="年" DataSourceName="SELECT 合同号,客户名,结算金额,HKH 客户码, dbo.GetCustomerCate(HKH) AS 客户类型,HLX,HDW ,(SELECT YEAR(MAX(DATE)) FROM AFKXX WHERE HTH = T0.合同号) AS 年 ,ISNULL((SELECT SUM(RMB) FROM AFKXX WHERE HTH = T0.合同号 AND TYPE = dbo.GetPayType(HLX,0) AND YEAR(DATE)&lt;@RYEAR),0.00) AS A1 ,ISNULL((SELECT SUM(RMB) FROM AFKXX WHERE HTH = T0.合同号 AND TYPE = dbo.GetPayType(HLX,0) AND YEAR(DATE)=@RYEAR AND MONTH(DATE)=@RMONTH),0.00) AS A2 ,ISNULL((SELECT SUM(RMB) FROM AFKXX WHERE HTH = T0.合同号 AND TYPE = dbo.GetPayType(HLX,0) AND YEAR(DATE)=@RYEAR AND MONTH(DATE)&lt;= @RMONTH),0.00) AS A3 ,ISNULL((SELECT SUM(RMB) FROM AFKXX WHERE HTH = T0.合同号 AND TYPE = dbo.GetPayType(HLX,1) AND YEAR(DATE)&lt;@RYEAR),0.00) AS B1 ,ISNULL((SELECT SUM(RMB) FROM AFKXX WHERE HTH = T0.合同号 AND TYPE = dbo.GetPayType(HLX,1) AND YEAR(DATE)=@RYEAR AND MONTH(DATE)=@RMONTH),0.00) AS B2 ,ISNULL((SELECT SUM(RMB) FROM AFKXX WHERE HTH = T0.合同号 AND TYPE = dbo.GetPayType(HLX,1) AND YEAR(DATE)=@RYEAR AND MONTH(DATE)&lt;= @RMONTH),0.00) AS B3 ,ISNULL((SELECT hjsje FROM ACONTRACT WHERE hcode = T0.合同号 AND YEAR(HDATE)&lt;@RYEAR),0.00) AS 合同前 ,ISNULL((SELECT hjsje FROM ACONTRACT WHERE hcode = T0.合同号 AND YEAR(HDATE)=@RYEAR AND MONTH(HDATE)=@RMONTH),0.00) AS 合同本月 ,ISNULL((SELECT hjsje FROM ACONTRACT WHERE hcode = T0.合同号 AND YEAR(HDATE)=@RYEAR AND MONTH(HDATE)&lt;= @RMONTH),0.00) AS 合同本年 FROM VCONTRACTS T0" DataTypeServer="unknown" DbType="Object" Direction="Input" ParameterName="@RYEAR" Precision="0" Scale="0" Size="1024" SourceColumn="年" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="RMONTH" ColumnName="" DataSourceName="" DataTypeServer="unknown" DbType="Decimal" Direction="Input" ParameterName="@RMONTH" Precision="0" Scale="0" Size="0" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="合同号" DataSetColumn="合同号" />
+              <Mapping SourceColumn="客户名" DataSetColumn="客户名" />
+              <Mapping SourceColumn="结算金额" DataSetColumn="结算金额" />
+              <Mapping SourceColumn="客户码" DataSetColumn="客户码" />
+              <Mapping SourceColumn="客户类型" DataSetColumn="客户类型" />
+              <Mapping SourceColumn="HLX" DataSetColumn="HLX" />
+              <Mapping SourceColumn="HDW" DataSetColumn="HDW" />
+              <Mapping SourceColumn="年" DataSetColumn="年" />
+              <Mapping SourceColumn="A1" DataSetColumn="A1" />
+              <Mapping SourceColumn="A2" DataSetColumn="A2" />
+              <Mapping SourceColumn="A3" DataSetColumn="A3" />
+              <Mapping SourceColumn="B1" DataSetColumn="B1" />
+              <Mapping SourceColumn="B2" DataSetColumn="B2" />
+              <Mapping SourceColumn="B3" DataSetColumn="B3" />
+              <Mapping SourceColumn="合同前" DataSetColumn="合同前" />
+              <Mapping SourceColumn="合同本月" DataSetColumn="合同本月" />
+              <Mapping SourceColumn="合同本年" DataSetColumn="合同本年" />
+              <Mapping SourceColumn="A4" DataSetColumn="A4" />
+              <Mapping SourceColumn="A5" DataSetColumn="A5" />
+              <Mapping SourceColumn="A6" DataSetColumn="A6" />
+              <Mapping SourceColumn="B4" DataSetColumn="B4" />
+              <Mapping SourceColumn="B5" DataSetColumn="B5" />
+              <Mapping SourceColumn="B6" DataSetColumn="B6" />
+              <Mapping SourceColumn="C" DataSetColumn="C" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DB" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="DB" msprop:Generator_DataSetName="DB" msprop:EnableTableAdapterManager="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="InvoiceDataSouce" msprop:Generator_UserTableName="InvoiceDataSouce" msprop:Generator_RowDeletedName="InvoiceDataSouceRowDeleted" msprop:Generator_RowChangedName="InvoiceDataSouceRowChanged" msprop:Generator_RowClassName="InvoiceDataSouceRow" msprop:Generator_RowChangingName="InvoiceDataSouceRowChanging" msprop:Generator_RowEvArgName="InvoiceDataSouceRowChangeEvent" msprop:Generator_RowEvHandlerName="InvoiceDataSouceRowChangeEventHandler" msprop:Generator_TableClassName="InvoiceDataSouceDataTable" msprop:Generator_TableVarName="tableInvoiceDataSouce" msprop:Generator_RowDeletingName="InvoiceDataSouceRowDeleting" msprop:Generator_TablePropName="InvoiceDataSouce">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="GNAME" msprop:Generator_UserColumnName="GNAME" msprop:Generator_ColumnVarNameInTable="columnGNAME" msprop:Generator_ColumnPropNameInRow="GNAME" msprop:Generator_ColumnPropNameInTable="GNAMEColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="GCZ" msprop:Generator_UserColumnName="GCZ" msprop:Generator_ColumnVarNameInTable="columnGCZ" msprop:Generator_ColumnPropNameInRow="GCZ" msprop:Generator_ColumnPropNameInTable="GCZColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="GXH" msprop:Generator_UserColumnName="GXH" msprop:Generator_ColumnVarNameInTable="columnGXH" msprop:Generator_ColumnPropNameInRow="GXH" msprop:Generator_ColumnPropNameInTable="GXHColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="GDW1" msprop:Generator_UserColumnName="GDW1" msprop:Generator_ColumnVarNameInTable="columnGDW1" msprop:Generator_ColumnPropNameInRow="GDW1" msprop:Generator_ColumnPropNameInTable="GDW1Column" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="GDW2" msprop:Generator_UserColumnName="GDW2" msprop:Generator_ColumnVarNameInTable="columnGDW2" msprop:Generator_ColumnPropNameInRow="GDW2" msprop:Generator_ColumnPropNameInTable="GDW2Column" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="GJM" msprop:Generator_UserColumnName="GJM" msprop:Generator_ColumnVarNameInTable="columnGJM" msprop:Generator_ColumnPropNameInRow="GJM" msprop:Generator_ColumnPropNameInTable="GJMColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="HTH" msprop:Generator_UserColumnName="HTH" msprop:Generator_ColumnVarNameInTable="columnHTH" msprop:Generator_ColumnPropNameInRow="HTH" msprop:Generator_ColumnPropNameInTable="HTHColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_UserColumnName="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" type="xs:int" />
+              <xs:element name="Price" msprop:Generator_UserColumnName="Price" msprop:Generator_ColumnVarNameInTable="columnPrice" msprop:Generator_ColumnPropNameInRow="Price" msprop:Generator_ColumnPropNameInTable="PriceColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Qua" msprop:Generator_UserColumnName="Qua" msprop:Generator_ColumnVarNameInTable="columnQua" msprop:Generator_ColumnPropNameInRow="Qua" msprop:Generator_ColumnPropNameInTable="QuaColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Tax" msprop:Generator_UserColumnName="Tax" msprop:Generator_ColumnVarNameInTable="columnTax" msprop:Generator_ColumnPropNameInRow="Tax" msprop:Generator_ColumnPropNameInTable="TaxColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Todo" msprop:Generator_UserColumnName="Todo" msprop:Generator_ColumnVarNameInTable="columnTodo" msprop:Generator_ColumnPropNameInRow="Todo" msprop:Generator_ColumnPropNameInTable="TodoColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SpID" msdata:DataType="System.Guid, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_UserColumnName="SpID" msprop:Generator_ColumnVarNameInTable="columnSpID" msprop:Generator_ColumnPropNameInRow="SpID" msprop:Generator_ColumnPropNameInTable="SpIDColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="InvID" msdata:DataType="System.Guid, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_UserColumnName="InvID" msprop:Generator_ColumnVarNameInTable="columnInvID" msprop:Generator_ColumnPropNameInRow="InvID" msprop:Generator_ColumnPropNameInTable="InvIDColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="EtcCost" msprop:Generator_UserColumnName="EtcCost" msprop:Generator_ColumnVarNameInTable="columnEtcCost" msprop:Generator_ColumnPropNameInRow="EtcCost" msprop:Generator_ColumnPropNameInTable="EtcCostColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Total" msdata:ReadOnly="true" msprop:Generator_UserColumnName="Total" msprop:Generator_ColumnVarNameInTable="columnTotal" msprop:Generator_ColumnPropNameInRow="Total" msprop:Generator_ColumnPropNameInTable="TotalColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Unit" msprop:Generator_UserColumnName="Unit" msprop:Generator_ColumnVarNameInTable="columnUnit" msprop:Generator_ColumnPropNameInRow="Unit" msprop:Generator_ColumnPropNameInTable="UnitColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DataTable1" msprop:Generator_UserTableName="DataTable1" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_RowClassName="DataTable1Row" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_TablePropName="DataTable1" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_RowDeletingName="DataTable1RowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="合同号" msprop:Generator_UserColumnName="合同号" msprop:Generator_ColumnPropNameInRow="合同号" msprop:Generator_ColumnVarNameInTable="column合同号" msprop:Generator_ColumnPropNameInTable="合同号Column">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="客户名" msprop:Generator_UserColumnName="客户名" msprop:Generator_ColumnPropNameInRow="客户名" msprop:Generator_ColumnVarNameInTable="column客户名" msprop:Generator_ColumnPropNameInTable="客户名Column" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="结算金额" msprop:Generator_UserColumnName="结算金额" msprop:Generator_ColumnPropNameInRow="结算金额" msprop:Generator_ColumnVarNameInTable="column结算金额" msprop:Generator_ColumnPropNameInTable="结算金额Column" type="xs:decimal" minOccurs="0" />
+              <xs:element name="客户码" msprop:Generator_UserColumnName="客户码" msprop:Generator_ColumnPropNameInRow="客户码" msprop:Generator_ColumnVarNameInTable="column客户码" msprop:Generator_ColumnPropNameInTable="客户码Column" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="客户类型" msdata:ReadOnly="true" msprop:Generator_UserColumnName="客户类型" msprop:Generator_ColumnPropNameInRow="客户类型" msprop:Generator_ColumnVarNameInTable="column客户类型" msprop:Generator_ColumnPropNameInTable="客户类型Column" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="HLX" msprop:Generator_UserColumnName="HLX" msprop:Generator_ColumnPropNameInRow="HLX" msprop:Generator_ColumnVarNameInTable="columnHLX" msprop:Generator_ColumnPropNameInTable="HLXColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="HDW" msprop:Generator_UserColumnName="HDW" msprop:Generator_ColumnPropNameInRow="HDW" msprop:Generator_ColumnVarNameInTable="columnHDW" msprop:Generator_ColumnPropNameInTable="HDWColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="年" msdata:ReadOnly="true" msprop:Generator_UserColumnName="年" msprop:Generator_ColumnPropNameInRow="年" msprop:Generator_ColumnVarNameInTable="column年" msprop:Generator_ColumnPropNameInTable="年Column" type="xs:int" minOccurs="0" />
+              <xs:element name="A1" msdata:ReadOnly="true" msprop:Generator_UserColumnName="A1" msprop:Generator_ColumnPropNameInRow="A1" msprop:Generator_ColumnVarNameInTable="columnA1" msprop:Generator_ColumnPropNameInTable="A1Column" type="xs:decimal" minOccurs="0" />
+              <xs:element name="A2" msdata:ReadOnly="true" msprop:Generator_UserColumnName="A2" msprop:Generator_ColumnPropNameInRow="A2" msprop:Generator_ColumnVarNameInTable="columnA2" msprop:Generator_ColumnPropNameInTable="A2Column" type="xs:decimal" minOccurs="0" />
+              <xs:element name="A3" msdata:ReadOnly="true" msprop:Generator_UserColumnName="A3" msprop:Generator_ColumnPropNameInRow="A3" msprop:Generator_ColumnVarNameInTable="columnA3" msprop:Generator_ColumnPropNameInTable="A3Column" type="xs:decimal" minOccurs="0" />
+              <xs:element name="B1" msdata:ReadOnly="true" msprop:Generator_UserColumnName="B1" msprop:Generator_ColumnPropNameInRow="B1" msprop:Generator_ColumnVarNameInTable="columnB1" msprop:Generator_ColumnPropNameInTable="B1Column" type="xs:decimal" minOccurs="0" />
+              <xs:element name="B2" msdata:ReadOnly="true" msprop:Generator_UserColumnName="B2" msprop:Generator_ColumnPropNameInRow="B2" msprop:Generator_ColumnVarNameInTable="columnB2" msprop:Generator_ColumnPropNameInTable="B2Column" type="xs:decimal" minOccurs="0" />
+              <xs:element name="B3" msdata:ReadOnly="true" msprop:Generator_UserColumnName="B3" msprop:Generator_ColumnPropNameInRow="B3" msprop:Generator_ColumnVarNameInTable="columnB3" msprop:Generator_ColumnPropNameInTable="B3Column" type="xs:decimal" minOccurs="0" />
+              <xs:element name="合同前" msdata:ReadOnly="true" msprop:Generator_UserColumnName="合同前" msprop:Generator_ColumnPropNameInRow="合同前" msprop:Generator_ColumnVarNameInTable="column合同前" msprop:Generator_ColumnPropNameInTable="合同前Column" type="xs:decimal" minOccurs="0" />
+              <xs:element name="合同本月" msdata:ReadOnly="true" msprop:Generator_UserColumnName="合同本月" msprop:Generator_ColumnPropNameInRow="合同本月" msprop:Generator_ColumnVarNameInTable="column合同本月" msprop:Generator_ColumnPropNameInTable="合同本月Column" type="xs:decimal" minOccurs="0" />
+              <xs:element name="合同本年" msdata:ReadOnly="true" msprop:Generator_UserColumnName="合同本年" msprop:Generator_ColumnPropNameInRow="合同本年" msprop:Generator_ColumnVarNameInTable="column合同本年" msprop:Generator_ColumnPropNameInTable="合同本年Column" type="xs:decimal" minOccurs="0" />
+              <xs:element name="A4" msdata:ReadOnly="true" msprop:Generator_UserColumnName="A4" msprop:Generator_ColumnPropNameInRow="A4" msprop:Generator_ColumnVarNameInTable="columnA4" msprop:Generator_ColumnPropNameInTable="A4Column" type="xs:decimal" minOccurs="0" />
+              <xs:element name="A5" msdata:ReadOnly="true" msprop:Generator_UserColumnName="A5" msprop:Generator_ColumnPropNameInRow="A5" msprop:Generator_ColumnVarNameInTable="columnA5" msprop:Generator_ColumnPropNameInTable="A5Column" type="xs:decimal" minOccurs="0" />
+              <xs:element name="A6" msdata:ReadOnly="true" msprop:Generator_UserColumnName="A6" msprop:Generator_ColumnPropNameInRow="A6" msprop:Generator_ColumnVarNameInTable="columnA6" msprop:Generator_ColumnPropNameInTable="A6Column" type="xs:decimal" minOccurs="0" />
+              <xs:element name="B4" msdata:ReadOnly="true" msprop:Generator_UserColumnName="B4" msprop:Generator_ColumnPropNameInRow="B4" msprop:Generator_ColumnVarNameInTable="columnB4" msprop:Generator_ColumnPropNameInTable="B4Column" type="xs:decimal" minOccurs="0" />
+              <xs:element name="B5" msdata:ReadOnly="true" msprop:Generator_UserColumnName="B5" msprop:Generator_ColumnPropNameInRow="B5" msprop:Generator_ColumnVarNameInTable="columnB5" msprop:Generator_ColumnPropNameInTable="B5Column" type="xs:decimal" minOccurs="0" />
+              <xs:element name="B6" msdata:ReadOnly="true" msprop:Generator_UserColumnName="B6" msprop:Generator_ColumnPropNameInRow="B6" msprop:Generator_ColumnVarNameInTable="columnB6" msprop:Generator_ColumnPropNameInTable="B6Column" type="xs:decimal" minOccurs="0" />
+              <xs:element name="C" msdata:ReadOnly="true" msprop:Generator_UserColumnName="C" msprop:Generator_ColumnPropNameInRow="C" msprop:Generator_ColumnVarNameInTable="columnC" msprop:Generator_ColumnPropNameInTable="CColumn" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:InvoiceDataSouce" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="DataTable1_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:DataTable1" />
+      <xs:field xpath="mstns:合同号" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

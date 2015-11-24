@@ -1,0 +1,1024 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B609AF7D-0BA8-4585-A657-CD0F744CBCE5}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>contract</RootNamespace>
+    <AssemblyName>合同信息管理系统</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <StartupObject>
+    </StartupObject>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <ApplicationIcon>setup.ico</ApplicationIcon>
+    <TargetZone>LocalIntranet</TargetZone>
+    <GenerateManifests>false</GenerateManifests>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|Itanium' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Itanium\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>Itanium</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|Itanium' ">
+    <OutputPath>bin\Itanium\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>Itanium</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Interop.Excel, Version=1.3.0.0, Culture=neutral" />
+    <Reference Include="Interop.Microsoft.Office.Core, Version=2.2.0.0, Culture=neutral" />
+    <Reference Include="Interop.Office, Version=2.1.0.0, Culture=neutral" />
+    <Reference Include="Interop.VBIDE, Version=5.3.0.0, Culture=neutral" />
+    <Reference Include="Microsoft.ReportViewer.Common, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="A_FZ_Bid.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_FZ_Bid.Designer.cs">
+      <DependentUpon>A_FZ_Bid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_HT_CHECKED.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_HT_CHECKED.Designer.cs">
+      <DependentUpon>A_HT_CHECKED.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_HT_FKFPGY.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_HT_FKFPGY.Designer.cs">
+      <DependentUpon>A_HT_FKFPGY.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Aaaaaaaaaaaaaaa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_CLIENT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_CLIENT.Designer.cs">
+      <DependentUpon>A_CLIENT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_CLIENT_OP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_CLIENT_OP.Designer.cs">
+      <DependentUpon>A_CLIENT_OP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_EXCEL_INPUT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_EXCEL_INPUT.Designer.cs">
+      <DependentUpon>A_EXCEL_INPUT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_FZ_CZY.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_FZ_CZY.Designer.cs">
+      <DependentUpon>A_FZ_CZY.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_FZ_LX.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_FZ_LX.Designer.cs">
+      <DependentUpon>A_FZ_LX.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_HT_ALTERJSJE.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_HT_ALTERJSJE.Designer.cs">
+      <DependentUpon>A_HT_ALTERJSJE.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_HT_AUTO.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_HT_AUTO.Designer.cs">
+      <DependentUpon>A_HT_AUTO.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_HT_FKKH_OP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_HT_FKKH_OP.Designer.cs">
+      <DependentUpon>A_HT_FKKH_OP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_HT_FK_NEW.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_HT_FK_NEW.Designer.cs">
+      <DependentUpon>A_HT_FK_NEW.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_HT_FK_OP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_HT_FK_OP.Designer.cs">
+      <DependentUpon>A_HT_FK_OP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_FZ_KH.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_FZ_KH.Designer.cs">
+      <DependentUpon>A_FZ_KH.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_HT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_HT.Designer.cs">
+      <DependentUpon>A_HT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_HT_BB.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_HT_BB.Designer.cs">
+      <DependentUpon>A_HT_BB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_HT_FK_DX.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_HT_FK_DX.Designer.cs">
+      <DependentUpon>A_HT_FK_DX.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_HT_FK.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_HT_FK.Designer.cs">
+      <DependentUpon>A_HT_FK.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_HT_FK_GZT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_HT_FK_GZT.Designer.cs">
+      <DependentUpon>A_HT_FK_GZT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_HT_FK_MX.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_HT_FK_MX.Designer.cs">
+      <DependentUpon>A_HT_FK_MX.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_HT_FX_XX.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_HT_FX_XX.Designer.cs">
+      <DependentUpon>A_HT_FX_XX.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_HT_GY.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_HT_GY.Designer.cs">
+      <DependentUpon>A_HT_GY.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_HT_JS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_HT_JS.Designer.cs">
+      <DependentUpon>A_HT_JS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_HT_KHFK.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_HT_KHFK.Designer.cs">
+      <DependentUpon>A_HT_KHFK.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_HT_OP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_HT_OP.Designer.cs">
+      <DependentUpon>A_HT_OP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_HT_PZ.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_HT_PZ.Designer.cs">
+      <DependentUpon>A_HT_PZ.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_HT_SH.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_HT_SH.Designer.cs">
+      <DependentUpon>A_HT_SH.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_HT_TK.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_HT_TK.Designer.cs">
+      <DependentUpon>A_HT_TK.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_HT_SP_OP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_HT_SP_OP.Designer.cs">
+      <DependentUpon>A_HT_SP_OP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_HT_TOOL_GY.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_HT_TOOL_GY.Designer.cs">
+      <DependentUpon>A_HT_TOOL_GY.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_HT_WX.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_HT_WX.Designer.cs">
+      <DependentUpon>A_HT_WX.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_HT_ZJMX.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_HT_ZJMX.Designer.cs">
+      <DependentUpon>A_HT_ZJMX.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_LOCK.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_LOCK.Designer.cs">
+      <DependentUpon>A_LOCK.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_PASSWORD_UPDATE.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_PASSWORD_UPDATE.Designer.cs">
+      <DependentUpon>A_PASSWORD_UPDATE.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_RDLC_HT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_RDLC_HT.Designer.cs">
+      <DependentUpon>A_RDLC_HT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_RPT_FK.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_RPT_FK.Designer.cs">
+      <DependentUpon>A_RPT_FK.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_RPT_GY.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_RPT_GY.Designer.cs">
+      <DependentUpon>A_RPT_GY.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_RPT_HZ.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_RPT_HZ.Designer.cs">
+      <DependentUpon>A_RPT_HZ.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_RPT_HZ1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_RPT_HZ1.designer.cs">
+      <DependentUpon>A_RPT_HZ1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_RPT_KHHK.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_RPT_KHHK.Designer.cs">
+      <DependentUpon>A_RPT_KHHK.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_RPT_QD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_RPT_QD.Designer.cs">
+      <DependentUpon>A_RPT_QD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_RPT_ML.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_RPT_ML.Designer.cs">
+      <DependentUpon>A_RPT_ML.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_RPT_SFKHZ.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_RPT_SFKHZ.Designer.cs">
+      <DependentUpon>A_RPT_SFKHZ.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_RPT_SFKMX.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_RPT_SFKMX.Designer.cs">
+      <DependentUpon>A_RPT_SFKMX.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_RPT_ZJGC_KHHZ.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_RPT_ZJGC_KHHZ.Designer.cs">
+      <DependentUpon>A_RPT_ZJGC_KHHZ.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_RPT_ZL.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_RPT_ZL.Designer.cs">
+      <DependentUpon>A_RPT_ZL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_RTP_DZD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_RTP_DZD.Designer.cs">
+      <DependentUpon>A_RTP_DZD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_UPLOAD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_UPLOAD.designer.cs">
+      <DependentUpon>A_UPLOAD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_ZJGC_CX.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_ZJGC_CX.designer.cs">
+      <DependentUpon>A_ZJGC_CX.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_ZJGG_XG.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_ZJGG_XG.designer.cs">
+      <DependentUpon>A_ZJGG_XG.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BidUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BidUpdate.Designer.cs">
+      <DependentUpon>BidUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BitForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BitForm.Designer.cs">
+      <DependentUpon>BitForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChangeUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChangeUser.Designer.cs">
+      <DependentUpon>ChangeUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ClassConstant.cs" />
+    <Compile Include="ClassCustom.cs" />
+    <Compile Include="ClassForSercet.cs" />
+    <Compile Include="A_CX_HT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_CX_HT.Designer.cs">
+      <DependentUpon>A_CX_HT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomDataGridView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomDataGridView.Designer.cs">
+      <DependentUpon>CustomDataGridView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomSpGrid.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomSpGrid.Designer.cs">
+      <DependentUpon>CustomSpGrid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DB.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DBAdo.cs" />
+    <Compile Include="DBConnL.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DBConnL.designer.cs">
+      <DependentUpon>DBConnL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_HT_TK_MB.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_HT_TK_MB.Designer.cs">
+      <DependentUpon>A_HT_TK_MB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Eval.cs" />
+    <Compile Include="A_CX_JT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_CX_JT.Designer.cs">
+      <DependentUpon>A_CX_JT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExportSp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExportSp.Designer.cs">
+      <DependentUpon>ExportSp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IBidCode.cs" />
+    <Compile Include="Invoice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Invoice.Designer.cs">
+      <DependentUpon>Invoice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InvoiceV.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InvoiceV.Designer.cs">
+      <DependentUpon>InvoiceV.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IsetText.cs" />
+    <Compile Include="Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MessageView.cs" />
+    <Compile Include="Factory_ToolBtn.cs" />
+    <Compile Include="IChildForm.cs" />
+    <Compile Include="MForm1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MForm1.Designer.cs">
+      <DependentUpon>MForm1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Aaaaaaaaaaaaaaa.resx">
+      <DependentUpon>Aaaaaaaaaaaaaaa.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_CLIENT.resx">
+      <DependentUpon>A_CLIENT.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_CLIENT_OP.resx">
+      <DependentUpon>A_CLIENT_OP.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_EXCEL_INPUT.resx">
+      <DependentUpon>A_EXCEL_INPUT.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_FZ_Bid.resx">
+      <DependentUpon>A_FZ_Bid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_FZ_CZY.resx">
+      <DependentUpon>A_FZ_CZY.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_FZ_LX.resx">
+      <DependentUpon>A_FZ_LX.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_HT_ALTERJSJE.resx">
+      <DependentUpon>A_HT_ALTERJSJE.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_HT_AUTO.resx">
+      <DependentUpon>A_HT_AUTO.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_HT_CHECKED.resx">
+      <DependentUpon>A_HT_CHECKED.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_HT_FKFPGY.resx">
+      <DependentUpon>A_HT_FKFPGY.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_HT_FKKH_OP.resx">
+      <DependentUpon>A_HT_FKKH_OP.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_HT_FK_NEW.resx">
+      <DependentUpon>A_HT_FK_NEW.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_HT_FK_OP.resx">
+      <DependentUpon>A_HT_FK_OP.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_FZ_KH.resx">
+      <DependentUpon>A_FZ_KH.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_HT.resx">
+      <DependentUpon>A_HT.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_HT_BB.resx">
+      <DependentUpon>A_HT_BB.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_HT_FK_DX.resx">
+      <DependentUpon>A_HT_FK_DX.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_HT_FK.resx">
+      <DependentUpon>A_HT_FK.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_HT_FK_GZT.resx">
+      <DependentUpon>A_HT_FK_GZT.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_HT_FK_MX.resx">
+      <DependentUpon>A_HT_FK_MX.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_HT_FX_XX.resx">
+      <DependentUpon>A_HT_FX_XX.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_HT_GY.resx">
+      <DependentUpon>A_HT_GY.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_HT_JS.resx">
+      <DependentUpon>A_HT_JS.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_HT_KHFK.resx">
+      <DependentUpon>A_HT_KHFK.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_HT_OP.resx">
+      <DependentUpon>A_HT_OP.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_HT_PZ.resx">
+      <DependentUpon>A_HT_PZ.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_HT_SH.resx">
+      <DependentUpon>A_HT_SH.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_HT_SP_OP.resx">
+      <DependentUpon>A_HT_SP_OP.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_HT_TK.resx">
+      <DependentUpon>A_HT_TK.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_HT_TOOL_GY.resx">
+      <DependentUpon>A_HT_TOOL_GY.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_HT_WX.resx">
+      <DependentUpon>A_HT_WX.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_CX_HT.resx">
+      <DependentUpon>A_CX_HT.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_HT_ZJMX.resx">
+      <DependentUpon>A_HT_ZJMX.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_LOCK.resx">
+      <DependentUpon>A_LOCK.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_PASSWORD_UPDATE.resx">
+      <DependentUpon>A_PASSWORD_UPDATE.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_RDLC_HT.resx">
+      <DependentUpon>A_RDLC_HT.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_RPT_FK.resx">
+      <DependentUpon>A_RPT_FK.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_RPT_GY.resx">
+      <DependentUpon>A_RPT_GY.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_RPT_HZ.resx">
+      <DependentUpon>A_RPT_HZ.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_RPT_HZ1.resx">
+      <DependentUpon>A_RPT_HZ1.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_RPT_KHHK.resx">
+      <DependentUpon>A_RPT_KHHK.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_RPT_QD.resx">
+      <DependentUpon>A_RPT_QD.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_RPT_ML.resx">
+      <DependentUpon>A_RPT_ML.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_RPT_SFKHZ.resx">
+      <DependentUpon>A_RPT_SFKHZ.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_RPT_SFKMX.resx">
+      <DependentUpon>A_RPT_SFKMX.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_RPT_ZJGC_KHHZ.resx">
+      <DependentUpon>A_RPT_ZJGC_KHHZ.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_RPT_ZL.resx">
+      <DependentUpon>A_RPT_ZL.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_RTP_DZD.resx">
+      <DependentUpon>A_RTP_DZD.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_UPLOAD.resx">
+      <DependentUpon>A_UPLOAD.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_ZJGC_CX.resx">
+      <DependentUpon>A_ZJGC_CX.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_ZJGG_XG.resx">
+      <DependentUpon>A_ZJGG_XG.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BidUpdate.resx">
+      <DependentUpon>BidUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BitForm.resx">
+      <DependentUpon>BitForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChangeUser.resx">
+      <DependentUpon>ChangeUser.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBConnL.resx">
+      <DependentUpon>DBConnL.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_HT_TK_MB.resx">
+      <DependentUpon>A_HT_TK_MB.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_CX_JT.resx">
+      <DependentUpon>A_CX_JT.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExportSp.resx">
+      <DependentUpon>ExportSp.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Invoice.resx">
+      <DependentUpon>Invoice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InvoiceV.resx">
+      <DependentUpon>InvoiceV.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MForm1.resx">
+      <DependentUpon>MForm1.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportInvoice.rdlc" />
+    <EmbeddedResource Include="Reports\Report_Chart1.rdlc" />
+    <EmbeddedResource Include="Reports\Report_JT_毛利.rdlc" />
+    <EmbeddedResource Include="Reports\Report_JT_铸锻公司全部采购外协合同汇总表.rdlc" />
+    <EmbeddedResource Include="Reports\Report_JT_集团合同类型汇总表.rdlc" />
+    <EmbeddedResource Include="Reports\Report_JT_合同类型汇总表.rdlc" />
+    <EmbeddedResource Include="Reports\Report_ML_NEW1.rdlc" />
+    <EmbeddedResource Include="Reports\Report_外协合同部件明细表.rdlc" />
+    <EmbeddedResource Include="Reports\Report_销售合同商品明细.rdlc" />
+    <EmbeddedResource Include="Reports\Report合同导航.rdlc" />
+    <EmbeddedResource Include="Reports\Report合同收付款明细表_全部.rdlc" />
+    <EmbeddedResource Include="Reports\Report合同收付款明细表_按客户.rdlc" />
+    <EmbeddedResource Include="Reports\Report合同汇总.rdlc" />
+    <EmbeddedResource Include="Reports\Report回款汇总.rdlc" />
+    <EmbeddedResource Include="Reports\Report签订明细.rdlc" />
+    <EmbeddedResource Include="ReportView.resx">
+      <DependentUpon>ReportView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Report合同收付款明细表.rdlc" />
+    <EmbeddedResource Include="Reports\Report合同商品信息.rdlc" />
+    <EmbeddedResource Include="Reports\Report合同总览表_按类型.rdlc" />
+    <EmbeddedResource Include="Reports\Report_JT_各单位收付款汇总表.rdlc" />
+    <EmbeddedResource Include="Reports\Report_JT_各单位货款同期对比表.rdlc" />
+    <EmbeddedResource Include="Reports\Report_JT_各单位签订合同情况表.rdlc" />
+    <EmbeddedResource Include="Reports\Report_毛利表.rdlc" />
+    <EmbeddedResource Include="Reports\Report_销售合同对应外协合同明细表.rdlc" />
+    <EmbeddedResource Include="Reports\Report_ML_NEW.rdlc" />
+    <EmbeddedResource Include="ReprotView3.resx">
+      <DependentUpon>ReprotView3.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReprotViewNew.resx">
+      <DependentUpon>ReprotViewNew.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReprotView_Chart.resx">
+      <DependentUpon>ReprotView_Chart.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reprot_ML.resx">
+      <DependentUpon>Reprot_ML.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sort.resx">
+      <DependentUpon>Sort.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SQL.resx">
+      <DependentUpon>SQL.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SumGridView.resx">
+      <DependentUpon>SumGridView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\客户交易明细表.rdlc" />
+    <EmbeddedResource Include="Warehouse.resx">
+      <DependentUpon>Warehouse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WhPrint.resx">
+      <DependentUpon>WhPrint.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="app.config" />
+    <None Include="ClassDiagram1.cd" />
+    <None Include="DB.xsc">
+      <DependentUpon>DB.xsd</DependentUpon>
+    </None>
+    <None Include="DB.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DB.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DB.xss">
+      <DependentUpon>DB.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\app.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="ReportView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportView.Designer.cs">
+      <DependentUpon>ReportView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReprotView3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReprotView3.Designer.cs">
+      <DependentUpon>ReprotView3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReprotViewNew.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReprotViewNew.Designer.cs">
+      <DependentUpon>ReprotViewNew.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReprotView_Chart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReprotView_Chart.Designer.cs">
+      <DependentUpon>ReprotView_Chart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reprot_ML.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reprot_ML.Designer.cs">
+      <DependentUpon>Reprot_ML.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sort.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sort.Designer.cs">
+      <DependentUpon>Sort.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SQL.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SQL.Designer.cs">
+      <DependentUpon>SQL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SumGridView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SumGridView.designer.cs">
+      <DependentUpon>SumGridView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Speach.cs" />
+    <Compile Include="Warehouse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Warehouse.Designer.cs">
+      <DependentUpon>Warehouse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WhPrint.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WhPrint.Designer.cs">
+      <DependentUpon>WhPrint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ZYPrinter.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="setup.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>5</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>7</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="SpeechLib">
+      <Guid>{C866CA3A-32F7-11D2-9602-00C04F8EE628}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>4</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

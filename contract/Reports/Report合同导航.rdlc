@@ -1,0 +1,566 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSources>
+    <DataSource Name="DummyDataSource">
+      <rd:DataSourceID>a5753166-63a9-4f11-ab91-febb01c63d55</rd:DataSourceID>
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString>Data Source=192.168.7.70;Initial Catalog=contract1;User ID=sa</ConnectString>
+      </ConnectionProperties>
+    </DataSource>
+  </DataSources>
+  <InteractiveHeight>29.7cm</InteractiveHeight>
+  <ReportParameters>
+    <ReportParameter Name="index">
+      <DataType>Integer</DataType>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>index</Prompt>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>0</Value>
+            <Label>合同号</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>1</Value>
+            <Label>客户</Label>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="hcode">
+      <DataType>String</DataType>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Report_Parameter_HCODE</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="hkh">
+      <DataType>String</DataType>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>hkh</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="qdrq">
+      <DataType>String</DataType>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>qdrq</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="jhrq">
+      <DataType>String</DataType>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>jhrq</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="sp">
+      <DataType>String</DataType>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>sp</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="rmb">
+      <DataType>String</DataType>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>rmb</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="fp">
+      <DataType>String</DataType>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>fp</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="hlx">
+      <DataType>String</DataType>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>hlx</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <rd:DrawGrid>true</rd:DrawGrid>
+  <InteractiveWidth>21cm</InteractiveWidth>
+  <rd:GridSpacing>0.25cm</rd:GridSpacing>
+  <rd:SnapToGrid>true</rd:SnapToGrid>
+  <RightMargin>2.5cm</RightMargin>
+  <LeftMargin>2.5cm</LeftMargin>
+  <BottomMargin>2.5cm</BottomMargin>
+  <rd:ReportID>0ba63318-e5bb-48a0-b236-973b6afc876c</rd:ReportID>
+  <EmbeddedImages>
+    <EmbeddedImage Name="alert_06">
+      <MIMEType>image/png</MIMEType>
+      <ImageData>iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAgAElEQVR4nO2de5QdVZ3vP1Xn9OP0+53upJN03hDeIKIIAfTqmgG5g17BddcFdS3fd7w6zixdc13eq65xDaOgOArjiASujDwVkYcgSCICSQgPIS/Iq9NJp9Pp7qTf5/2off+o2lW76lSdczpJdwfn/NbaXa9ddfb+fb+/32+/qhrKUpaylKUsZSlLWcpSlrKUpSxlKUtZylKWspSlLH/hos13AeZRvHUX81KKeZa/JAJoPvvFzvmJ8GyLnXtHyzuRAF4gtYCkXqPr479ZJ0ROQ4AwcuZ1Yf4RAkYe/e8v4ga60L434bN9R8g7gQB+QOtyv/umJ64Qmt6sh6vPRWiNQg+fixBoevgyISwsBAjzj3lonxfYp4WQfAAEIpfZJACy6R3CyE0Z6egOjNz46O8+IYlieLbe/XcEIU5XAnitWe+4+tbmqvYzztcraq8QevgcTdPPBX2JBM/ZWKAq4EsrN/P4g593f2AeAcI4LHKZnSKX2mkkRl9MDWzeHt91zzgmAXI4ZPAS4rQjw+lEABfgC66+taW667wrtFDVOqGH12l66BzHSvOteWbgg+tZ3vuV31Dz2M9QPYr8DSO7S2SSm3Kp8U3pw8+/kHj7P8ZwCGHgT4h5l/kmgAv0xTf+almopv06wlUf1rTQ5Sp4LhetWqN1Tijg10SqqIlUA4JIpJqaSJXziy7A1dOCeCxJLJ4EBLFYklgsicMCH/B9ymXzKJfaYqSjT2WP7/hd7LWb+zCJINNpQ4b5IoANetd1P2mp7jrvk1qo6kbQzlXjsG98tpCLVFdRE6mktbmRSKSKmkgVjQ01VFSEXT9SSETAgVB20pksExNRYrEE8ViSkZFxYrEEsVgiEPw84hrZXUZq4qFU72P3p3p/PQpkCSbDnMpcEkD+lg7oyz6/8UotXP0JQhU3uhQIvo2z1uYG2prraW1uoLG+loqKkOvJ
+RSuiUVS9wrPje2ztp9NZxiemGRke59jIGMPDY64MwksKixFGJvYrIzrwQPSlr/4JkwiSDGqYcP38bMpcEMAN/Bdf+JReUf1N0JcUapzV19fQ2lRPZ0czbc0N9pM0z5M1oKMeqitgQQNUh519mbezwTwnjxUH42qqHxx1sJpMwIRp5Bweg2QWjk25SaA+BwEjI2MMHB5hZHiM8bEpl0fIa0wa2QEjPvKD9KHfPZnu++1x8skwJ+FhtgmgAfqi6+9qqV5w1lcIhb8EWmNQ46yhrobuzlY6O5qpqa5yAa5pUBWG9nrobjFBb6qBBfWga0pMUfY1zSmEWlEVdAm4um+oW8AQznYiYZJjYMwkxPFpmE7kkyEaSzDQP0Jf74BCBrd3ABCGMSXS4+vTvb/+afrQE8eBDPleYdZIMFsEkDoPrfhfW76lhSq+JASNQF6MjFRV0t3VRndXKzXVVQ5oGtRXw8JmE/DuZmiMOADrmjUYoDmDAuo112iQFkAAkU8CF/jWViWAoWzl9WQGjozD4BgcPGYSwkWGaIID+wc40DtAdDqhtEAtPQgQwpgSqYn1sec/+T0gjZsIsmt5yolwqglgG+Ly//mnj+hVtbcgtKW2ewcnpjfW07N4AZ1tTS7QW+qgp91M7fUO0F7A1fNB4OteD6DEANW/FgPf79gQwdemEnDoGAyNQ/+I2zsc7h9mz64+hoeOO+CrvYpc5kgueujbiZf//nHyiXDKG4unkgAaoPd8+onlFfVddwlNW+fqPpk7LOpsY1l3Bw31NbabrquGFV2wqhMaIvkA20D7nPOSwi8MeEMA+IDvsXJ7v4gX8BLCmyeZhd6jcOAojE87vzc2OsXuXQc4sO+wT1dXQC65NXNkw9+l9/y8F0hhEkHtOZwSEpwKAtgGt/IrW7+l6RXf9Bt27V7QyqqehdREKu3YvqAJzuiGJW2FAScRxZgac55nIWc3shTFeVvfat9dKMeGtS/PCaCispLFq5aihUJ
+Fwfb1COSTRt2OTcPeATh41CFfdDrO9j/vpXdvf343UghEavRfEy995nuYJJAe4ZR5g5MlgAZoyz779PJwXfsjoJ/rBb+1qZ5VPV20NtXbrr6nE85easZ4P+C954zJ42THj1uAKaAJMAz3sTeP/3UC87R2trFs7YpAiy4V7EL3JzOwbwD2D0AmY+YZGhxl2+u7GT563OURAEQu/XZ24OnPZPb/v/04RJBh4aRIcDIE0AB9xZdf+ogejtyF0BrtnryAcEhn7crFdHe22sAvbIPzlhcAHsvqvQSYOE5m/BjLli2ltrZmRoVUATa3wne7a1cvk5NRhIC2rnaWn7WiKNhiBkTwO5fKQu8A7D6E5a1g/95+Xt28k3QqbZffhNiYzk3t/Vr6z994HEji7w1mLKHiWXxFB0Irv/rKbXqo6lbQqlXwO1obec/5a2hprEXToLEOLj4D1nRDVYUnNqvbAFIYyRjZeIzm5iYqKytmXFh1iCFoOzIyTjKZpqammvHRSZLxFC0LWgo/92SSBroOLY3QvQCmYpBIQ0trI2vW9jA5EWVyPIqi1iqtqu3Doa4PtuUGntjkKYbffklyIgTQl9x4f0v7B/7xfk0L3wROnK8IhbjgzGWsXraQcEhH02DNErhoDdRWOSAXIoDfNSMRJxuP09LSSGVl5YwLXAoBhofHSCbTXHTRmYyNTTF2fIJkIkXLglYXaCcFekAKh2HRAqivg9EJ0LQQy1Z209zayODhYbI5OTgIhKrPDy+6+lyRGt0kYv0pWUUc8GdEgpkSQO/++PrW6q6zN2iavk79uYbaCO85fzXNjbXoGlRWwMVrYXFHaSAXupZLxMnGY7S0NM0qARKJFKtWddPa2mSS4NgEyXiSls7WWQHem2pqYEE7TExBOgONzfX0rOxm6MgxEvGUEw70yuV68wVXicTRZ0V8IEU+6CWTYCYE0Ls/vr41suj859C0c+XPCATdC1p597krqagIoWnQUAuXngd1kd
+JBLkyAGJlYjJaWZqqqZocAQ0OjJJNpVq9ejK5rtLU1Mzo6ydixCRKxlEkCMXvg294gBAs7IZmCWAyqqipYc9ZyolNxxo5NWOUVoIXa9OYLrxLJI8+I+JGU8gi72qXoplQC6ItV8K2fEgjOW7OU1T1dduOtoQ4uXAuV4RMDW7M6lS4CxGNkYzFaW2eTAGMkkynOOGOJWWFdp7m5nsHBUabGpkjGkzR3tuX52hNOhcgkoLXFIkHc1MeS5Qupa6il/8Cg8+N6qE1ruuhKEoPPisSRpPIIu+rFdFMKAfQlN97fUt119gY/8Bd3taLp1tBtLVxwJlSG8kGGE/cEuXiMTCxKW9vsEeDoUdMDrF27FNk5CofDNDc3cPSoQ4KWrraSgKTAtVJTawukJAmAlrYm6uprOdQ7CFhjBXq4TW+68EqRPPIsbhKoPA0UvYjuNECvbF99dx74Z1jgW5ZfXwvnnQGhkL9y8qRQsYR71+nblxzaZiyymwgQCumEwyHCYZ3m5jouvvgMQqEQQwePsve1t0sqfykAlyKrVkBbizM+snrtUtZ98F3u0cNQ1ZrQ8s/dCtQCEaASCONMkwRKIQJogL7yq6/+UNP1a/PAt/r3Mq1aZoLvKyeqLGFnscGZLVEJpmleEtRzySVnEg6HGD54lL2vvlWwvIV/yL1bzJsArFwG1dWOrlev7eGKD13sPE4A4bqrQhf8+NtADQ4JQhQhQRBkGqCt+PKmj+rhqluxgRCctbKbnkXt6LpToMULob25sGt3xfUS3L+aPxuLkYlGaW9vmbUQMDg4SiIhQ4Asi2YlqKyspLW1kYGB40yOTpGMJWle1G7fX2rMp8C1IC+h6WYP4fioU6fWdnNMZODgELYVhWvP1WpX9InRTQdQpjSUR+VJkAfQuj++vlWviNxlD0cKweLOVpYv7nAGbTSoCENnR2kx0RbFsgMVpeZRhndnS+SIoCqOJzBTS0sd73vfWtMT9A0ycmAwGLiACFwI+
+ODCmY3rhgaLmLqZzrloNavP6rHxRwi0xnP+SWs8bwGmF6gCKjAN3dcL+BFAA7TqheetR5nDb6iLcNaqbpfb13QTfF/XX8jVBSgpKI8h5iIE4NvGMEkQskgQoqWlnssuO4twOMTerTsZliQooS559faWQZZDeZ5apEVd2A1umS698gJa25uU3w3Vacu+cDMmAapx2gNW/8otYe8JQFvxpReuUuN+OKxzwZk9VFr9fDW1tph5AkfJhNULEM7PBylGk8/x284u/raX2bDhTWWiyCGFYbjnDsJhnWQS9m7ZgRYO09zdcVJE96ufek5gjhRWV5ndQylVkQqu/OtLePzBjaSSafOmisYrtOVfvFwc+OnzFFlU4iWABuh6Ve1dMqtAsHxxB431kTzwayJQUaFgq4BcqKKSEH6k0Xzvm/1eQCikYxgwNDTuO6sYNPNoGIIjbx+kqbvDZb0q8AUBL+Ap1fPyZH0dpNOgDA7TtqCJcy5azWubdjonmy75Dvz0r3AWlGTxmULOI8DKL2/+FEJbKsGvqa5kzTJnoMdLAN8KWuBqRaxeU/KqW5Rje+59lkPA6tVd9PS02sAbhgNwNpsLvG/HjsPI9QRe8PJ0gnLRe129V82jPFAAEas3oFvHkggXX3Y2e3YcYHoyZo0PVHRpq7/xMbH3n+/HJIHvzKFKAA0IaeGqb0rwAS5Y25MHvEyuYXkJnF+lLKvPAxt/i8e7L/xd5KmUurp63FPEJgFSqWxBz6PrQ2QFedaft5V18Useb2Df5yELQCTiDKyBNVtq7b//mvfw2/s2mLkFiJqVnwUexZw6lmsIXF5AbQRqK/72hetAWyrBb2uqp725zhd8WQghPJUUynlPRfMU4KMsQzl2FlTMfi/AT7JZo2jYEcIqH8EW7SKyZ2s/xye/el69EITHoqUdLFrSIfEHvbKT5V/5IO7GoGtcQBJAA3QtHLlJfd1qxZJ2u8thdz98SBBUAT+Q8VFCKdvZDgFeMRt9
+BppaSR+x2weU5gUCDcJDCnvfSuo9QQTQNDjv4jWWnq3ctSuvxewOql1CmwQ2ARZ99I4WTQ9dK389Ul3Jwo4mV5dP7YNqujlO7Rrg8ILtU2lvCnq32rtCdy6tXwjI5cy4LweECuX1I4Hh0UVRQ8CtR9UNCGUnlcoH3Q7RwPI13TQ0KqumKpovo25NK6YHqMDjBWwCVHWefZ36guXCjsaCTNM0sFYtWfc4hVVZbStpBlvb9VvnnBAwNyzIZnNWu8UEvjAJRD7YJ5hs162e93iBpA8BvGn56sXuInb+zfsxCSDDgD0w5LxTEa66VmXd0kWtBX9E1yCXcxY12oUOUoYKKgRajFeZNgnmKARkswaG4YS3YiSwewu4y1uKF/DVlTQmxQuoDiEWC8AEZ//M85e7CxlZvA63B7DDgO0BND18OZiVqYlU0txQUxB8uT8xhe0BgrxAwWPcpAgkxxzgn8kYVtwH0EokgTJo5FP2mYYE56n5HmBqynxOIfA1DTo6m2loqnUeFm44DxP8vIagDmhLbnxwGWiN0sU21dcEPtzbJYzGIGcEe4GgxpGvkjzXnDX4zsre2RAhzLd9DcNAAl8qCdRegF8o8PtESOB51ZCspF6fihZ3/zK1L2h2KqiF6mhd140Jfp4H0PRIc4/a+m9qyB/18wNf9u3HxnF5Ab8Ke91jkOsPeidvtuJ/NmuQSmVscqnAl0ICuwEYUI8ZeQFVXx4iTE6aDcA8DAggQKdnRXNkaTABtIqaK+xfR9DRWl/Sj8gUi0M84WZwYOVx2J+nNB/lGcrzTpUIIchkciQSGTIZZ5RPBbhUEggBwhCBJA7sHXhTAcvPZM1QW8z1q6l7WYe70nWrz8cEXoKvA5qcJbLBN1u/pVm/msYmzOXNcrpeVla3vIQc3jU00AUIzcmHktfeApp9zhmhmznYppVnszkyGYNczsAZVBIKqLLuGkIIy7tpaJqwnmPu5+fxvAUUAH6ey1eJ4ZNkRiMHx45
+j44IETNjIOefsSnuOAYSh4QEfmwCGOTAr1dvc6NMApDABEDAxAW1tEFKGl6RSbNCtrRdwcJ/TNGuY01ZK6eAbhmnh6XSWbNawAHTul4r0gnoiJLDnDvyAVbfkezpf1+9Jo+OmB9C8YCvHHi4gNOjoUtoAzm067oEgLSwfYRuEEFRW5k/7FiKB9A7ZHIyNmVPEuu4UzkUEfKzdYqwLfEuRmlZ6LyCXM0inc2QyORtwaaWlgjpzEigkJcDtq0TwI4EHdWFZ/sSk0+93IRlk/ZaONA2qI96VU0KToCvJZIIKvggAOSh5Q0M2Zy5dymT93V1Q/PcqRX4ao5RegBCCRCJDPJ6xZ+6cWO0fvwvFeKc+xfOrHqAQ+H7Xgty/YcDxcUgkZxb3NQtWp5x54gIf5DiAMDQJPgLi8VTwg0sgiMBstSYS7soWIoHrnXz8rMof/Ww2RzyeKdJ/nzkJZJ7SSOCph0Jg33oXAD+VhmOjkMu6wZS6954LwmVqIuarLw8ZrKFg4cR/EMTi6cIgl0iCWBympq3RsgIkcIZ8Pd0/lQge/IUw++7pdK5EMGeHBEIIs5HqQ+ZA0ivktr2fYeprYtI8keddC+nc59rURLQYAbAJYOQyh2ytCojFUzZFToYEugbZLExOmbEsTykBFmMr0iZEfi8gk8mSy4kZgnnqSWC7bXCHsFLAt/YzGbObF08U12khHFRvkOcBMhPD1p5QtzogjFS0X+1/Rn1CwEyTyl6AZBKmo1bbwMdKvFbvbgO4Q0A6LSdrTgTMU0sC6QHUegR5Ny/4mQxMT5tJzj+oqVjYBU9enLx5BEgND0uVqyTQAeJ9L2532gCCoZEp90NPwguoSQizYRNLmJUvbPXe9oBZ5lzOWdF04mB6z2kl3pf/O6oHyGu8ekgg65nNmpM6sZg5oTZjC/fTvSdff580eEuOPLANpXhSiTogxjb9aMIwMrtk3qMjU2QyubyH5zVKAkhQbNBICEhlTDJkstZCNZ
+8w4LhTZ1GmOSuY32o/ORKoeWZGAiFAGCIPaG9IEMKsazxupqLAFzIw3Fig5JPn+w8oBMjF+nzAN7A8gEnUdGKT2hM4qnqBU+wJJEnA7Dam0pDOQtZwK8/lQg1BOBzyAWx+SSCEcHst3CTOWfWLJ6zVvD6uvhSdBuLgc7xv1wAuSR3bgfsLY/YScZsAueTkSxJ8hGBf7zHfh/t6gRkC7zuphDmrmDYgY0DOQwQhBM3Ndb4AzycJpIdSSZDLmdaeTJkfeigZ9GJ6lmUMyCfLteetw24CJA5uV4CXC0PdHuDI/R97AsOQX8Ol7/AY6Uw2vzClMjMA/FIUAG6LUheEqtZ3OpBAli0nTG+WyZmeLGjevqgOfPTo2xbz4mAdp5Jptr92wAFf5GIcumuTBXzetwYlAUwDTE0/JHsCCMGOt4YK/lgphZ9p8vtIFJghoFiLfD5IIMsmBPha7UxSCXpVyeBnfFtf3INLEoc3WoDLdwNcn5ez9QvkEv2b/12Cj4BtuwZNL+AH+gxJUIr1B30NFKUXcLqRQHom+/uGQXUN0pcKpM+xqvcg8OV+Mplm64u73QQYeuy3Cvjez866XjAxjm/8Tp9Ix5+RXiCVyrJt59HSC+OTr5SU93FIDwk0nGnq040Eci7A/jztDAjvIoefzrznfI5VImx9YQ/JhFypCyQHNzLx6qAFvPyuYAZPGwCFBNn02IE7hX0KXn6tn+loqvRClcD4Uqze5QHAt/t3OpBAzuRpVllLArJAsg1LBVcpi73vAX9iPMaWP3msf/BX9+O8FSS/MKq+KOp6MygHZIcf++zzRmry16rbfWbjvuJu6AQq7gVfVaL6EWg5RRoM2PyRQPUAaj1K8gIevZWi2zw9W0T4zX1b/Kz/iAd8GQIMmU31AEKSIN678RZh5KbklYEjE/x526C7cD7g5lXGy2w/EnjA9/MAZggQ9vNPJxJID+D31XI/IyjYUPQBN1C/OOBvfn43ffuVgR+Ri9F3+
+50K+EncXxy3h4NVD2CHgfFNt/Rmo0M/kqcFsGlrPyPHY+5C4S5UYCV8yOL3vf+8/weguXsBKL93upDA6wE0pT5+9fZabqDxoOz7gW9dGxoYZ8NTO3DJ9M6HSPRPeMD3fmAaCCAAkB56+IafikxiqxwcSiUz/OaJt0il88cGihXez+pVCwn87r98jshfD3i6kEAqTtYnzwOoeipkJEH6w3NduZZMpLn3zj+5XX9mYhf7b/mNAr5MedbvJYCsixwtSo1v+eGnMYxpOUQ8OZnkvoe3k0oVJkFQJaXKbEV5lJXnETTVA5AnpwMJhDVy6ucB1P974NWLK8YHXffsO79tgv+z255jfFSZ9RO5GPu//10c8BNWUr8s7rIkPwIIrFGj+L6nR5JHXvm8UC4PD0d5/Ok9blBLrZyXHDiW7hsOyB8H8Mp8k0COBOaBjjuBUm8//aj18QPfY2iPP/w6g4fH3coYuO+bJPrHMcGPY4Kvtv5d1g/5BAAnFGSA1OgfvvbHzNi+f5SDQwLYs/c4j/1uj69b8iOB7foVBXn/R4CXDGp+tRHoJ/NJAtUDeInt6wk9eirFC3jBf/CeLby6WRnuBRh/+Scce3YPJugSfEkA9cMQLilEADl8mDr2+Kd/mYuO3GuPEgJvbBvinv94k2QqG+i6XATxJiWfHxlUIiD8Q4AqEuy5JoFsBHoJnEd2PLrwAdjlBVCuWfvJRJrbv/8cr3jBn9p2N323/x7H7ccwSaDG/pIJAO4GYQpIDj9y/f8xEmO/lRdB0HdwgvW/eJNkMuvvtsh3eYEWgj8Z7H5qAQ+gyvyQoED3z6+uQeB7LF3Nk0ik+cn3nmP/Hs9Cj+TgRqvRl8QEXoIvY3+g9UMwAcDTIAQSw7/6yN/lEqOPqeHg6NFpbrltC0eHoi62uirjpwTyLSWIDH69gEIylySQ3/D3I3Mg+LiPfcFX9Hikf5z/+w+PMdDvifnxvid56+s/xLF6mVTw8xp+Ll0V0yUm
+DmHMV4sjQG3b1Xd9Idy84usSFGH1Ff/mmlWsu3yxM8JnfVXE6w5DPud85wCs7eE393Loz3vp7m5RllA7pHCO1a1ZJjl+4P60m1/+wlvzWeZWvTYwME5DVysf/MLVvkvZfM8JuchFrngCYfif3/DUbh7+5ev5yIxvuZ2+O36PE/OjVorh/E+hgtYPpf+/ALX1KOL7Ht9e2XXxsVBN+/ulchCwZ+8YvQfGOefsdiordQf8IJBLIIGugZHOkI4nSdkLRgRpYS4ckccZAVlDkDHM+fissPaFdWxozlZAFmsr1K1mPkc5l7HOyW1aaKTRSBsaKTSq6mtYe/lZNC1ocrSlWcpSzcuzLx2aoj5nC8RjaX78vT/ywoZ9HiRyMSZe+ZkFvur2ozhxvyTwvcUqlk/H+chANVBTf9GXL4qsuvYe0OvBidOR6jAfvW41772kyxfY0AmQoNCoob3F05jCcaMuHSrKtxrxzvp8kb/1W+RZzMpzAdfl+sdCHuDFPx7gwV+8TjyWdhfcSI1w5KGbOfbsbpyu3ozjvhfYUkUNB1WYJIhULryks/E937iDitqLpFblt4ZWrWzmho+uZml3vQvYUkJASDmnefPhbiNoytaPBH7iB37e6t4Zgu4HtIsU6jkfEhw6MM5997zO7l3D+QVOH3uF3ttus/r50u1L4Gds+SqoMxFvm6AKs11Q0/yhf/tsuHHF54Wm1zkBw4yVl75nIdddvZyOtoibBBTxDj7XvWTQfLYqEbyVtOOYCjz54HvX+c8EfAPLAxTzCBb4I8MxHnlgOy/+0dO9A9PlT+98SBnelf171epld29G4Ht1M5N7JAlkSIgANZHV/21lzZk3flerqLtQTiJJ7QrgI9esYN2lC1nQGgkMBYHegcJk8AsDthfwCQFSQ973Ekp2+wFWXhR85b6RoRjPbzjAIw9s99d0ZmIXh39xmzWtK8GXFq8O9JzwP5A8EQLI+3RMTy29QTUWERqvuOX6cNvZ/wC
+hOnWpufQIV1y6kBv+60oWtEV8LX6mbQRvOPAjgSpC2c7I7RcB2o8UfuAPD8V46P7tPP+cj8WDGevHNq2n/+6XMN26nNBRgVddfhbHmc1ITpQA8l4NhwQVKG2Dio4LO2rP+dyn9MZln1bBB2yPcPaaFq794FIuvXBBYS/gAVxeLxQOgkjgDQElu/0TBV/Js3nzAI8/tpud231iPJjuPrb/SQ7/4lEr1qdxwFaB91vdM2Pw4eQIIO9XvYEMCTYRqpZfuyKy6vov6DUdV8txczU0AHS0RXjvhR186PJuVvU0FAwFQd4hKBxAcAgIcvvF+vC+bh5/IuzrHefZPxxgy+bDDA8XeGU7ObiRvtvvtObx1YUcEnx1WveU/QfxkyWA+hxJAkkE+X3aaqC6atmHl1Wv/NgXtUjb5RCqk51ekwxm+YUQdLZFuOxdnfz1Fd2sscgwkx6EXziQBXS5fvIt3vtWkuuVtQJxP+fZ39s7ztPPHGDT5sMMFQJdWvzI75+1Fm9K4L1z+fKc2tCbcbz3k1NFAPksv7aB6hGqwq1nt1ef+anrQg0rrydU2emAj4sIAF1tEe749nvp7qiZcTdSFkTtEkLhLt9MrFy9fmQoxmtvDvP6tmFe2DRANOrpv3vFSI0Q3fMERx58lkT/JO6Fm+oqHi/wp8TqVTmVBFCfKdsG0huoocFONRf97/8Salx1hRZZ8Fde8OV4wmevX8PnblidB3qpDUW1O2g+3+3+Z9qNm5xO89a+cV55c4Td+8fYs3+cwaGiX+MwJTm4kYnXNjD48Bs4b+qoizbV+O4F/qRifZD4/c+gkxVZQNVVeStbCVTFX7/5CeDZUPPaH1StvOEDofqey6lqfZ86mNTVEXEB6J02VRt8ftOvNgmsgsl/VGEI637hHjuYimbYsd/8tzH9R2McHopxeDDK4aEYb+8fZ2o67QwlliLpY1uJHXiZocc3kTg0hRPD5SodaeVpJXmBl5Php4NBf5oAAAYZSU
+RBVBR8mB0P4H2+1yPIHkOeZwg1r22refc/P4qm1wkB9TUV/PanH6CxriLP9Zeyr7YLpqIZvnvPLrbtm7DbHkLAS2+MYPdQ1N6KArLwCVOBInIxUsNbSQ5s5+hjmy3QpQFkcQPtB7qfxZ9y4KXMhgdQRRZeGqCsmFSEJEMKqKo649NXS/AB1r17AfW1FQB5XgDy3bufp9A0uO/pQ3ztJ28yMW3FZp+xibyuqqxAMfCN1AjZ6QMkB3cytWMbI0/vV+qoJgmyulWJIT3mnAAvZbYJIMWPCDqOAjJANlTf8z/sGgvBx69ZDgRPqhFwXu73D8X5wr+8yotvHFPaFm7wvcPWMo+ycdxFZnInufgwuegw0T3bGX95P/GD0zjAqQRXwc14kkoM6eLVxt2sAy9lrgggRSWCVFoIMCLvvfUcoVeslcpe1dPI6h77/1a6HlBMJqMZ/v2RffzLPW+Z93jBT43vQpPNDM1BXgDJ4R1WVoju3g4IMball/hB68P4Nliy/LKN4wVffR3bG9PV2H5KW/UzlbkmgBTh2Wqh+p7Pq4NDN1jW77pDc+97iSEEPLV5kG/esY3+o2bLXF1JJLLRg8bQH+4y+h98EzcQKgAiIHmB90tekLOe/Ooz5tza/WS+COCSyLu+04RW8WEJfm1NBeve3Rlo+a59YbbsDw/F+eotr7HpzZH8nCIXE+PbH8q+fbP8F2pqDPbrW6uge8FXLd8Lrve84XnGaQG6KqcDATS9cc11WP+nWACXv7uTOqvxl4eKYv0S/B/e+zbrH93HpN3IM/8IASI58kpu9y23idgh+aqU3wBLEAH8iOBHCOGzr27hNAJdlfkmgDmEH4r8LUjcBNdfs9wGF+uC0PLReXn7Mb5+62sMDMddA0ggENnUiHH0qR/nDj3wBu4ZNZlk90uGANnXtp9CPhH8LNl7fFoD7pV5J0DtVfddCZwrG+UrexpZubTR0aIKvrU/MBzn5p9t47nNg+6nCUBkY8bU3
+iezO771S9yTKuqEivqypLRc+QQ8+35kwGf/HSnzSQDL+qs/oXbLPnbN8oIav/ex/fzbfW8zpYy3y6XZIjnySq7v3p8bo1sHcFu9dw7dC36huDzTTsg7SuaVAJGLvt0i9PCNEvzamgouvbgL88ht/a9uP86td21jT++k7L+Z+YSAbGrEOPbC+uz+O+UCCu/LkarVn/IZtXeyzCsB9KYzP6k22N53cRd1NRUu8KdjGW67aztPbjhkWrkHfDH59kPZ3rsfFbGDspGnLqDwi/fq6pn/1ODD/BHAnK3Vqr4kwQf4yNXLXcg89EQv6x94i+lYBnCDb6TGduV61//IOL5VrpfzA9/7YYRZmVF7J8u8EaDminuvQmOJPLFiaQMreszG376+SW6/eztv7LT+WxJOnEfkYrmhDT/J7rvTu17OC7y6WPKEFkz+Z5D5IIDZ+AvX3ATYkyzXXb2C6ViGXz78No882Wt3Cc2N1ciLHngys+eO+0Ts0DjBS6ZmdQHFX5rMCwGqL/x2C3r4Rgl+ba0Z92/64jNEYxkX+AgQ6fFduf5H78odeWoP+a17uZXAq1ZfBr6IzPZ6AD8J1b7/wb8XevX33bNuAjvES/CNXCx3fMvdmbduewb/Pr36BYy8r2BSBr+ozLUH0ABdaFVfcs+t54MvYkc2pt/6wc+VIVwv8N4+fdndn4DMOQEi635xFZq2JK9xZx4gstG+3JFn1mf77n+D4q37srs/SZlLAliNv9qb3CuBzYvCyMaM8e0Pprd/V87YBTXyyu7+FMrchwBNvxac1j+AkRrdnNn+z7cZ0b5pHPDVUTy1dX/KXoooy3wQwMi9KLTwh0GAkRnMHt14c2bvz3Za17MET9yUh3BnQeayF6ABFRWrP9OhN655l0hPRdLb/mkn5opgHRNU78COt09fHsI9xTLXBPC+SVyNuSoYTIAlAbyt+3Ijb5ZkrkOAXCqVxiSEXBQqcP9bk7K7nyOZSwJIC84pxxkcL+Rd
+WFl293Mgcz0SqL5AKhO4l1eVW/dzKPMxFKy+sa0u9JbbMvBlKUtZylKWspSlLGUpS1nKUpaylKUssyD/HwEQx4neYTGpAAAAAElFTkSuQmCC</ImageData>
+    </EmbeddedImage>
+  </EmbeddedImages>
+  <PageWidth>37.78cm</PageWidth>
+  <DataSets>
+    <DataSet Name="Contract1DataSet_SP">
+      <Fields>
+        <Field Name="合同号">
+          <DataField>合同号</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="年">
+          <DataField>年</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="月">
+          <DataField>月</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="类型">
+          <DataField>类型</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="金额">
+          <DataField>金额</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DummyDataSource</DataSourceName>
+        <CommandText />
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+      <rd:DataSetInfo>
+        <rd:DataSetName>Contract1DataSet</rd:DataSetName>
+        <rd:TableName>SP</rd:TableName>
+      </rd:DataSetInfo>
+    </DataSet>
+  </DataSets>
+  <Width>34.5cm</Width>
+  <Body>
+    <ColumnSpacing>1cm</ColumnSpacing>
+    <ReportItems>
+      <Textbox Name="textbox1">
+        <rd:DefaultName>textbox1</rd:DefaultName>
+        <Top>0.25cm</Top>
+        <Width>21.25cm</Width>
+        <Style>
+          <FontSize>16pt</FontSize>
+          <FontWeight>700</FontWeight>
+          <TextAlign>Center</TextAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>15</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>2.75cm</Left>
+        <Height>0.75cm</Height>
+        <Value>合同信息</Value>
+      </Textbox>
+      <Chart Name="chart1">
+        <Legend>
+          <Visible>true</Visible>
+          <Style>
+            <BackgroundColor>White</BackgroundColor>
+            <BorderStyle>
+              <Default>Solid</Default>
+            </BorderStyle>
+          </Style>
+          <Position>RightCenter</Position>
+          <Layout>Table</Layout>
+        </Legend>
+        <CategoryAxis>
+          <Axis>
+            <Title>
+              <Caption>月份</Caption>
+              <Style>
+                <Color>Blue</Color>
+              </Style>
+            </Title>
+            <Style />
+            <MajorGridLines>
+              <Style>
+                <BorderStyle>
+                  <Default>Solid</Default>
+                </BorderStyle>
+              </Style>
+            </MajorGridLines>
+            <MinorGridLines>
+              <Style>
+                <BorderStyle>
+                  <Default>Solid</Default>
+                </BorderStyle>
+              </Style>
+            </MinorGridLines>
+            <Min>0</Min>
+            <Margin>true</Margin>
+            <Visible>true</Visible>
+          </Axis>
+        </CategoryAxis>
+        <ZIndex>14</ZIndex>
+        <DataSetName>Contract1DataSet_SP</DataSetName>
+        <PlotArea>
+          <Style>
+            <BackgroundColor>White</BackgroundColor>
+            <BackgroundGradientEndColor>White</BackgroundGradientEndColor>
+            <BorderStyle>
+              <Default>Solid</Default>
+            </BorderStyle>
+          </Style>
+        </PlotArea>
+        <ThreeDProperties>
+          <Enabled>true</Enabled>
+          <ProjectionMode>Orthographic</ProjectionMode>
+          <Rotation>30</Rotation>
+          <Inclination>30</Inclination>
+        </ThreeDProperties>
+        <PointWidth>0</PointWidth>
+        <SeriesGroupings>
+          <SeriesGrouping>
+            <DynamicSeries>
+              <Grouping Name="chart1_SeriesGroup1">
+                <GroupExpressions>
+                  <GroupExpression>=Fields!类型.Value</GroupExpression>
+                </GroupExpressions>
+                <Parent>=Fields!月.Value</Parent>
+              </Grouping>
+              <Label>=Fields!类型.Value</Label>
+            </DynamicSeries>
+          </SeriesGrouping>
+        </SeriesGroupings>
+        <Top>6cm</Top>
+        <Subtype>Plain</Subtype>
+        <ValueAxis>
+          <Axis>
+            <Title>
+              <Caption>金额</Caption>
+              <Style>
+                <Color>Blue</Color>
+              </Style>
+            </Title>
+            <Style>
+              <Format>N2</Format>
+            </Style>
+            <MajorGridLines>
+              <Style>
+                <BorderStyle>
+                  <Default>Solid</Default>
+                </BorderStyle>
+              </Style>
+            </MajorGridLines>
+            <MinorGridLines>
+              <Style>
+                <BorderStyle>
+                  <Default>Solid</Default>
+                </BorderStyle>
+              </Style>
+            </MinorGridLines>
+            <Min>0</Min>
+            <Visible>true</Visible>
+            <Scalar>true</Scalar>
+          </Axis>
+        </ValueAxis>
+        <Type>Column</Type>
+        <CategoryGroupings>
+          <CategoryGrouping>
+            <DynamicCategories>
+              <Grouping Name="chart1_CategoryGroup1">
+                <GroupExpressions>
+                  <GroupExpression>=Fields!月.Value</GroupExpression>
+                </GroupExpressions>
+              </Grouping>
+              <Sorting>
+                <SortBy>
+                  <SortExpression>=Fields!月.Value</SortExpression>
+                  <Direction>Ascending</Direction>
+                </SortBy>
+              </Sorting>
+              <Label>=Fields!月.Value</Label>
+            </DynamicCategories>
+          </CategoryGrouping>
+        </CategoryGroupings>
+        <Palette>Default</Palette>
+        <ChartData>
+          <ChartSeries>
+            <DataPoints>
+              <DataPoint>
+                <DataValues>
+                  <DataValue>
+                    <Value>=CDec(Fields!金额.Value)</Value>
+                  </DataValue>
+                </DataValues>
+                <DataLabel>
+                  <Style>
+                    <Format>N2</Format>
+                  </Style>
+                  <Value>=CDec(Fields!金额.Value)</Value>
+                  <Visible>true</Visible>
+                </DataLabel>
+                <Style />
+                <Marker>
+                  <Size>6pt</Size>
+                </Marker>
+              </DataPoint>
+            </DataPoints>
+          </ChartSeries>
+        </ChartData>
+        <Style>
+          <BackgroundColor>White</BackgroundColor>
+          <BackgroundGradientEndColor>White</BackgroundGradientEndColor>
+          <BackgroundGradientType>Center</BackgroundGradientType>
+          <FontFamily>宋体</FontFamily>
+        </Style>
+        <Title>
+          <Caption>本年执行情况表</Caption>
+          <Style />
+        </Title>
+        <Height>10.5cm</Height>
+        <Left>0.5cm</Left>
+      </Chart>
+      <Textbox Name="textbox15">
+        <Top>3.83333cm</Top>
+        <Width>7.5cm</Width>
+        <Style>
+          <FontFamily>宋体</FontFamily>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>13</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>20.75cm</Left>
+        <Height>0.75cm</Height>
+        <Value>=Parameters!fp.Value</Value>
+      </Textbox>
+      <Textbox Name="textbox14">
+        <Top>2.58333cm</Top>
+        <Width>7.5cm</Width>
+        <Style>
+          <FontFamily>宋体</FontFamily>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>12</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>20.75cm</Left>
+        <Height>0.75cm</Height>
+        <Value>=Parameters!rmb.Value</Value>
+      </Textbox>
+      <Textbox Name="textbox13">
+        <Top>1.5cm</Top>
+        <Width>7.5cm</Width>
+        <Style>
+          <FontFamily>宋体</FontFamily>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>11</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>20.75cm</Left>
+        <Height>0.75cm</Height>
+        <Value>=Parameters!sp.Value</Value>
+      </Textbox>
+      <Textbox Name="textbox12">
+        <Top>5cm</Top>
+        <Width>7.5cm</Width>
+        <Style>
+          <FontFamily>宋体</FontFamily>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>10</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>6.5cm</Left>
+        <Height>0.75cm</Height>
+        <Value>=Parameters!jhrq.Value</Value>
+      </Textbox>
+      <Textbox Name="textbox11">
+        <Top>3.83333cm</Top>
+        <Width>7.5cm</Width>
+        <Style>
+          <FontFamily>宋体</FontFamily>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>9</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>6.5cm</Left>
+        <Height>0.75cm</Height>
+        <Value>=Parameters!qdrq.Value</Value>
+      </Textbox>
+      <Textbox Name="textbox10">
+        <Top>2.58333cm</Top>
+        <Width>7.5cm</Width>
+        <Style>
+          <FontFamily>宋体</FontFamily>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>8</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>6.5cm</Left>
+        <Height>0.75cm</Height>
+        <Value>=Parameters!hcode.Value</Value>
+      </Textbox>
+      <Textbox Name="textbox9">
+        <Top>2.58333cm</Top>
+        <Width>4.5cm</Width>
+        <Style>
+          <BackgroundColor>LightBlue</BackgroundColor>
+          <FontFamily>宋体</FontFamily>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>7</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>14.75cm</Left>
+        <Height>0.75cm</Height>
+        <Value>=IIf(Mid(Parameters!hlx.Value.ToString(),1,2) = "02","回款","已付货款")</Value>
+      </Textbox>
+      <Textbox Name="textbox8">
+        <Top>1.5cm</Top>
+        <Action>
+          <Drillthrough>
+            <ReportName>Report合同商品信息</ReportName>
+            <Parameters>
+              <Parameter Name="Report_Parameter_hcode">
+                <Value>=Parameters!hcode.Value</Value>
+              </Parameter>
+            </Parameters>
+          </Drillthrough>
+        </Action>
+        <Width>4.5cm</Width>
+        <Style>
+          <BackgroundColor>LightBlue</BackgroundColor>
+          <FontFamily>宋体</FontFamily>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>6</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>14.75cm</Left>
+        <Height>0.75cm</Height>
+        <Value>商品：</Value>
+      </Textbox>
+      <Textbox Name="textbox7">
+        <Top>5cm</Top>
+        <Width>4.5cm</Width>
+        <Style>
+          <BackgroundColor>LightBlue</BackgroundColor>
+          <FontFamily>宋体</FontFamily>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>5</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>0.5cm</Left>
+        <Height>0.75cm</Height>
+        <Value>交货日期：</Value>
+      </Textbox>
+      <Textbox Name="textbox6">
+        <Top>3.83333cm</Top>
+        <Width>4.5cm</Width>
+        <Style>
+          <BackgroundColor>LightBlue</BackgroundColor>
+          <FontFamily>宋体</FontFamily>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>4</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>0.5cm</Left>
+        <Height>0.75cm</Height>
+        <Value>签订日期：</Value>
+      </Textbox>
+      <Textbox Name="textbox5">
+        <Top>2.58333cm</Top>
+        <Width>4.5cm</Width>
+        <Style>
+          <BackgroundColor>LightBlue</BackgroundColor>
+          <FontFamily>宋体</FontFamily>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>3</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>0.5cm</Left>
+        <Height>0.75cm</Height>
+        <Value>合同号：</Value>
+      </Textbox>
+      <Textbox Name="textbox4">
+        <Top>3.83333cm</Top>
+        <Width>4.5cm</Width>
+        <Style>
+          <BackgroundColor>LightBlue</BackgroundColor>
+          <FontFamily>宋体</FontFamily>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>2</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>14.75cm</Left>
+        <Height>0.75cm</Height>
+        <Value>发票</Value>
+      </Textbox>
+      <Textbox Name="textbox3">
+        <rd:DefaultName>textbox3</rd:DefaultName>
+        <Top>1.5cm</Top>
+        <Width>7.5cm</Width>
+        <Style>
+          <FontFamily>宋体</FontFamily>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>1</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>6.5cm</Left>
+        <Height>0.75cm</Height>
+        <Value>=Parameters!hkh.Value</Value>
+      </Textbox>
+      <Textbox Name="textbox2">
+        <rd:DefaultName>textbox2</rd:DefaultName>
+        <Top>1.5cm</Top>
+        <Width>4.5cm</Width>
+        <Style>
+          <BackgroundColor>LightBlue</BackgroundColor>
+          <FontFamily>宋体</FontFamily>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Left>0.5cm</Left>
+        <Height>0.75cm</Height>
+        <Value>客户：</Value>
+      </Textbox>
+    </ReportItems>
+    <Height>16.61905cm</Height>
+  </Body>
+  <Language>zh-CN</Language>
+  <TopMargin>2.5cm</TopMargin>
+  <PageHeight>27.94cm</PageHeight>
+</Report>
