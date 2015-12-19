@@ -34,7 +34,7 @@ namespace contract
                     return;
                 }
 
-                string sql = string.Format("SELECT * FROM AUSERS");
+                string sql = string.Format("SELECT * FROM AUSERS WHERE UCODE LIKE '{0}%' AND UNAME = '{1}'", ClassCustom.codeSub(this.comboBox1.Text), this.textBox1.Text);
                 DataTable users = DBAdo.DtFillSql(sql);
                 bool flag = false;
                 foreach (DataRow r in users.Rows)
@@ -53,8 +53,8 @@ namespace contract
                         ClassConstant.BNAME = ClassCustom.codeSub1(r["ubm"].ToString());
                         ClassConstant.USER_ID = r["ucode"].ToString();
                         ClassConstant.USER_NAME = r["uname"].ToString();
-
-
+                        ClassConstant.AccountingBook = ClassCustom.codeSub(this.comboBox1.Text);
+                        ClassConstant.AccountingBookName = ClassCustom.codeSub1(this.comboBox1.Text);
                         ClassConstant.QX = ClassConstant.QXCOLLECTIONS[r["pcode"].ToString() == "" ? "00" : r["pcode"].ToString()];
                         ((MForm1)this.MdiParent).LogInApplication();
                         flag = true;
@@ -108,13 +108,14 @@ namespace contract
         {
             try
             {
-                
+                this.comboBox1.SelectedIndex = 0;
+
                 //MessageBox.Show(System.Environment.GetCommandLineArgs().Length.ToString());
                 if (System.Environment.GetCommandLineArgs().Length > 1)
                 {
                     this.textBox2.Text = System.Environment.GetCommandLineArgs()[1];
                 }
-                
+
                 XmlDocument xmlDoc = new XmlDocument();
                 xmlDoc.Load("info.xml");
                 XmlNode xn = xmlDoc.SelectSingleNode("system/username");

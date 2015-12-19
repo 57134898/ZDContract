@@ -269,9 +269,9 @@ namespace contract
         {
             this.toolStrip1.Enabled = true;
             this.menuStrip1.Enabled = true;
-            this.Text = "合同管理系统 - " + ClassConstant.DW_NAME + "/" + ClassConstant.BNAME + "/" + ClassConstant.USER_NAME;
+            this.Text = "合同管理系统 - " + ClassConstant.AccountingBookName + "/" + ClassConstant.DW_NAME + "/" + ClassConstant.BNAME + "/" + ClassConstant.USER_NAME;
             this.ShowMaiToolBar();
-            if (ClassConstant.BCODE != "010102")
+            if (ClassConstant.BCODE != "010102" || ClassConstant.BCODE != "110102")
             {
                 BitToolStripMenuItem.Visible = false;
             }

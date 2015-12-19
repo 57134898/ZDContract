@@ -41,6 +41,7 @@ namespace contract
         /// 账套
         /// </summary>
         public static string AccountingBook = string.Empty;
+        public static string AccountingBookName = string.Empty;
         public static string NB = "01";
         public static string WB = "02";
         public static string NHI = "05";
