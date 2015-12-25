@@ -16,3 +16,8 @@ CASE WHEN UDW is null OR UDW = '' THEN  null ELSE '1'+ RIGHT(UDW,LEN(UDW)-1) end
 CASE WHEN UBM is null OR UBM = '' THEN  null ELSE '1'+ RIGHT(UBM,LEN(UBM)-1) end,
 POS,AUT,FLAG,PCODE
 FROM AUSERS WHERE SUBSTRING(UCODE,1,1)='0' AND UCODE!=''
+<br/>
+添加bcode视图：
+SELECT     bcode, bname, shortcode,replace(bname,'沈阳铸锻工业有限公司','') as shortname
+FROM         n7_铸锻公司.dbo.bcode
+WHERE     (LEN(bcode) <= 6)
