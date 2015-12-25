@@ -42,6 +42,15 @@ namespace contract
         {
             try
             {
+                string sql_s1 = @"SELECT [bcode],[bname],[shortcode],[shortname]
+FROM [Bcode] WHERE LEN(Bcode)<=4 AND (Bcode LIKE '01%' OR  Bcode LIKE '02%')";
+                DataTable dt_dt1 = DBAdo.DtFillSql(sql_s1);
+                this.comboBox1.Items.Clear();
+                foreach (DataRow r in dt_dt1.Rows)
+                {
+                    this.comboBox1.Items.Add(r["bcode"].ToString() + ":" + r["bname"].ToString());
+                }
+
                 this.sumGridView1.Grid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
                 this.sumGridView1.Grid.MultiSelect = false;
                 dtgx = new DataTable();
@@ -74,6 +83,13 @@ namespace contract
                 else
                 {
                     this.comboBox1.Text = ClassConstant.DW_ID + ":" + ClassConstant.DW_NAME;
+                    foreach (object item in this.comboBox1.Items)
+                    {
+                        if (ClassCustom.codeSub(item.ToString()) == ClassConstant.DW_ID)
+                        {
+                            this.comboBox1.SelectedItem = item;
+                        }
+                    }
                 }
 
 
@@ -248,33 +264,41 @@ namespace contract
                 {
                     filter += " AND (结算金额 <> 金额 OR 结算金额 <> 发票 OR 金额 <> 发票)";
                 }
-                string sql = "SELECT FLAG 审批, [客户名], [合同号], [签定日期],[标号],[合同金额], [结算金额], [质保金], [运费], [其它费用], [合同类型],0.00 [金额],0.00 [发票],0.00 [金额1],0.00 [发票1],0.00 [估验],0.00 [财务余额], [地区],签订日期, 中标方式,[合同备注], [业务员], [状态], [交货日期], [操作员], [含税], [比例],[HAREA], [HLX], [HKH], [HYWY], [HDW], [HID], [代理费], [选型费], [标书费] FROM [vcontracts]  WHERE 合同号 IN (SELECT DISTINCT 合同号 FROM VCX1 WHERE 1=1 " + filter + ")";
+                string sql = string.Format(@"SELECT FLAG 审批, [客户名], [合同号], [签定日期],[标号],[合同金额], [结算金额], [质保金], [运费], [其它费用], [合同类型],({0}) AS [金额],0.00 [发票],0.00 [金额1],({1}) AS [发票1],({2}) AS [估验],0.00 [财务余额], [地区],签订日期, 中标方式,[合同备注], [业务员], [状态], [交货日期], [操作员], [含税], [比例],[HAREA], [HLX], [HKH], [HYWY], [HDW], [HID], [代理费], [选型费], [标书费] 
+                                            FROM [vcontracts] h  WHERE 合同号 IN (SELECT DISTINCT 合同号 FROM VCX1 WHERE 1=1 " + filter + ")"
+                                            , "select sum(rmb) from afkxx f1 where 1=1 and f1.hth = h.[合同号] and type = (case when Substring(h.[HLX],1,2)='02' then '回款' else '付款' end) and f1.DATE between '" + this.dateTimePicker3.Value.ToShortDateString() + "' and '" + this.dateTimePicker4.Value.ToShortDateString() + "'",
+                                            "select sum(rmb) from afkxx f2 where 1=1 and f2.hth = h.[合同号] and type = (case when Substring(h.[HLX],1,2)='02' then '销项发票' else '进项发票' end) and f2.DATE between '" + this.dateTimePicker3.Value.ToShortDateString() + "' and '" + this.dateTimePicker4.Value.ToShortDateString() + "'",
+                                            "select sum(rmb) from afkxx f3 where 1=1 and f3.hth = h.[合同号] and type = '估验' and f3.DATE between '" + this.dateTimePicker3.Value.ToShortDateString() + "' and '" + this.dateTimePicker4.Value.ToShortDateString() + "'");
+                this.progressBar1.Value = 0;
+                this.progressBar1.Maximum = 100;
+                this.progressBar1.Value = 50;
+
                 DataTable dt = DBAdo.DtFillSql(sql);
                 dt.Columns["金额1"].Expression = "结算金额-金额";
                 dt.Columns["发票1"].Expression = "结算金额-发票";
                 dt.Columns["财务余额"].Expression = "发票-金额";
-                this.progressBar1.Value = 0;
-                this.progressBar1.Maximum = dt.Rows.Count;
-                foreach (DataRow r in dt.Rows)
-                {
-                    string sqlrmb = string.Format("select sum(rmb) from afkxx where 1=1 and hth = '{0}' and type = '{1}'", r["合同号"].ToString(), r["hlx"].ToString().Substring(0, 2) == "02" ? "回款" : "付款");
-                    sqlrmb += (this.checkBox1.Checked ? string.Format(" AND [DATE] BETWEEN '{0}' AND '{1}' ", this.dateTimePicker3.Value.ToShortDateString(), this.dateTimePicker4.Value.ToShortDateString()) : "");
-                    object rmb = DBAdo.ExecuteScalarSql(sqlrmb);
 
-                    r["金额"] = (rmb == null || rmb.ToString() == "" ? "0" : rmb.ToString());
 
-                    string sqlfp = string.Format("select sum(rmb) from afkxx where 1=1 and hth = '{0}' and type = '{1}'", r["合同号"].ToString(), r["hlx"].ToString().Substring(0, 2) == "02" ? "销项发票" : "进项发票");
-                    sqlfp += (this.checkBox1.Checked ? string.Format(" AND [DATE] BETWEEN '{0}' AND '{1}' ", this.dateTimePicker3.Value.ToShortDateString(), this.dateTimePicker4.Value.ToShortDateString()) : "");
-                    object fp = DBAdo.ExecuteScalarSql(sqlfp);
-                    r["发票"] = (fp == null || fp.ToString() == "" ? "0" : fp.ToString());
+                //foreach (DataRow r in dt.Rows)
+                //{
+                //    string sqlrmb = string.Format("select sum(rmb) from afkxx where 1=1 and hth = '{0}' and type = '{1}'", r["合同号"].ToString(), r["hlx"].ToString().Substring(0, 2) == "02" ? "回款" : "付款");
+                //    sqlrmb += (this.checkBox1.Checked ? string.Format(" AND [DATE] BETWEEN '{0}' AND '{1}' ", this.dateTimePicker3.Value.ToShortDateString(), this.dateTimePicker4.Value.ToShortDateString()) : "");
+                //    object rmb = DBAdo.ExecuteScalarSql(sqlrmb);
 
-                    string sqlgy = string.Format("select sum(rmb) from afkxx where 1=1 and hth = '{0}' and type = '{1}'", r["合同号"].ToString(), "估验");
-                    sqlgy += (this.checkBox1.Checked ? string.Format(" AND [DATE] BETWEEN '{0}' AND '{1}' ", this.dateTimePicker3.Value.ToShortDateString(), this.dateTimePicker4.Value.ToShortDateString()) : "");
-                    object gy = DBAdo.ExecuteScalarSql(sqlgy);
-                    r["估验"] = (gy == null || gy.ToString() == "" ? "0" : gy.ToString());
-                    Application.DoEvents();
-                    this.progressBar1.Value++;
-                }
+                //    r["金额"] = (rmb == null || rmb.ToString() == "" ? "0" : rmb.ToString());
+
+                //    string sqlfp = string.Format("select sum(rmb) from afkxx where 1=1 and hth = '{0}' and type = '{1}'", r["合同号"].ToString(), r["hlx"].ToString().Substring(0, 2) == "02" ? "销项发票" : "进项发票");
+                //    sqlfp += (this.checkBox1.Checked ? string.Format(" AND [DATE] BETWEEN '{0}' AND '{1}' ", this.dateTimePicker3.Value.ToShortDateString(), this.dateTimePicker4.Value.ToShortDateString()) : "");
+                //    object fp = DBAdo.ExecuteScalarSql(sqlfp);
+                //    r["发票"] = (fp == null || fp.ToString() == "" ? "0" : fp.ToString());
+
+                //    string sqlgy = string.Format("select sum(rmb) from afkxx where 1=1 and hth = '{0}' and type = '{1}'", r["合同号"].ToString(), "估验");
+                //    sqlgy += (this.checkBox1.Checked ? string.Format(" AND [DATE] BETWEEN '{0}' AND '{1}' ", this.dateTimePicker3.Value.ToShortDateString(), this.dateTimePicker4.Value.ToShortDateString()) : "");
+                //    object gy = DBAdo.ExecuteScalarSql(sqlgy);
+                //    r["估验"] = (gy == null || gy.ToString() == "" ? "0" : gy.ToString());
+                //    Application.DoEvents();
+                //    this.progressBar1.Value++;
+                //}
 
                 //object[] sum = new object[dt.Columns.Count];
                 //sum[0] = "合计";

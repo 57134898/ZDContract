@@ -25,7 +25,7 @@ namespace contract
                 this.comboBox3.DataSource = dt;
                 this.comboBox3.ValueMember = "lid";
                 this.comboBox3.DisplayMember = "lname";
-                DataTable dt1 = DBAdo.DtFillSql("SELECT * FROM bcode");
+                DataTable dt1 = DBAdo.DtFillSql("SELECT * FROM bcode where LEN(BCODE)=4");
                 this.comboBox1.DataSource = dt1;
                 this.comboBox1.ValueMember = "bcode";
                 this.comboBox1.DisplayMember = "bname";

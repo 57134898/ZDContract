@@ -225,7 +225,7 @@ namespace contract
                     this.dataGridView5.Rows[10].Cells[1].Value = dt_t5.Rows[0]["CPOSNO"].ToString();
 
                     DataTable dt_t6 = DBAdo.DtFillSql("SELECT * FROM ACLIENTS WHERE CCODE = '" + this.hDWTextBox.Tag + "'");
-                    this.hDWTextBox.Text = dt_t6.Rows[0]["CNAME"].ToString();
+                    //this.hDWTextBox.Text = dt_t6.Rows[0]["CNAME"].ToString();
                     this.dataGridView6.Rows[0].Cells[1].Value = dt_t6.Rows[0]["CNAME"].ToString();
                     this.dataGridView6.Rows[1].Cells[1].Value = dt_t6.Rows[0]["CADDRESS"].ToString();
                     this.dataGridView6.Rows[2].Cells[1].Value = dt_t6.Rows[0]["CFR"].ToString();

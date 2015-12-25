@@ -142,8 +142,8 @@
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
-            "0:铸锻公司",
-            "1:独立分公司"});
+            "01:铸锻公司",
+            "02:独立分公司"});
             this.comboBox1.Location = new System.Drawing.Point(173, 32);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(250, 20);

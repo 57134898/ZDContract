@@ -112,7 +112,7 @@ namespace contract
                 c1.MdiParent = this;
                 c1.Show();
             };
-            if (ClassConstant.USER_ID == "0101999999" || ClassConstant.USER_ID == "1101999999")
+            if (ClassConstant.USER_ID == "0101999999" || ClassConstant.USER_ID == "0201999999")
             {
                 this.menuStrip1.Enabled = false;
                 OnButtonClick sssp = (object sender, EventArgs e) =>
@@ -149,7 +149,7 @@ namespace contract
                 });
                 return;
             }
-            if (ClassConstant.DW_ID == "0101" || ClassConstant.DW_ID == "1101")
+            if (ClassConstant.DW_ID == "0101" || ClassConstant.DW_ID == "0201")
             {
 
                 this.AddButtons(new ToolStripItem[]{
@@ -271,9 +271,9 @@ namespace contract
             this.menuStrip1.Enabled = true;
             this.Text = "合同管理系统 - " + ClassConstant.AccountingBookName + "/" + ClassConstant.DW_NAME + "/" + ClassConstant.BNAME + "/" + ClassConstant.USER_NAME;
             this.ShowMaiToolBar();
-            if (ClassConstant.BCODE != "010102" || ClassConstant.BCODE != "110102")
+            if (ClassConstant.BCODE == "010102" || ClassConstant.BCODE == "020102")
             {
-                BitToolStripMenuItem.Visible = false;
+                BitToolStripMenuItem.Visible = true;
             }
         }
 
