@@ -615,29 +615,37 @@ where hdw='" + ClassCustom.codeSub(this.HDW.Text) + "'and year(ca.ExchangeDate)=
             // string s2 = string.Format(" CASE MONTH(co.hdate) WHEN {0} THEN 0.00 ELSE co.hjsje END ", this.MONTH.Text);
             //this.button1.Enabled = false;
             //string sql = string.Format("select case substring(co.hkh,1,2) when '01' then '内部' when '02' then '外部' when '05' then '北方重工' else '鼓风' end as 部门 ,co.HCODE 合同号,cl.cname 客户,co.HJSJE 合同结算金额1,0.00 合同结算金额2,co.hdate 签订时间,HJHDATE 交货时间,zbfs 合同中标方式 from acontract co,ACLIENTS cl where 1=1 and hdw='{0}' and hywy like '{1}%' and hlx like '{2}%' and co.hkh=cl.ccode and year(co.hdate)='{3}' and month(co.hdate)='{4}' union select case substring(co.hkh,1,2) when '01' then '内部' when '02' then '外部' when '05' then '北方重工' else '鼓风' end as 部门 ,co.HCODE 合同号,cl.cname 客户,0.00 合同结算金额1,co.HJSJE 合同结算金额2,co.hdate 签订时间,HJHDATE 交货时间,zbfs 合同中标方式 from acontract co,ACLIENTS cl where 1=1 and hdw='{0}' and hywy like '{1}%' and hlx like '{2}%' and co.hkh=cl.ccode and year(co.hdate)='{3}' and month(co.hdate)<='{4}'", new string[] { ClassCustom.codeSub(this.HDW.Text), ClassCustom.codeSub(this.HBM.Text), ClassCustom.codeSub(this.HLX.Text), this.YEAR.Text, this.MONTH.Text });
-            string sql = string.Format(@"select DBO.GetCustomerCate(co.hkh) as 部门 ,co.HCODE 合同号,cl.cname 客户," + s1 + " 合同结算金额1,co.hjsje 合同结算金额2,co.hdate 签订时间,HJHDATE 交货时间,SUBSTRING([BIDCODE],CHARINDEX('-',[BIDCODE] ,CHARINDEX('-',[BIDCODE] ,0)+1)+1,100) 合同中标方式 from acontract co,ACLIENTS cl where 1=1 and hdw='{0}' and hywy like '{1}%' and hlx like '{2}%' and co.hkh=cl.ccode and year(co.hdate)='{3}' and month(co.hdate)<='{4}' ", new string[] { ClassCustom.codeSub(this.HDW.Text), ClassCustom.codeSub(this.HBM.Text), ClassCustom.codeSub(this.HLX.Text), this.YEAR.Text, this.MONTH.Text });
+            string sql = string.Format(@"select DBO.GetCustomerCate(co.hkh) as 部门 ,co.HCODE 合同号,cl.cname 客户," + s1 
+                + @" 合同结算金额1,co.hjsje 合同结算金额2,co.hdate 签订时间,HJHDATE 交货时间,SUBSTRING([BIDCODE],CHARINDEX('-',[BIDCODE] ,CHARINDEX('-',[BIDCODE] ,0)+1)+1,100) 合同中标方式 ,
+(select top 1 gname from asp a1 where a1.hth=co.HCODE)as 商品名称,
+(select sum(gsl*gdz) from asp a2 where a2.hth=co.HCODE)as 总重量,
+(select sum(gsl) from asp a3 where a3.hth=co.HCODE)as 数量,
+(select avg(dj2)  gname from asp a4 where a4.hth=co.HCODE)as 价格吨 
+                    from acontract co,ACLIENTS cl where 1=1 
+                    and hdw='{0}' and hywy like '{1}%' and hlx like '{2}%' and co.hkh=cl.ccode and year(co.hdate)='{3}' and month(co.hdate)<='{4}' ", 
+                      new string[] { ClassCustom.codeSub(this.HDW.Text), ClassCustom.codeSub(this.HBM.Text), ClassCustom.codeSub(this.HLX.Text), this.YEAR.Text, this.MONTH.Text });
 
             DataTable dt = DBAdo.DtFillSql(sql);
-            dt.Columns.Add("商品名称", typeof(string));
-            dt.Columns.Add("总重量", typeof(decimal));
-            dt.Columns.Add("数量", typeof(decimal));
-            dt.Columns.Add("价格吨", typeof(decimal));
+            //dt.Columns.Add("商品名称", typeof(string));
+            //dt.Columns.Add("总重量", typeof(decimal));
+            //dt.Columns.Add("数量", typeof(decimal));
+            //dt.Columns.Add("价格吨", typeof(decimal));
             this.progressBar1.Minimum = 0;
-            this.progressBar1.Maximum = dt.Rows.Count;
+            this.progressBar1.Maximum = 100;
 
-            foreach (DataRow r in dt.Rows)
-            {
-                this.progressBar1.Value++;
-                object sp = DBAdo.ExecuteScalarSql("select top 1 gname from asp where hth='" + r["合同号"] + "'");
-                object zzl = DBAdo.ExecuteScalarSql("select sum(gsl*gdz) from asp where hth='" + r["合同号"] + "'");
-                object sl = DBAdo.ExecuteScalarSql("select sum(gsl) from asp where hth='" + r["合同号"] + "'");
-                object dj = DBAdo.ExecuteScalarSql("select avg(dj2)  from asp where  hth='" + r["合同号"] + "'");
+            //foreach (DataRow r in dt.Rows)
+            //{
+            //    this.progressBar1.Value++;
+            //    object sp = DBAdo.ExecuteScalarSql("select top 1 gname from asp where hth='" + r["合同号"] + "'");
+            //    object zzl = DBAdo.ExecuteScalarSql("select sum(gsl*gdz) from asp where hth='" + r["合同号"] + "'");
+            //    object sl = DBAdo.ExecuteScalarSql("select sum(gsl) from asp where hth='" + r["合同号"] + "'");
+            //    object dj = DBAdo.ExecuteScalarSql("select avg(dj2)  from asp where  hth='" + r["合同号"] + "'");
 
-                r["商品名称"] = sp.ToString();
-                r["总重量"] = decimal.Parse(zzl == null || zzl.ToString() == "" ? "0" : zzl.ToString());
-                r["数量"] = decimal.Parse(sl == null || sl.ToString() == "" ? "0" : sl.ToString());
-                r["价格吨"] = decimal.Parse(dj == null || dj.ToString() == "" ? "0" : dj.ToString());
-            }
+            //    r["商品名称"] = sp.ToString();
+            //    r["总重量"] = decimal.Parse(zzl == null || zzl.ToString() == "" ? "0" : zzl.ToString());
+            //    r["数量"] = decimal.Parse(sl == null || sl.ToString() == "" ? "0" : sl.ToString());
+            //    r["价格吨"] = decimal.Parse(dj == null || dj.ToString() == "" ? "0" : dj.ToString());
+            //}
             //this.button1.Enabled=true;
             ReportDataSource rds = new ReportDataSource("Contract1DataSet_R签订明细", dt);
             this.reportViewer1.LocalReport.DataSources.Add(rds);

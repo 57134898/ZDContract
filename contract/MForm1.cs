@@ -292,6 +292,7 @@ namespace contract
                 //DBAdo.setConStr(@"Provider=SQLNCLI10.1;Data Source=.;Password=123;User ID=SA;Initial Catalog=contract1");
                 //ClassConstant.CW_IP = ".";
                 //DBAdo.setConStr("Provider=SQLOLEDB;Data Source=.;User ID=sa;Initial Catalog=contract1");
+                
             }
 
             Login log = new Login();
