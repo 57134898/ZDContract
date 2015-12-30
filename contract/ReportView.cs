@@ -882,63 +882,81 @@ where hdw='" + ClassCustom.codeSub(this.HDW.Text) + "'and year(ca.ExchangeDate)=
                 this.reportViewer1.LocalReport.ReportEmbeddedResource = "contract.Reports.Report_JT_合同类型汇总表.rdlc";
                 this.reportViewer1.LocalReport.DataSources.Clear();
 
-                string sql = string.Format("SELECT 合同号,客户名,结算金额,HKH 客户码,0 年,CASE substring(HKH,1,2) WHEN '{0}' THEN '内部' WHEN '{1}' THEN '外部' WHEN '{2}' THEN '北方重工' WHEN '{8}' THEN '在建工程' ELSE '鼓风' END as 客户类型,hdw FROM VCONTRACTS WHERE 1=1 AND HLX LIKE '{3}%' AND HDW LIKE '%' AND HYWY LIKE '{5}%' AND (YEAR(签定日期)<{6} OR (YEAR(签定日期)={6} AND MONTH(签定日期)<= {7}))",
-                   new object[] { ClassConstant.NB, ClassConstant.WB, ClassConstant.NHI, ClassCustom.codeSub(HLX1.Text), ClassCustom.codeSub(HDW.Text), ClassCustom.codeSub(HBM.Text), YEAR.Text, MONTH.Text, ClassConstant.ZJ });
+                //string sql = string.Format("SELECT 合同号,客户名,结算金额,HKH 客户码,0 年,CASE substring(HKH,1,2) WHEN '{0}' THEN '内部' WHEN '{1}' THEN '外部' WHEN '{2}' THEN '北方重工' WHEN '{8}' THEN '在建工程' ELSE '鼓风' END as 客户类型,hdw FROM VCONTRACTS WHERE 1=1 AND HLX LIKE '{3}%' AND HDW LIKE '%' AND HYWY LIKE '{5}%' AND (YEAR(签定日期)<{6} OR (YEAR(签定日期)={6} AND MONTH(签定日期)<= {7}))",
+                //   new object[] { ClassConstant.NB, ClassConstant.WB, ClassConstant.NHI, ClassCustom.codeSub(HLX1.Text), ClassCustom.codeSub(HDW.Text), ClassCustom.codeSub(HBM.Text), YEAR.Text, MONTH.Text, ClassConstant.ZJ });
+                string sql = string.Format(@"SELECT 合同号,客户名,结算金额,HKH 客户码,(SELECT  YEAR(MAX(DATE)) FROM AFKXX F0 WHERE H.合同号=F0.HTH) as 年,DBO.GetCustomerCate(HKH) as 客户类型 ,b.bname as hdw 
+                                            ,ISNULL((SELECT SUM(RMB) FROM AFKXX F1 WHERE  F1.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '回款' ELSE '付款' END  AND YEAR(DATE)<{6}),0.00) AS A1 
+                                            ,ISNULL((SELECT SUM(RMB) FROM AFKXX F2 WHERE  F2.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '回款' ELSE '付款' END  AND YEAR(DATE)={6} AND MONTH(DATE)={7}),0.00) AS A2 
+                                            ,ISNULL((SELECT SUM(RMB) FROM AFKXX F3 WHERE  F3.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '回款' ELSE '付款' END  AND YEAR(DATE)={6} AND MONTH(DATE)<={7}),0.00) AS A3 
+                                            ,ISNULL((SELECT SUM(RMB) FROM AFKXX F4 WHERE  F4.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '回款' ELSE '付款' END  AND YEAR(DATE)<{6}),0.00) AS B1 
+                                            ,ISNULL((SELECT SUM(RMB) FROM AFKXX F5 WHERE  F5.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '回款' ELSE '付款' END  AND YEAR(DATE)={6} AND MONTH(DATE)={7}),0.00) AS B2 
+                                            ,ISNULL((SELECT SUM(RMB) FROM AFKXX F6 WHERE  F6.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '回款' ELSE '付款' END  AND YEAR(DATE)={6} AND MONTH(DATE)<={7}),0.00) AS B3 
+                                            FROM VCONTRACTS H inner join bcode b on h.hdw=b.bcode WHERE H.HDW LIKE '{9}%' AND HLX LIKE '{3}%'   AND (YEAR(签定日期)<{6} OR (YEAR(签定日期)={6} AND MONTH(签定日期)<= {7}))",
+                        new object[] {
+                         ClassConstant.NB, 
+                         ClassConstant.WB, 
+                         ClassConstant.NHI, 
+                         ClassCustom.codeSub(HLX.Text), 
+                         ClassCustom.codeSub(HDW.Text), 
+                         ClassCustom.codeSub(HBM.Text),
+                         YEAR.Text, MONTH.Text, 
+                         ClassConstant.ZJ ,
+                        ClassConstant.AccountingBook});
                 DataTable dt = DBAdo.DtFillSql(sql);
-                dt.Columns.Add("A1", typeof(decimal));
-                dt.Columns.Add("A2", typeof(decimal));
-                dt.Columns.Add("A3", typeof(decimal));
+                //dt.Columns.Add("A1", typeof(decimal));
+                //dt.Columns.Add("A2", typeof(decimal));
+                //dt.Columns.Add("A3", typeof(decimal));
                 dt.Columns.Add("A4", typeof(decimal), "A1+A3");
                 dt.Columns.Add("A5", typeof(decimal), "结算金额-A4");
                 dt.Columns.Add("A6", typeof(decimal), "A5/结算金额");
-                dt.Columns.Add("B1", typeof(decimal));
-                dt.Columns.Add("B2", typeof(decimal));
-                dt.Columns.Add("B3", typeof(decimal));
+                //dt.Columns.Add("B1", typeof(decimal));
+                //dt.Columns.Add("B2", typeof(decimal));
+                //dt.Columns.Add("B3", typeof(decimal));
                 dt.Columns.Add("B4", typeof(decimal), "B1+B3");
                 dt.Columns.Add("B5", typeof(decimal), "结算金额-B4");
                 dt.Columns.Add("B6", typeof(decimal), "B5/结算金额");
                 dt.Columns.Add("C", typeof(decimal), "B4-A4");
 
                 this.progressBar1.Value = 0;
-                this.progressBar1.Maximum = dt.Rows.Count;
+                this.progressBar1.Maximum = 100;
                 this.progressBar1.Visible = true;
 
-                foreach (DataRow r in dt.Rows)
-                {
-                    this.progressBar1.Value++;
-                    Application.DoEvents();
-                    r["年"] = DBAdo.ExecuteScalarSql(string.Format("SELECT YEAR(MAX(DATE)) FROM AFKXX WHERE 1=1 AND HTH = '{0}'", r["合同号"].ToString()));
-                    decimal a1 = 0;
-                    decimal a2 = 0;
-                    decimal a3 = 0;
-                    decimal b1 = 0;
-                    decimal b2 = 0;
-                    decimal b3 = 0;
-                    object o1 = DBAdo.ExecuteScalarSql(string.Format("SELECT SUM(RMB) FROM AFKXX WHERE 1=1 AND HTH ='{0}' AND TYPE = '{3}' AND YEAR(DATE)<{1}", new string[] { r[0].ToString(), YEAR.Text, MONTH.Text, (ClassCustom.codeSub(this.HLX.Text) == "02" ? "回款" : "付款") }));
-                    object o2 = DBAdo.ExecuteScalarSql(string.Format("SELECT SUM(RMB) FROM AFKXX WHERE 1=1 AND HTH ='{0}' AND TYPE = '{3}' AND YEAR(DATE)={1} AND MONTH(DATE)={2}", new string[] { r[0].ToString(), YEAR.Text, MONTH.Text, (ClassCustom.codeSub(this.HLX.Text) == "02" ? "回款" : "付款") }));
-                    object o3 = DBAdo.ExecuteScalarSql(string.Format("SELECT SUM(RMB) FROM AFKXX WHERE 1=1 AND HTH ='{0}' AND TYPE = '{3}' AND YEAR(DATE)={1} AND MONTH(DATE)<= {2}", new string[] { r[0].ToString(), YEAR.Text, MONTH.Text, (ClassCustom.codeSub(this.HLX.Text) == "02" ? "回款" : "付款") }));
+                //foreach (DataRow r in dt.Rows)
+                //{
+                //    this.progressBar1.Value++;
+                //    Application.DoEvents();
+                //    r["年"] = DBAdo.ExecuteScalarSql(string.Format("SELECT YEAR(MAX(DATE)) FROM AFKXX WHERE 1=1 AND HTH = '{0}'", r["合同号"].ToString()));
+                //    decimal a1 = 0;
+                //    decimal a2 = 0;
+                //    decimal a3 = 0;
+                //    decimal b1 = 0;
+                //    decimal b2 = 0;
+                //    decimal b3 = 0;
+                //    object o1 = DBAdo.ExecuteScalarSql(string.Format("SELECT SUM(RMB) FROM AFKXX WHERE 1=1 AND HTH ='{0}' AND TYPE = '{3}' AND YEAR(DATE)<{1}", new string[] { r[0].ToString(), YEAR.Text, MONTH.Text, (ClassCustom.codeSub(this.HLX.Text) == "02" ? "回款" : "付款") }));
+                //    object o2 = DBAdo.ExecuteScalarSql(string.Format("SELECT SUM(RMB) FROM AFKXX WHERE 1=1 AND HTH ='{0}' AND TYPE = '{3}' AND YEAR(DATE)={1} AND MONTH(DATE)={2}", new string[] { r[0].ToString(), YEAR.Text, MONTH.Text, (ClassCustom.codeSub(this.HLX.Text) == "02" ? "回款" : "付款") }));
+                //    object o3 = DBAdo.ExecuteScalarSql(string.Format("SELECT SUM(RMB) FROM AFKXX WHERE 1=1 AND HTH ='{0}' AND TYPE = '{3}' AND YEAR(DATE)={1} AND MONTH(DATE)<= {2}", new string[] { r[0].ToString(), YEAR.Text, MONTH.Text, (ClassCustom.codeSub(this.HLX.Text) == "02" ? "回款" : "付款") }));
 
-                    object oo1 = DBAdo.ExecuteScalarSql(string.Format("SELECT SUM(RMB) FROM AFKXX WHERE 1=1 AND HTH ='{0}' AND TYPE = '{3}' AND YEAR(DATE)<{1}", new string[] { r[0].ToString(), YEAR.Text, MONTH.Text, (ClassCustom.codeSub(this.HLX.Text) == "02" ? "销项发票" : "进项发票") }));
-                    object oo2 = DBAdo.ExecuteScalarSql(string.Format("SELECT SUM(RMB) FROM AFKXX WHERE 1=1 AND HTH ='{0}' AND TYPE = '{3}' AND YEAR(DATE)={1} AND MONTH(DATE)={2}", new string[] { r[0].ToString(), YEAR.Text, MONTH.Text, (ClassCustom.codeSub(this.HLX.Text) == "02" ? "销项发票" : "进项发票") }));
-                    object oo3 = DBAdo.ExecuteScalarSql(string.Format("SELECT SUM(RMB) FROM AFKXX WHERE 1=1 AND HTH ='{0}' AND TYPE = '{3}' AND YEAR(DATE)={1} AND MONTH(DATE)<= {2}", new string[] { r[0].ToString(), YEAR.Text, MONTH.Text, (ClassCustom.codeSub(this.HLX.Text) == "02" ? "销项发票" : "进项发票") }));
+                //    object oo1 = DBAdo.ExecuteScalarSql(string.Format("SELECT SUM(RMB) FROM AFKXX WHERE 1=1 AND HTH ='{0}' AND TYPE = '{3}' AND YEAR(DATE)<{1}", new string[] { r[0].ToString(), YEAR.Text, MONTH.Text, (ClassCustom.codeSub(this.HLX.Text) == "02" ? "销项发票" : "进项发票") }));
+                //    object oo2 = DBAdo.ExecuteScalarSql(string.Format("SELECT SUM(RMB) FROM AFKXX WHERE 1=1 AND HTH ='{0}' AND TYPE = '{3}' AND YEAR(DATE)={1} AND MONTH(DATE)={2}", new string[] { r[0].ToString(), YEAR.Text, MONTH.Text, (ClassCustom.codeSub(this.HLX.Text) == "02" ? "销项发票" : "进项发票") }));
+                //    object oo3 = DBAdo.ExecuteScalarSql(string.Format("SELECT SUM(RMB) FROM AFKXX WHERE 1=1 AND HTH ='{0}' AND TYPE = '{3}' AND YEAR(DATE)={1} AND MONTH(DATE)<= {2}", new string[] { r[0].ToString(), YEAR.Text, MONTH.Text, (ClassCustom.codeSub(this.HLX.Text) == "02" ? "销项发票" : "进项发票") }));
 
-                    a1 = decimal.Parse(o1 == null || o1.ToString() == "" ? "0" : o1.ToString());
-                    a2 = decimal.Parse(o2 == null || o2.ToString() == "" ? "0" : o2.ToString());
-                    a3 = decimal.Parse(o3 == null || o3.ToString() == "" ? "0" : o3.ToString());
+                //    a1 = decimal.Parse(o1 == null || o1.ToString() == "" ? "0" : o1.ToString());
+                //    a2 = decimal.Parse(o2 == null || o2.ToString() == "" ? "0" : o2.ToString());
+                //    a3 = decimal.Parse(o3 == null || o3.ToString() == "" ? "0" : o3.ToString());
 
-                    b1 = decimal.Parse(oo1 == null || oo1.ToString() == "" ? "0" : oo1.ToString());
-                    b2 = decimal.Parse(oo2 == null || oo2.ToString() == "" ? "0" : oo2.ToString());
-                    b3 = decimal.Parse(oo3 == null || oo3.ToString() == "" ? "0" : oo3.ToString());
+                //    b1 = decimal.Parse(oo1 == null || oo1.ToString() == "" ? "0" : oo1.ToString());
+                //    b2 = decimal.Parse(oo2 == null || oo2.ToString() == "" ? "0" : oo2.ToString());
+                //    b3 = decimal.Parse(oo3 == null || oo3.ToString() == "" ? "0" : oo3.ToString());
 
-                    r["A1"] = a1;
-                    r["A2"] = a2;
-                    r["A3"] = a3;
-                    r["B1"] = b1;
-                    r["B2"] = b2;
-                    r["B3"] = b3;
-                    r["hdw"] = DBAdo.ExecuteScalarSql(string.Format("select cname from aclients where ccode ='{0}'", r["hdw"].ToString())).ToString();
+                //    r["A1"] = a1;
+                //    r["A2"] = a2;
+                //    r["A3"] = a3;
+                //    r["B1"] = b1;
+                //    r["B2"] = b2;
+                //    r["B3"] = b3;
+                //    r["hdw"] = DBAdo.ExecuteScalarSql(string.Format("select cname from aclients where ccode ='{0}'", r["hdw"].ToString())).ToString();
 
-                }
+                //}
 
 
                 DataView dv = dt.DefaultView;
@@ -1018,9 +1036,9 @@ where hdw='" + ClassCustom.codeSub(this.HDW.Text) + "'and year(ca.ExchangeDate)=
                 string sql = "";
                 string s1 = " SUM(CASH) 现汇本月,0.00 现汇本年,SUM(NOTE) 票据本月,0.00  票据本年,SUM(MZ) 抹账本月 ,0.00  抹账本年";
                 string s2 = " 0.00  现汇本月,SUM(CASH) 现汇本年,0.00  票据本月,SUM(NOTE) 票据本年,0.00  抹账本月 ,SUM(MZ) 抹账本年";
-                sql += string.Format("select HDW 公司,{0}, TYPE 进度类型,{1} from acash where 1=1 AND {2} GROUP BY HDW,SUBSTRING(CCODE,1,2) ,TYPE "
+                sql += string.Format("select b.bname 公司,{0}, TYPE 进度类型,{1} from acash a inner join bcode b on a.hdw=b.bcode where A.HDW LIKE '" + ClassConstant.AccountingBook + "%'  AND {2} GROUP BY b.bname,SUBSTRING(CCODE,1,2) ,TYPE "
                     , s, s1, string.Format(" year(exchangedate) = {0} and  month(exchangedate) = {1} " + tj, YEAR.Text, MONTH.Text));
-                sql += string.Format(" union select HDW 公司,{0}, TYPE 进度类型,{1} from acash where 1=1 AND {2} GROUP BY HDW,SUBSTRING(CCODE,1,2) ,TYPE "
+                sql += string.Format(" union select b.bname 公司,{0}, TYPE 进度类型,{1} from acash a inner join bcode b on a.hdw=b.bcode where  A.HDW LIKE '" + ClassConstant.AccountingBook + "%'   AND {2} GROUP BY b.bname,SUBSTRING(CCODE,1,2) ,TYPE "
                     , s, s2, string.Format(" year(exchangedate) = {0} and  month(exchangedate) <= {1} " + tj, YEAR.Text, MONTH.Text));
                 DataTable dt = DBAdo.DtFillSql(sql);
 
@@ -1033,14 +1051,14 @@ where hdw='" + ClassCustom.codeSub(this.HDW.Text) + "'and year(ca.ExchangeDate)=
                 //dt.Columns.Add("抹账本年", typeof(decimal));
                 this.progressBar1.Value = 0;
                 this.progressBar1.Maximum = dt.Rows.Count;
-                foreach (DataRow r in dt.Rows)
-                {
-                    this.progressBar1.Value++;
-                    Application.DoEvents();
-                    r["公司"] = DBAdo.ExecuteScalarSql(string.Format("select cname from aclients where ccode ='{0}'", r["公司"].ToString())).ToString();
+                //foreach (DataRow r in dt.Rows)
+                //{
+                //    this.progressBar1.Value++;
+                //    Application.DoEvents();
+                //    r["公司"] = DBAdo.ExecuteScalarSql(string.Format("select cname from aclients where ccode ='{0}'", r["公司"].ToString())).ToString();
 
 
-                }
+                //}
                 //各公司产品销售合同明细表
                 //各公司产品采购合同明细表
                 string reportName = "";
@@ -1089,13 +1107,13 @@ where hdw='" + ClassCustom.codeSub(this.HDW.Text) + "'and year(ca.ExchangeDate)=
                 string s2 = " 0.00 本年本月,SUM(CASH+note+mz) 本年累计,0.00 同期本月,0.00  同期本年 ";
                 string s3 = " 0.00 本年本月,0.00 本年累计,SUM(CASH+note+mz) 同期本月,0.00  同期本年 ";
                 string s4 = " 0.00 本年本月,0.00 本年累计,0.00 同期本月,SUM(CASH+note+mz)  同期本年 ";
-                sql += string.Format("select HDW 公司,{0},{1} from acash where 1=1 AND {2} GROUP BY HDW,SUBSTRING(CCODE,1,2)  "
+                sql += string.Format("select b.bname 公司,{0},{1} from acash  a inner join bcode b on a.hdw=b.bcode  where A.HDW LIKE '" + ClassConstant.AccountingBook + "%'   AND {2} GROUP BY b.bname,SUBSTRING(CCODE,1,2)  "
                     , s, s1, string.Format(" year(exchangedate) = {0} and  month(exchangedate) = {1} " + tj, YEAR.Text, MONTH.Text));
-                sql += string.Format(" union select HDW 公司,{0},{1} from acash where 1=1 AND {2} GROUP BY HDW,SUBSTRING(CCODE,1,2) "
+                sql += string.Format(" union select b.bname 公司,{0},{1} from acash a inner join bcode b on a.hdw=b.bcode  where A.HDW LIKE '" + ClassConstant.AccountingBook + "%'  AND {2} GROUP BY b.bname,SUBSTRING(CCODE,1,2) "
                     , s, s2, string.Format(" year(exchangedate) = {0} and  month(exchangedate) <= {1} " + tj, YEAR.Text, MONTH.Text));
-                sql += string.Format(" union select HDW 公司,{0},{1} from acash where 1=1 AND {2} GROUP BY HDW,SUBSTRING(CCODE,1,2) "
+                sql += string.Format(" union select b.bname 公司,{0},{1} from acash a inner join bcode b on a.hdw=b.bcode  where  A.HDW LIKE '" + ClassConstant.AccountingBook + "%'   AND {2} GROUP BY b.bname,SUBSTRING(CCODE,1,2) "
                     , s, s3, string.Format(" year(exchangedate) = {0} and  month(exchangedate) <= {1} " + tj, (int.Parse(YEAR.Text) - 1).ToString(), MONTH.Text));
-                sql += string.Format(" union select HDW 公司,{0},{1} from acash where 1=1 AND {2} GROUP BY HDW,SUBSTRING(CCODE,1,2)  "
+                sql += string.Format(" union select b.bname 公司,{0},{1} from acash  a inner join bcode b on a.hdw=b.bcode where  A.HDW LIKE '" + ClassConstant.AccountingBook + "%'   AND {2} GROUP BY b.bname,SUBSTRING(CCODE,1,2)  "
                     , s, s4, string.Format(" year(exchangedate) = {0} and  month(exchangedate) <= {1} " + tj, (int.Parse(YEAR.Text) - 1).ToString(), MONTH.Text));
                 DataTable dt = DBAdo.DtFillSql(sql);
 
@@ -1108,14 +1126,14 @@ where hdw='" + ClassCustom.codeSub(this.HDW.Text) + "'and year(ca.ExchangeDate)=
                 //dt.Columns.Add("抹账本年", typeof(decimal));
                 this.progressBar1.Value = 0;
                 this.progressBar1.Maximum = dt.Rows.Count;
-                foreach (DataRow r in dt.Rows)
-                {
-                    this.progressBar1.Value++;
-                    Application.DoEvents();
-                    r["公司"] = DBAdo.ExecuteScalarSql(string.Format("select cname from aclients where ccode ='{0}'", r["公司"].ToString())).ToString();
+                //foreach (DataRow r in dt.Rows)
+                //{
+                //    this.progressBar1.Value++;
+                //    Application.DoEvents();
+                //    r["公司"] = DBAdo.ExecuteScalarSql(string.Format("select cname from aclients where ccode ='{0}'", r["公司"].ToString())).ToString();
 
 
-                }
+                //}
 
 
                 ReportDataSource reportDataSource = new ReportDataSource("Contract1DataSet_DataTable11", dt);

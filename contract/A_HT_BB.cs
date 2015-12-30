@@ -171,7 +171,11 @@ namespace contract
         {
             if (this.listView1.SelectedItems.Count == 0)
                 return;
-            if (this.listView1.SelectedItems[0].Group.Name == "listViewGroup2" && (ClassConstant.USER_ID != "0101999999" && ClassConstant.USER_ID != "0101010001"))
+            if (this.listView1.SelectedItems[0].Group.Name == "listViewGroup2"
+                && (ClassConstant.USER_ID != "0101999999"
+                    && ClassConstant.USER_ID != "0101010001"
+                    && ClassConstant.USER_ID != "0201010001"
+                    && ClassConstant.USER_ID != "0201999999"))
             {
                 return;
             }
@@ -244,29 +248,29 @@ namespace contract
                     break;
                 case "集团合同类型汇总表(新)":
                     rv = new ReprotViewNew("集团合同类型汇总表(新)");
-                     break;
-                    ///集团报表/集团合同类型汇总表(新)
-                    ///集团报表/各单位签订合同情况表(新)
-                    ///集团报表/各单位货款同期对比表(新)
-                    ///集团报表/各单位货款回收汇总表(新)
-                    ///集团报表/铸锻公司全部采购外协合同汇总表(新)
-                    ///集团报表/合同类型总览表新)
-                    ///集团报表/集团毛利(新)
+                    break;
+                ///集团报表/集团合同类型汇总表(新)
+                ///集团报表/各单位签订合同情况表(新)
+                ///集团报表/各单位货款同期对比表(新)
+                ///集团报表/各单位货款回收汇总表(新)
+                ///集团报表/铸锻公司全部采购外协合同汇总表(新)
+                ///集团报表/合同类型总览表新)
+                ///集团报表/集团毛利(新)
                 case "各单位签订合同情况表(新)":
-                     rv = new ReprotViewNew("各单位签订合同情况表(新)");
-                     break;
+                    rv = new ReprotViewNew("各单位签订合同情况表(新)");
+                    break;
                 case "各单位货款同期对比表(新)":
-                     rv = new ReprotViewNew("各单位货款同期对比表(新)");
-                     break;
+                    rv = new ReprotViewNew("各单位货款同期对比表(新)");
+                    break;
                 case "各单位货款回收汇总表(新)":
-                     rv = new ReprotViewNew("各单位货款回收汇总表(新)");
-                     break;
+                    rv = new ReprotViewNew("各单位货款回收汇总表(新)");
+                    break;
                 case "铸锻公司全部采购外协合同汇总表(新)":
-                     rv = new ReprotViewNew("铸锻公司全部采购外协合同汇总表(新)");
-                     break;
+                    rv = new ReprotViewNew("铸锻公司全部采购外协合同汇总表(新)");
+                    break;
                 case "合同类型总览表(新)":
-                     rv = new ReprotViewNew("合同类型总览表(新)");
-                     break;
+                    rv = new ReprotViewNew("合同类型总览表(新)");
+                    break;
 
 
 
