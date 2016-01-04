@@ -56,6 +56,7 @@
             this.在建工程合同ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.在建工程二期ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.购置固定资产ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.技改ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.合同进度管理ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.合同进度ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.日常ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -98,7 +99,7 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.技改ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.用户信息ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -214,7 +215,8 @@
             this.业务员ToolStripMenuItem,
             this.toolStripSeparator3,
             this.辅助信息ToolStripMenuItem,
-            this.合同模版ToolStripMenuItem});
+            this.合同模版ToolStripMenuItem,
+            this.用户信息ToolStripMenuItem});
             this.基本信息ToolStripMenuItem.Name = "基本信息ToolStripMenuItem";
             this.基本信息ToolStripMenuItem.Size = new System.Drawing.Size(84, 21);
             this.基本信息ToolStripMenuItem.Text = "基本信息(&B)";
@@ -222,43 +224,44 @@
             // 客户ToolStripMenuItem
             // 
             this.客户ToolStripMenuItem.Name = "客户ToolStripMenuItem";
-            this.客户ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.客户ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.客户ToolStripMenuItem.Text = "客户";
             this.客户ToolStripMenuItem.Click += new System.EventHandler(this.客户ToolStripMenuItem_Click);
             // 
             // 分公司ToolStripMenuItem
             // 
             this.分公司ToolStripMenuItem.Name = "分公司ToolStripMenuItem";
-            this.分公司ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.分公司ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.分公司ToolStripMenuItem.Text = "分公司信息";
             // 
             // 部门信息ToolStripMenuItem
             // 
             this.部门信息ToolStripMenuItem.Name = "部门信息ToolStripMenuItem";
-            this.部门信息ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.部门信息ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.部门信息ToolStripMenuItem.Text = "部门信息";
             // 
             // 业务员ToolStripMenuItem
             // 
             this.业务员ToolStripMenuItem.Name = "业务员ToolStripMenuItem";
-            this.业务员ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.业务员ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.业务员ToolStripMenuItem.Text = "业务员";
+            this.业务员ToolStripMenuItem.Click += new System.EventHandler(this.业务员ToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(133, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(149, 6);
             // 
             // 辅助信息ToolStripMenuItem
             // 
             this.辅助信息ToolStripMenuItem.Name = "辅助信息ToolStripMenuItem";
-            this.辅助信息ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.辅助信息ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.辅助信息ToolStripMenuItem.Text = "辅助信息";
             // 
             // 合同模版ToolStripMenuItem
             // 
             this.合同模版ToolStripMenuItem.Name = "合同模版ToolStripMenuItem";
-            this.合同模版ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.合同模版ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.合同模版ToolStripMenuItem.Text = "合同模版";
             this.合同模版ToolStripMenuItem.Click += new System.EventHandler(this.合同模版ToolStripMenuItem_Click);
             // 
@@ -279,44 +282,51 @@
             // 采购合同ToolStripMenuItem
             // 
             this.采购合同ToolStripMenuItem.Name = "采购合同ToolStripMenuItem";
-            this.采购合同ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.采购合同ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.采购合同ToolStripMenuItem.Text = "采购合同";
             this.采购合同ToolStripMenuItem.Click += new System.EventHandler(this.采购合同ToolStripMenuItem_Click);
             // 
             // 销售合同ToolStripMenuItem
             // 
             this.销售合同ToolStripMenuItem.Name = "销售合同ToolStripMenuItem";
-            this.销售合同ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.销售合同ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.销售合同ToolStripMenuItem.Text = "销售合同";
             this.销售合同ToolStripMenuItem.Click += new System.EventHandler(this.销售合同ToolStripMenuItem_Click);
             // 
             // 外协合同ToolStripMenuItem
             // 
             this.外协合同ToolStripMenuItem.Name = "外协合同ToolStripMenuItem";
-            this.外协合同ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.外协合同ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.外协合同ToolStripMenuItem.Text = "外协合同";
             this.外协合同ToolStripMenuItem.Click += new System.EventHandler(this.外协合同ToolStripMenuItem_Click);
             // 
             // 在建工程合同ToolStripMenuItem
             // 
             this.在建工程合同ToolStripMenuItem.Name = "在建工程合同ToolStripMenuItem";
-            this.在建工程合同ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.在建工程合同ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.在建工程合同ToolStripMenuItem.Text = "在建工程一期";
             this.在建工程合同ToolStripMenuItem.Click += new System.EventHandler(this.在建工程合同ToolStripMenuItem_Click);
             // 
             // 在建工程二期ToolStripMenuItem
             // 
             this.在建工程二期ToolStripMenuItem.Name = "在建工程二期ToolStripMenuItem";
-            this.在建工程二期ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.在建工程二期ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.在建工程二期ToolStripMenuItem.Text = "在建工程二期";
             this.在建工程二期ToolStripMenuItem.Click += new System.EventHandler(this.在建工程二期ToolStripMenuItem_Click);
             // 
             // 购置固定资产ToolStripMenuItem
             // 
             this.购置固定资产ToolStripMenuItem.Name = "购置固定资产ToolStripMenuItem";
-            this.购置固定资产ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.购置固定资产ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.购置固定资产ToolStripMenuItem.Text = "购置固定资产";
             this.购置固定资产ToolStripMenuItem.Click += new System.EventHandler(this.购置固定资产ToolStripMenuItem_Click);
+            // 
+            // 技改ToolStripMenuItem
+            // 
+            this.技改ToolStripMenuItem.Name = "技改ToolStripMenuItem";
+            this.技改ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.技改ToolStripMenuItem.Text = "技改";
+            this.技改ToolStripMenuItem.Click += new System.EventHandler(this.技改ToolStripMenuItem_Click_1);
             // 
             // 合同进度管理ToolStripMenuItem
             // 
@@ -639,12 +649,12 @@
             this.statusStrip1.TabIndex = 9;
             this.statusStrip1.Text = "statusStrip1";
             // 
-            // 技改ToolStripMenuItem
+            // 用户信息ToolStripMenuItem
             // 
-            this.技改ToolStripMenuItem.Name = "技改ToolStripMenuItem";
-            this.技改ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.技改ToolStripMenuItem.Text = "技改";
-            this.技改ToolStripMenuItem.Click += new System.EventHandler(this.技改ToolStripMenuItem_Click_1);
+            this.用户信息ToolStripMenuItem.Name = "用户信息ToolStripMenuItem";
+            this.用户信息ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.用户信息ToolStripMenuItem.Text = "用户信息";
+            this.用户信息ToolStripMenuItem.Click += new System.EventHandler(this.用户信息ToolStripMenuItem_Click);
             // 
             // MForm1
             // 
@@ -744,6 +754,7 @@
         private System.Windows.Forms.ToolStripMenuItem BitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 标号更新ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 技改ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 用户信息ToolStripMenuItem;
     }
 }
 

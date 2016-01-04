@@ -292,7 +292,7 @@ namespace contract
                 DBAdo.setConStr(@"Provider=SQLOLEDB;Data Source=10.1.9.187;Persist Security Info=True;Password=abcd_1234;User ID=sa;Initial Catalog=contract1");
                 //ClassConstant.CW_IP = ".";
                 //DBAdo.setConStr("Provider=SQLOLEDB;Data Source=.;User ID=sa;Initial Catalog=contract1");
-                
+
             }
 
             Login log = new Login();
@@ -836,6 +836,20 @@ namespace contract
             A_HT c1 = new A_HT("07");
             c1.MdiParent = this;
             c1.Show();
+        }
+
+        private void 用户信息ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 业务员ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (ClassConstant.USER_NAME == "孙丽梅")
+            {
+                Form f = new A_YWY();
+                f.ShowDialog();
+            }
         }
     }
 }

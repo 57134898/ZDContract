@@ -428,6 +428,12 @@
     <Compile Include="A_UPLOAD.designer.cs">
       <DependentUpon>A_UPLOAD.cs</DependentUpon>
     </Compile>
+    <Compile Include="A_YWY.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_YWY.Designer.cs">
+      <DependentUpon>A_YWY.cs</DependentUpon>
+    </Compile>
     <Compile Include="A_ZJGC_CX.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -744,6 +750,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="A_UPLOAD.resx">
       <DependentUpon>A_UPLOAD.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_YWY.resx">
+      <DependentUpon>A_YWY.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="A_ZJGC_CX.resx">
