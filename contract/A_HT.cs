@@ -223,7 +223,19 @@ namespace contract
             }
             if (!(DialogResult.Yes == MessageView.MessageYesNoShow("是否删除选中合同的信息?")))
                 return;
-            DBAdo.ExecuteNonQuerySql("DELETE FROM ACONTRACT WHERE HID= '" + this.dataGridView1.SelectedRows[0].Cells["HID"].Value.ToString() + "'");
+            string hcode = this.dataGridView1.SelectedRows[0].Cells["合同号"].Value.ToString();
+            DataTable dt = DBAdo.DtFillSql(string.Format(@"SELECT ID FROM AFKXX WHERE HTH='{0}'", hcode));
+            string sql = string.Format(@"
+DELETE FROM ACONTRACT WHERE hcode= '{0}';
+DELETE FROM ASP WHERE HTH= '{0}';
+DELETE FROM ACASH WHERE CID IN(SELECT DISTINCT CID FROM AFKXX WHERE HTH ='{0}');
+DELETE FROM AWX WHERE XSHTH= '{0}' OR  WXHTH= '{0}';
+", hcode);
+            foreach (DataRow r in dt.Rows)
+            {
+                sql += string.Format(@" DELETE FROM AFKXX WHERE id ={0}", r[0].ToString());
+            }
+            DBAdo.ExecuteNonQuerySql(sql);
             this.DataLoad();
         }
 
