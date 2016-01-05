@@ -38,7 +38,7 @@ namespace contract
         {
             this.radioButton1.Checked = true;
             this.radioButton2.Enabled = false;
-            this.radioButton3.Enabled = false;
+            this.radioButton3.Enabled = true;
             DataLoad();
         }
 
@@ -55,6 +55,12 @@ namespace contract
         {
             if (this.radioButton1.Checked)
             {
+                if (string.IsNullOrEmpty(this.textBox1.Text)
+                    || string.IsNullOrEmpty(this.textBox2.Text))
+                {
+                    MessageBox.Show("信息输入不完整！");
+                    return;
+                }
                 string sql_check = string.Format(@"SELECT TOP 2 * FROM AYWY WHERE YCODE = '{0}'", this.textBox1.Text);
                 DataTable dt_check = DBAdo.DtFillSql(sql_check);
                 if (dt_check.Rows.Count > 0)
@@ -69,6 +75,12 @@ namespace contract
             }
             else if (this.radioButton2.Checked)
             {
+                if (string.IsNullOrEmpty(this.textBox1.Text)
+                    || string.IsNullOrEmpty(this.textBox2.Text))
+                {
+                    MessageBox.Show("信息输入不完整！");
+                    return;
+                }
                 if (DialogResult.Yes !=
                     MessageBox.Show(string.Format("确定要把编号为{2}[{0}]{2}的业务员修改为{2}[{1}]", this.textBox1.Text, this.textBox2.Text, Environment.NewLine), "提示",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Question))
@@ -82,7 +94,26 @@ namespace contract
             }
             else
             {
-
+                if (DialogResult.Yes !=
+    MessageBox.Show(string.Format("确定删除{2}编号为[{0}]{2}名字为[{1}]{2}的业务员?",
+    this.dataGridView1.SelectedRows[0].Cells[0].Value.ToString(),
+    this.dataGridView1.SelectedRows[0].Cells[1].Value.ToString(),
+    Environment.NewLine), "提示",
+    MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+                {
+                    return;
+                }
+                string sql_check = string.Format(@"SELECT TOP 2 * FROM ACONTRACT WHERE HYWY = '{0}'", this.dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
+                DataTable dt_check = DBAdo.DtFillSql(sql_check);
+                if (dt_check.Rows.Count > 0)
+                {
+                    MessageBox.Show("业务员业务员已经使用无法删除！");
+                    return;
+                }
+                string sql = string.Format(@"DELETE FROM AYWY WHERE YCODE='{0}'", this.dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
+                DBAdo.ExecuteNonQuerySql(sql);
+                DataLoad();
+                FormClear();
             }
         }
 
@@ -94,6 +125,10 @@ namespace contract
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex < 0 || e.ColumnIndex < 0)
+            {
+                return;
+            }
             this.textBox1.ReadOnly = true;
             this.radioButton2.Checked = true;
             this.textBox1.Text = this.dataGridView1[0, e.RowIndex].Value.ToString();

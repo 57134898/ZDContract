@@ -840,7 +840,11 @@ namespace contract
 
         private void 用户信息ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            if (ClassConstant.USER_NAME == "孙丽梅")
+            {
+                Form f = new A_Users();
+                f.ShowDialog();
+            }
         }
 
         private void 业务员ToolStripMenuItem_Click(object sender, EventArgs e)
