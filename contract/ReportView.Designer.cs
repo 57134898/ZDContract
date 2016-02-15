@@ -65,6 +65,8 @@
             this.panel9 = new System.Windows.Forms.Panel();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.R合同收付款明细表BindingSource)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -79,6 +81,7 @@
             this.panel6.SuspendLayout();
             this.panel8.SuspendLayout();
             this.panel9.SuspendLayout();
+            this.panel10.SuspendLayout();
             this.SuspendLayout();
             // 
             // R合同收付款明细表BindingSource
@@ -94,14 +97,14 @@
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "contract.Reports.Report合同收付款明细表.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(0, 0);
             this.reportViewer1.Name = "reportViewer1";
-            this.reportViewer1.Size = new System.Drawing.Size(834, 164);
+            this.reportViewer1.Size = new System.Drawing.Size(834, 136);
             this.reportViewer1.TabIndex = 0;
             this.reportViewer1.Drillthrough += new Microsoft.Reporting.WinForms.DrillthroughEventHandler(this.reportViewer1_Drillthrough);
             // 
             // progressBar1
             // 
             this.progressBar1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.progressBar1.Location = new System.Drawing.Point(0, 274);
+            this.progressBar1.Location = new System.Drawing.Point(0, 302);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(834, 22);
             this.progressBar1.TabIndex = 1;
@@ -122,7 +125,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.reportViewer1);
             this.splitContainer1.Size = new System.Drawing.Size(834, 462);
-            this.splitContainer1.SplitterDistance = 296;
+            this.splitContainer1.SplitterDistance = 324;
             this.splitContainer1.SplitterWidth = 2;
             this.splitContainer1.TabIndex = 2;
             this.splitContainer1.SizeChanged += new System.EventHandler(this.splitContainer1_SizeChanged);
@@ -141,9 +144,10 @@
             this.flowLayoutPanel1.Controls.Add(this.panel6);
             this.flowLayoutPanel1.Controls.Add(this.panel8);
             this.flowLayoutPanel1.Controls.Add(this.panel9);
+            this.flowLayoutPanel1.Controls.Add(this.panel10);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(834, 274);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(834, 302);
             this.flowLayoutPanel1.TabIndex = 15;
             // 
             // panel1
@@ -474,6 +478,26 @@
             this.label10.TabIndex = 0;
             this.label10.Text = "状态";
             // 
+            // panel10
+            // 
+            this.panel10.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel10.Controls.Add(this.checkBox1);
+            this.panel10.Location = new System.Drawing.Point(3, 273);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(819, 23);
+            this.panel10.TabIndex = 21;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(221, 3);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(132, 16);
+            this.checkBox1.TabIndex = 0;
+            this.checkBox1.Text = "是否包含独立分公司";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
             // ReportView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -506,6 +530,8 @@
             this.panel8.PerformLayout();
             this.panel9.ResumeLayout(false);
             this.panel9.PerformLayout();
+            this.panel10.ResumeLayout(false);
+            this.panel10.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -547,5 +573,7 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.Panel panel10;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
