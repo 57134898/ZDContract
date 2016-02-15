@@ -260,6 +260,33 @@ namespace contract
 
         }
 
+        public string IsTotal(string companyid)
+        {
+            if (companyid.Length <= 2)
+            {
+                if (this.checkBox1.Checked)
+                {
+                    return "";
+                }
+                else
+                {
+                    return " and hdw like '" + companyid + "%'";
+                }
+            }
+            else
+            {
+                if (this.checkBox1.Checked)
+                {
+                    return "";
+                }
+                else
+                {
+                    return " and hdw like '" + companyid + "%'";
+                }
+            }
+            return "";
+        }
+
         private void getReport_合同收付款明细表_全部()
         {
             try
