@@ -23,7 +23,7 @@ namespace contract
                 string sql = "SELECT UCODE+':'+UNAME AS CN FROM AUSERS WHERE UCODE LIKE '01__'";
                 this.comboBox1.DataSource = DBAdo.DtFillSql(sql);
                 this.comboBox1.DisplayMember = "CN";
-
+                this.comboBox4.SelectedIndex = 0;
             }
             catch (Exception ex)
             {
@@ -88,6 +88,8 @@ namespace contract
             ClassConstant.BNAME = ClassCustom.codeSub1(this.comboBox2.Text);
             ClassConstant.USER_ID = ClassCustom.codeSub(this.comboBox3.Text);
             ClassConstant.USER_NAME = ClassCustom.codeSub1(this.comboBox3.Text);
+            ClassConstant.AccountingBook = ClassCustom.codeSub(this.comboBox4.Text);
+            ClassConstant.AccountingBookName = ClassCustom.codeSub1(this.comboBox4.Text);
             ClassConstant.MF1.LogInApplication();
             this.Close();
         }

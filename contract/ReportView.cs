@@ -211,9 +211,9 @@ namespace contract
                                             ,ISNULL((SELECT SUM(RMB) FROM AFKXX F1 WHERE  F1.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '回款' ELSE '付款' END  AND YEAR(DATE)<{6}),0.00) AS A1 
                                             ,ISNULL((SELECT SUM(RMB) FROM AFKXX F2 WHERE  F2.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '回款' ELSE '付款' END  AND YEAR(DATE)={6} AND MONTH(DATE)={7}),0.00) AS A2 
                                             ,ISNULL((SELECT SUM(RMB) FROM AFKXX F3 WHERE  F3.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '回款' ELSE '付款' END  AND YEAR(DATE)={6} AND MONTH(DATE)<={7}),0.00) AS A3 
-                                            ,ISNULL((SELECT SUM(RMB) FROM AFKXX F4 WHERE  F4.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '回款' ELSE '付款' END  AND YEAR(DATE)<{6}),0.00) AS B1 
-                                            ,ISNULL((SELECT SUM(RMB) FROM AFKXX F5 WHERE  F5.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '回款' ELSE '付款' END  AND YEAR(DATE)={6} AND MONTH(DATE)={7}),0.00) AS B2 
-                                            ,ISNULL((SELECT SUM(RMB) FROM AFKXX F6 WHERE  F6.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '回款' ELSE '付款' END  AND YEAR(DATE)={6} AND MONTH(DATE)<={7}),0.00) AS B3 
+                                            ,ISNULL((SELECT SUM(RMB) FROM AFKXX F4 WHERE  F4.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '销项发票' ELSE '进项发票' END  AND YEAR(DATE)<{6}),0.00) AS B1 
+                                            ,ISNULL((SELECT SUM(RMB) FROM AFKXX F5 WHERE  F5.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '销项发票' ELSE '进项发票' END  AND YEAR(DATE)={6} AND MONTH(DATE)={7}),0.00) AS B2 
+                                            ,ISNULL((SELECT SUM(RMB) FROM AFKXX F6 WHERE  F6.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '销项发票' ELSE '进项发票' END  AND YEAR(DATE)={6} AND MONTH(DATE)<={7}),0.00) AS B3 
                                             FROM VCONTRACTS H WHERE 1=1 AND HLX LIKE '{3}%' AND HDW = '{4}' AND HYWY LIKE '{5}%' AND (YEAR(签定日期)<{6} OR (YEAR(签定日期)={6} AND MONTH(签定日期)<= {7}))",
                      new object[] {
                          ClassConstant.NB, 
@@ -407,9 +407,9 @@ namespace contract
                                             ,ISNULL((SELECT SUM(RMB) FROM AFKXX F1 WHERE  F1.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '回款' ELSE '付款' END  AND YEAR(DATE)<{6}),0.00) AS A1 
                                             ,ISNULL((SELECT SUM(RMB) FROM AFKXX F2 WHERE  F2.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '回款' ELSE '付款' END  AND YEAR(DATE)={6} AND MONTH(DATE)={7}),0.00) AS A2 
                                             ,ISNULL((SELECT SUM(RMB) FROM AFKXX F3 WHERE  F3.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '回款' ELSE '付款' END  AND YEAR(DATE)={6} AND MONTH(DATE)<={7}),0.00) AS A3 
-                                            ,ISNULL((SELECT SUM(RMB) FROM AFKXX F4 WHERE  F4.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '回款' ELSE '付款' END  AND YEAR(DATE)<{6}),0.00) AS B1 
-                                            ,ISNULL((SELECT SUM(RMB) FROM AFKXX F5 WHERE  F5.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '回款' ELSE '付款' END  AND YEAR(DATE)={6} AND MONTH(DATE)={7}),0.00) AS B2 
-                                            ,ISNULL((SELECT SUM(RMB) FROM AFKXX F6 WHERE  F6.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '回款' ELSE '付款' END  AND YEAR(DATE)={6} AND MONTH(DATE)<={7}),0.00) AS B3 
+                                            ,ISNULL((SELECT SUM(RMB) FROM AFKXX F4 WHERE  F4.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '销项发票' ELSE '进项发票' END  AND YEAR(DATE)<{6}),0.00) AS B1 
+                                            ,ISNULL((SELECT SUM(RMB) FROM AFKXX F5 WHERE  F5.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '销项发票' ELSE '进项发票' END  AND YEAR(DATE)={6} AND MONTH(DATE)={7}),0.00) AS B2 
+                                            ,ISNULL((SELECT SUM(RMB) FROM AFKXX F6 WHERE  F6.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '销项发票' ELSE '进项发票' END  AND YEAR(DATE)={6} AND MONTH(DATE)<={7}),0.00) AS B3 
                                             FROM VCONTRACTS H WHERE 1=1 AND HLX LIKE '{3}%' AND HDW = '{4}' AND HYWY LIKE '{5}%' AND (YEAR(签定日期)<{6} OR (YEAR(签定日期)={6} AND MONTH(签定日期)<= {7}))",
      new object[] {
                          ClassConstant.NB, 
@@ -915,9 +915,9 @@ where hdw='" + ClassCustom.codeSub(this.HDW.Text) + "'and year(ca.ExchangeDate)=
                                             ,ISNULL((SELECT SUM(RMB) FROM AFKXX F1 WHERE  F1.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '回款' ELSE '付款' END  AND YEAR(DATE)<{6}),0.00) AS A1 
                                             ,ISNULL((SELECT SUM(RMB) FROM AFKXX F2 WHERE  F2.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '回款' ELSE '付款' END  AND YEAR(DATE)={6} AND MONTH(DATE)={7}),0.00) AS A2 
                                             ,ISNULL((SELECT SUM(RMB) FROM AFKXX F3 WHERE  F3.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '回款' ELSE '付款' END  AND YEAR(DATE)={6} AND MONTH(DATE)<={7}),0.00) AS A3 
-                                            ,ISNULL((SELECT SUM(RMB) FROM AFKXX F4 WHERE  F4.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '回款' ELSE '付款' END  AND YEAR(DATE)<{6}),0.00) AS B1 
-                                            ,ISNULL((SELECT SUM(RMB) FROM AFKXX F5 WHERE  F5.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '回款' ELSE '付款' END  AND YEAR(DATE)={6} AND MONTH(DATE)={7}),0.00) AS B2 
-                                            ,ISNULL((SELECT SUM(RMB) FROM AFKXX F6 WHERE  F6.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '回款' ELSE '付款' END  AND YEAR(DATE)={6} AND MONTH(DATE)<={7}),0.00) AS B3 
+                                            ,ISNULL((SELECT SUM(RMB) FROM AFKXX F4 WHERE  F4.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '销项发票' ELSE '进项发票' END  AND YEAR(DATE)<{6}),0.00) AS B1 
+                                            ,ISNULL((SELECT SUM(RMB) FROM AFKXX F5 WHERE  F5.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '销项发票' ELSE '进项发票' END  AND YEAR(DATE)={6} AND MONTH(DATE)={7}),0.00) AS B2 
+                                            ,ISNULL((SELECT SUM(RMB) FROM AFKXX F6 WHERE  F6.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '销项发票' ELSE '进项发票' END  AND YEAR(DATE)={6} AND MONTH(DATE)<={7}),0.00) AS B3 
                                             FROM VCONTRACTS H inner join bcode b on h.hdw=b.bcode WHERE H.HDW LIKE '{9}%' AND HLX LIKE '{3}%'   AND (YEAR(签定日期)<{6} OR (YEAR(签定日期)={6} AND MONTH(签定日期)<= {7}))",
                         new object[] {
                          ClassConstant.NB, 
@@ -1297,12 +1297,17 @@ where hdw='" + ClassCustom.codeSub(this.HDW.Text) + "'and year(ca.ExchangeDate)=
                 //string sql = string.Format("SELECT 合同号,客户名,结算金额,HKH 客户码,0 年,CASE substring(HKH,1,2) WHEN '{0}' THEN '内部' WHEN '{1}' THEN '外部' WHEN '{2}' THEN '北方重工' WHEN '{8}' THEN '在建工程' ELSE '鼓风' END as 客户类型,HLX,HDW FROM VCONTRACTS WHERE 1=1 AND HLX LIKE '{3}%'  AND HYWY LIKE '{5}%' AND (YEAR(签定日期)<{6} OR (YEAR(签定日期)={6} AND MONTH(签定日期)<= {7}))",
                 //     new object[] { ClassConstant.NB, ClassConstant.WB, ClassConstant.NHI, ClassCustom.codeSub(HLX.Text), ClassCustom.codeSub(HDW.Text), ClassCustom.codeSub(HBM.Text), YEAR.Text, MONTH.Text, ClassConstant.ZJ });
                 string sql = string.Format(@"SELECT 合同号,客户名,结算金额,HKH 客户码,(SELECT  YEAR(MAX(DATE)) FROM AFKXX F0 WHERE H.合同号=F0.HTH) as 年,DBO.GetCustomerCate(HKH) as 客户类型 ,b.bname as hdw ,h.合同类型 hlx
+
+                                            ,case when YEAR(签定日期)<{6} THEN 结算金额 ELSE 0.00 END AS 合同前
+                                            ,case when YEAR(签定日期)={6} AND  MONTH(签定日期)= {7} THEN 结算金额 ELSE 0.00 END AS 合同本月
+                                            ,case when YEAR(签定日期)={6} AND  MONTH(签定日期)<= {7} THEN 结算金额 ELSE 0.00 END  AS 合同本年
+
                                             ,ISNULL((SELECT SUM(RMB) FROM AFKXX F1 WHERE  F1.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '回款' ELSE '付款' END  AND YEAR(DATE)<{6}),0.00) AS A1 
                                             ,ISNULL((SELECT SUM(RMB) FROM AFKXX F2 WHERE  F2.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '回款' ELSE '付款' END  AND YEAR(DATE)={6} AND MONTH(DATE)={7}),0.00) AS A2 
                                             ,ISNULL((SELECT SUM(RMB) FROM AFKXX F3 WHERE  F3.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '回款' ELSE '付款' END  AND YEAR(DATE)={6} AND MONTH(DATE)<={7}),0.00) AS A3 
-                                            ,ISNULL((SELECT SUM(RMB) FROM AFKXX F4 WHERE  F4.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '回款' ELSE '付款' END  AND YEAR(DATE)<{6}),0.00) AS B1 
-                                            ,ISNULL((SELECT SUM(RMB) FROM AFKXX F5 WHERE  F5.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '回款' ELSE '付款' END  AND YEAR(DATE)={6} AND MONTH(DATE)={7}),0.00) AS B2 
-                                            ,ISNULL((SELECT SUM(RMB) FROM AFKXX F6 WHERE  F6.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '回款' ELSE '付款' END  AND YEAR(DATE)={6} AND MONTH(DATE)<={7}),0.00) AS B3 
+                                            ,ISNULL((SELECT SUM(RMB) FROM AFKXX F4 WHERE  F4.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '销项发票' ELSE '进项发票' END  AND YEAR(DATE)<{6}),0.00) AS B1 
+                                            ,ISNULL((SELECT SUM(RMB) FROM AFKXX F5 WHERE  F5.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '销项发票' ELSE '进项发票' END  AND YEAR(DATE)={6} AND MONTH(DATE)={7}),0.00) AS B2 
+                                            ,ISNULL((SELECT SUM(RMB) FROM AFKXX F6 WHERE  F6.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '销项发票' ELSE '进项发票' END  AND YEAR(DATE)={6} AND MONTH(DATE)<={7}),0.00) AS B3 
                                             FROM VCONTRACTS H inner join bcode b on h.hdw=b.bcode WHERE H.HDW LIKE '{9}%' AND HLX LIKE '{3}%'   AND (YEAR(签定日期)<{6} OR (YEAR(签定日期)={6} AND MONTH(签定日期)<= {7}))",
         new object[] {
                          ClassConstant.NB, 
@@ -1329,9 +1334,9 @@ where hdw='" + ClassCustom.codeSub(this.HDW.Text) + "'and year(ca.ExchangeDate)=
                 dt.Columns.Add("B5", typeof(decimal), "结算金额-B4");
                 dt.Columns.Add("B6", typeof(decimal), "B5/结算金额");
                 dt.Columns.Add("C", typeof(decimal), "B4-A4");
-                dt.Columns.Add("合同前", typeof(decimal));
-                dt.Columns.Add("合同本月", typeof(decimal));
-                dt.Columns.Add("合同本年", typeof(decimal));
+                //dt.Columns.Add("合同前", typeof(decimal));
+                //dt.Columns.Add("合同本月", typeof(decimal));
+                //dt.Columns.Add("合同本年", typeof(decimal));
                 this.progressBar1.Value = 0;
                 this.progressBar1.Maximum = dt.Rows.Count;
                 this.progressBar1.Visible = true;
@@ -1573,15 +1578,30 @@ FROM (SELECT 合同号," + ccodetype + ",客户名, CASE SUBSTRING(HKH,1,2) WHEN
                 this.reportViewer1.LocalReport.DataSources.Clear();
 
                 //                string sql = string.Format(@"SELECT top 50 合同号,客户名,结算金额,HKH 客户码,0 年,CASE substring(HKH,1,2) WHEN '{0}' THEN '内部' WHEN '{1}' THEN '外部' WHEN '{2}' THEN '北方重工' WHEN '{8}' THEN '在建工程' ELSE '鼓风' END as 客户类型,合同类型 HLX,hdw 
-                //                                        ,case when YEAR(签定日期)<{6} THEN 结算金额 ELSE 0.00 END AS 合同前,case when YEAR(签定日期)={6} AND  MONTH(签定日期)= {7} THEN 结算金额 ELSE 0.00 END AS 合同本月,case when YEAR(签定日期)={6} AND  MONTH(签定日期)<= {7} THEN 结算金额 ELSE 0.00 END  AS 合同本年 FROM VCONTRACTS WHERE 1=1 AND (HLX LIKE '01%' or HLX LIKE '03%' )AND HDW LIKE '%' AND HYWY LIKE '{5}%' AND (YEAR(签定日期)<{6} OR (YEAR(签定日期)={6} AND MONTH(签定日期)<= {7}))",
+                //                                        
+                //,case when YEAR(签定日期)<{6} THEN 结算金额 ELSE 0.00 END AS 合同前
+                //,case when YEAR(签定日期)={6} AND  MONTH(签定日期)= {7} THEN 结算金额 ELSE 0.00 END AS 合同本月
+                //,case when YEAR(签定日期)={6} AND  MONTH(签定日期)<= {7} THEN 结算金额 ELSE 0.00 END  AS 合同本年
+
+                //    FROM VCONTRACTS WHERE 1=1 AND (HLX LIKE '01%' or HLX LIKE '03%' )AND HDW LIKE '%' AND HYWY LIKE '{5}%' AND (YEAR(签定日期)<{6} OR (YEAR(签定日期)={6} AND MONTH(签定日期)<= {7}))",
                 //                   new object[] { ClassConstant.NB, ClassConstant.WB, ClassConstant.NHI, ClassCustom.codeSub(HLX1.Text), ClassCustom.codeSub(HDW.Text), ClassCustom.codeSub(HBM.Text), YEAR.Text, MONTH.Text, ClassConstant.ZJ });
+
+
+
+
+
                 string sql = string.Format(@"SELECT 合同号,客户名,结算金额,HKH 客户码,(SELECT  YEAR(MAX(DATE)) FROM AFKXX F0 WHERE H.合同号=F0.HTH) as 年,DBO.GetCustomerCate(HKH) as 客户类型 ,b.bname as hdw ,h.合同类型 hlx
+
+                                            ,case when YEAR(签定日期)<{6} THEN 结算金额 ELSE 0.00 END AS 合同前
+                                            ,case when YEAR(签定日期)={6} AND  MONTH(签定日期)= {7} THEN 结算金额 ELSE 0.00 END AS 合同本月
+                                            ,case when YEAR(签定日期)={6} AND  MONTH(签定日期)<= {7} THEN 结算金额 ELSE 0.00 END  AS 合同本年
+
                                             ,ISNULL((SELECT SUM(RMB) FROM AFKXX F1 WHERE  F1.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '回款' ELSE '付款' END  AND YEAR(DATE)<{6}),0.00) AS A1 
                                             ,ISNULL((SELECT SUM(RMB) FROM AFKXX F2 WHERE  F2.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '回款' ELSE '付款' END  AND YEAR(DATE)={6} AND MONTH(DATE)={7}),0.00) AS A2 
                                             ,ISNULL((SELECT SUM(RMB) FROM AFKXX F3 WHERE  F3.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '回款' ELSE '付款' END  AND YEAR(DATE)={6} AND MONTH(DATE)<={7}),0.00) AS A3 
-                                            ,ISNULL((SELECT SUM(RMB) FROM AFKXX F4 WHERE  F4.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '回款' ELSE '付款' END  AND YEAR(DATE)<{6}),0.00) AS B1 
-                                            ,ISNULL((SELECT SUM(RMB) FROM AFKXX F5 WHERE  F5.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '回款' ELSE '付款' END  AND YEAR(DATE)={6} AND MONTH(DATE)={7}),0.00) AS B2 
-                                            ,ISNULL((SELECT SUM(RMB) FROM AFKXX F6 WHERE  F6.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '回款' ELSE '付款' END  AND YEAR(DATE)={6} AND MONTH(DATE)<={7}),0.00) AS B3 
+                                            ,ISNULL((SELECT SUM(RMB) FROM AFKXX F4 WHERE  F4.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '销项发票' ELSE '进项发票' END  AND YEAR(DATE)<{6}),0.00) AS B1 
+                                            ,ISNULL((SELECT SUM(RMB) FROM AFKXX F5 WHERE  F5.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '销项发票' ELSE '进项发票' END  AND YEAR(DATE)={6} AND MONTH(DATE)={7}),0.00) AS B2 
+                                            ,ISNULL((SELECT SUM(RMB) FROM AFKXX F6 WHERE  F6.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '销项发票' ELSE '进项发票' END  AND YEAR(DATE)={6} AND MONTH(DATE)<={7}),0.00) AS B3 
                                             FROM VCONTRACTS H inner join bcode b on h.hdw=b.bcode WHERE H.HDW LIKE '{9}%' AND HLX LIKE '{3}%'   AND (YEAR(签定日期)<{6} OR (YEAR(签定日期)={6} AND MONTH(签定日期)<= {7})) and h.结算金额<>0",
                                                                                                                                                                                                                        new object[] {
                          ClassConstant.NB, 
