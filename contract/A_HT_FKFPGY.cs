@@ -494,6 +494,8 @@ namespace contract
                     return;
                 }
                 #endregion
+
+
                 this.customDataGridView1.EndEdit();
                 this.Validate();
                 if (this.textBox2.Text == "")
@@ -639,6 +641,25 @@ namespace contract
                 }
                 if (sql == "")
                     return;
+                string strTemp = string.Empty;
+                foreach (DataGridViewRow r in this.customDataGridView1.Rows)
+                {
+                    strTemp += string.Format(",'{0}'", r.Cells["合同号"].Value.ToString());
+                }
+                if (strTemp.Length > 0)
+                {
+                    string checkSq = string.Format("SELECT ISNULL(MIN(HDATE),GETDATE()) FROM ACONTRACT WHERE HCODE IN({0})", strTemp.Substring(1));
+                    object obj = DBAdo.ExecuteScalarSql(checkSq);
+                    if (obj != null)
+                    {
+                        if (this.dateTimePicker1.Value < DateTime.Parse(obj.ToString()))
+                        {
+                            MessageBox.Show("业务日期不能小于合同日期!");
+                            return;
+                        }
+                    }
+                }
+
 
                 DBAdo.ExecuteNonQuerySql(sql);
                 MessageBox.Show("操作成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
