@@ -214,7 +214,7 @@ namespace contract
                                             ,ISNULL((SELECT SUM(RMB) FROM AFKXX F4 WHERE  F4.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '销项发票' ELSE '进项发票' END  AND YEAR(DATE)<{6}),0.00) AS B1 
                                             ,ISNULL((SELECT SUM(RMB) FROM AFKXX F5 WHERE  F5.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '销项发票' ELSE '进项发票' END  AND YEAR(DATE)={6} AND MONTH(DATE)={7}),0.00) AS B2 
                                             ,ISNULL((SELECT SUM(RMB) FROM AFKXX F6 WHERE  F6.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '销项发票' ELSE '进项发票' END  AND YEAR(DATE)={6} AND MONTH(DATE)<={7}),0.00) AS B3 
-                                            FROM VCONTRACTS H WHERE 1=1 AND HLX LIKE '{3}%' AND HDW = '{4}' AND HYWY LIKE '{5}%' AND (YEAR(签定日期)<{6} OR (YEAR(签定日期)={6} AND MONTH(签定日期)<= {7}))",
+                                            FROM VCONTRACTS H WHERE 1=1 and flag =1  AND HLX LIKE '{3}%' AND HDW = '{4}' AND HYWY LIKE '{5}%' AND (YEAR(签定日期)<{6} OR (YEAR(签定日期)={6} AND MONTH(签定日期)<= {7}))",
                      new object[] {
                          ClassConstant.NB, 
                          ClassConstant.WB, 
@@ -410,7 +410,7 @@ namespace contract
                                             ,ISNULL((SELECT SUM(RMB) FROM AFKXX F4 WHERE  F4.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '销项发票' ELSE '进项发票' END  AND YEAR(DATE)<{6}),0.00) AS B1 
                                             ,ISNULL((SELECT SUM(RMB) FROM AFKXX F5 WHERE  F5.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '销项发票' ELSE '进项发票' END  AND YEAR(DATE)={6} AND MONTH(DATE)={7}),0.00) AS B2 
                                             ,ISNULL((SELECT SUM(RMB) FROM AFKXX F6 WHERE  F6.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '销项发票' ELSE '进项发票' END  AND YEAR(DATE)={6} AND MONTH(DATE)<={7}),0.00) AS B3 
-                                            FROM VCONTRACTS H WHERE 1=1 AND HLX LIKE '{3}%' AND HDW = '{4}' AND HYWY LIKE '{5}%' AND (YEAR(签定日期)<{6} OR (YEAR(签定日期)={6} AND MONTH(签定日期)<= {7}))",
+                                            FROM VCONTRACTS H WHERE 1=1 and flag =1   AND HLX LIKE '{3}%' AND HDW = '{4}' AND HYWY LIKE '{5}%' AND (YEAR(签定日期)<{6} OR (YEAR(签定日期)={6} AND MONTH(签定日期)<= {7}))",
      new object[] {
                          ClassConstant.NB, 
                          ClassConstant.WB, 
