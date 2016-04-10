@@ -207,6 +207,18 @@ namespace contract
                 this.reportViewer1.ProcessingMode = ProcessingMode.Local;
                 this.reportViewer1.LocalReport.ReportEmbeddedResource = "contract.Reports.Report合同收付款明细表.rdlc";
                 this.reportViewer1.LocalReport.DataSources.Clear();
+
+                string containTwo = string.Empty;
+                if (this.checkBox1.Checked)
+                {
+                    containTwo = string.Format(" SUBSTRING(HDW,3,2)='{0}' ", ClassCustom.codeSub(HDW.Text).Substring(2));
+                }
+                else
+                {
+                    containTwo = string.Format(" HDW = '{0}' ", ClassCustom.codeSub(HDW.Text));
+                }
+
+
                 string sql = string.Format(@"SELECT 合同号,客户名,结算金额,HKH 客户码,(SELECT  YEAR(MAX(DATE)) FROM AFKXX F0 WHERE H.合同号=F0.HTH) as 年,DBO.GetCustomerCate(HKH) as 客户类型 
                                             ,ISNULL((SELECT SUM(RMB) FROM AFKXX F1 WHERE  F1.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '回款' ELSE '付款' END  AND YEAR(DATE)<{6}),0.00) AS A1 
                                             ,ISNULL((SELECT SUM(RMB) FROM AFKXX F2 WHERE  F2.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '回款' ELSE '付款' END  AND YEAR(DATE)={6} AND MONTH(DATE)={7}),0.00) AS A2 
@@ -214,7 +226,7 @@ namespace contract
                                             ,ISNULL((SELECT SUM(RMB) FROM AFKXX F4 WHERE  F4.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '销项发票' ELSE '进项发票' END  AND YEAR(DATE)<{6}),0.00) AS B1 
                                             ,ISNULL((SELECT SUM(RMB) FROM AFKXX F5 WHERE  F5.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '销项发票' ELSE '进项发票' END  AND YEAR(DATE)={6} AND MONTH(DATE)={7}),0.00) AS B2 
                                             ,ISNULL((SELECT SUM(RMB) FROM AFKXX F6 WHERE  F6.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '销项发票' ELSE '进项发票' END  AND YEAR(DATE)={6} AND MONTH(DATE)<={7}),0.00) AS B3 
-                                            FROM VCONTRACTS H WHERE 1=1 and flag =1  AND HLX LIKE '{3}%' AND HDW = '{4}' AND HYWY LIKE '{5}%' AND (YEAR(签定日期)<{6} OR (YEAR(签定日期)={6} AND MONTH(签定日期)<= {7}))",
+                                            FROM VCONTRACTS H WHERE 1=1 and flag =1  AND HLX LIKE '{3}%' AND " + containTwo + " AND HYWY LIKE '{5}%' AND (YEAR(签定日期)<{6} OR (YEAR(签定日期)={6} AND MONTH(签定日期)<= {7}))",
                      new object[] {
                          ClassConstant.NB, 
                          ClassConstant.WB, 
@@ -403,6 +415,16 @@ namespace contract
                 //                string sql = string.Format(@"SELECT 合同号,客户名,结算金额,HKH 客户码,0 年,DBO.GetCustomerCate(HKH) as 客户类型
                 //                                FROM VCONTRACTS WHERE 1=1 AND HLX LIKE '{3}%' AND HDW = '{4}' AND HYWY LIKE '{5}%' AND (YEAR(签定日期)<{6} OR (YEAR(签定日期)={6} AND MONTH(签定日期)<= {7}))",
                 //                     new object[] { ClassConstant.NB, ClassConstant.WB, ClassConstant.NHI, ClassCustom.codeSub(HLX.Text), ClassCustom.codeSub(HDW.Text), ClassCustom.codeSub(HBM.Text), YEAR.Text, MONTH.Text, ClassConstant.ZJ });
+
+                string containTwo = string.Empty;
+                if (this.checkBox1.Checked)
+                {
+                    containTwo = string.Format(" SUBSTRING(HDW,3,2)='{0}' ", ClassCustom.codeSub(HDW.Text).Substring(2));
+                }
+                else
+                {
+                    containTwo = string.Format(" HDW = '{0}' ", ClassCustom.codeSub(HDW.Text));
+                }
                 string sql = string.Format(@"SELECT 合同号,客户名,结算金额,HKH 客户码,(SELECT  YEAR(MAX(DATE)) FROM AFKXX F0 WHERE H.合同号=F0.HTH) as 年,DBO.GetCustomerCate(HKH) as 客户类型 
                                             ,ISNULL((SELECT SUM(RMB) FROM AFKXX F1 WHERE  F1.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '回款' ELSE '付款' END  AND YEAR(DATE)<{6}),0.00) AS A1 
                                             ,ISNULL((SELECT SUM(RMB) FROM AFKXX F2 WHERE  F2.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '回款' ELSE '付款' END  AND YEAR(DATE)={6} AND MONTH(DATE)={7}),0.00) AS A2 
@@ -410,7 +432,7 @@ namespace contract
                                             ,ISNULL((SELECT SUM(RMB) FROM AFKXX F4 WHERE  F4.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '销项发票' ELSE '进项发票' END  AND YEAR(DATE)<{6}),0.00) AS B1 
                                             ,ISNULL((SELECT SUM(RMB) FROM AFKXX F5 WHERE  F5.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '销项发票' ELSE '进项发票' END  AND YEAR(DATE)={6} AND MONTH(DATE)={7}),0.00) AS B2 
                                             ,ISNULL((SELECT SUM(RMB) FROM AFKXX F6 WHERE  F6.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '销项发票' ELSE '进项发票' END  AND YEAR(DATE)={6} AND MONTH(DATE)<={7}),0.00) AS B3 
-                                            FROM VCONTRACTS H WHERE 1=1 and flag =1   AND HLX LIKE '{3}%' AND HDW = '{4}' AND HYWY LIKE '{5}%' AND (YEAR(签定日期)<{6} OR (YEAR(签定日期)={6} AND MONTH(签定日期)<= {7}))",
+                                            FROM VCONTRACTS H WHERE 1=1 and flag =1   AND HLX LIKE '{3}%' AND " + containTwo + " AND HYWY LIKE '{5}%' AND (YEAR(签定日期)<{6} OR (YEAR(签定日期)={6} AND MONTH(签定日期)<= {7}))",
      new object[] {
                          ClassConstant.NB, 
                          ClassConstant.WB, 
@@ -510,12 +532,22 @@ namespace contract
 
                 this.reportViewer1.LocalReport.DataSources.Clear();
 
+                string containTwo = string.Empty;
+                if (this.checkBox1.Checked)
+                {
+                    containTwo = string.Format(" SUBSTRING(HDW,3,2)='{0}' ", ClassCustom.codeSub(HDW.Text).Substring(2));
+                }
+                else
+                {
+                    containTwo = string.Format(" HDW = '{0}' ", ClassCustom.codeSub(HDW.Text));
+                }
+
                 DataTable dty = DBAdo.DtFillSql(string.Format(@"select DBO.GetCustomerCate(ca.ccode)  as 客户类型, cl.cname 客户名,
 (SELECT sum(crmb.cash)FROM ACASH crmb WHERE crmb.hdw=ca.hdw AND crmb.ccode=ca.ccode AND month(crmb.ExchangeDate)='{0}' AND year(crmb.ExchangeDate) = '{1}' {2}) 现汇本月, sum(ca.cash) 现汇本年累计,
 (SELECT sum(crmb.note)FROM ACASH crmb WHERE crmb.hdw=ca.hdw AND crmb.ccode=ca.ccode AND month(crmb.ExchangeDate)='{0}' AND year(crmb.ExchangeDate) = '{1}' {2}) 票据本月, sum(ca.note) 票据本年累计,
 (SELECT sum(crmb.mz)FROM ACASH crmb WHERE crmb.hdw=ca.hdw AND crmb.ccode=ca.ccode AND month(crmb.ExchangeDate)='{0}' AND year(crmb.ExchangeDate) = '{1}'   {2}) 抹账本月, sum(ca.mz) 抹账本年累计 
 from ACASH ca,ACLIENTS cl
-where hdw='" + ClassCustom.codeSub(this.HDW.Text) + "'and year(ca.ExchangeDate)='" + this.YEAR.Text + "' and month(ca.ExchangeDate)<='" + this.MONTH.Text + "' and ca.ccode=cl.ccode " + type
+where " + containTwo + "'and year(ca.ExchangeDate)='" + this.YEAR.Text + "' and month(ca.ExchangeDate)<='" + this.MONTH.Text + "' and ca.ccode=cl.ccode " + type
              + "   AND CA.CID IN (SELECT DISTINCT CID FROM AFKXX T0 INNER JOIN ACONTRACT T1 ON T0.hth=T1.HCODE WHERE HLX LIKE '" + ClassCustom.codeSub(this.HLX.Text) + "__') group by ca.hdw,ca.ccode,cl.cname", this.MONTH.Text, this.YEAR.Text, type));
 
 
@@ -566,6 +598,16 @@ where hdw='" + ClassCustom.codeSub(this.HDW.Text) + "'and year(ca.ExchangeDate)=
             //this.reportViewer1.LocalReport.ReportEmbeddedResource = "contract.Report1_ceshi.rdlc";
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "contract.Reports.Report合同汇总.rdlc";
             this.reportViewer1.LocalReport.DataSources.Clear();
+            string containTwo = string.Empty;
+            if (this.checkBox1.Checked)
+            {
+                containTwo = string.Format(" SUBSTRING(AC.HDW,3,2)='{0}' ", ClassCustom.codeSub(HDW.Text).Substring(2));
+            }
+            else
+            {
+                containTwo = string.Format(" AC.HDW = '{0}' ", ClassCustom.codeSub(HDW.Text));
+            }
+
             string sql = string.Format(@"select al.lname 合同类型,ac.hcode 合同号,DBO.GetCustomerCate(ac.HKH) as 客户类型 ,HKH 客户 ,
 (SELECT  YEAR(MAX(DATE)) FROM AFKXX F0 WHERE ac.hcode=F0.HTH) as 年
 ,ISNULL((select hjsje from acontract h1 where ac.hcode=h1.hcode and year(h1.hdate)<'{0}'),0.00) AS 合同前
@@ -577,9 +619,7 @@ where hdw='" + ClassCustom.codeSub(this.HDW.Text) + "'and year(ca.ExchangeDate)=
 ,ISNULL((select sum(rmb) from afkxx f4 where f4.hth=ac.hcode and type= CASE WHEN SUBSTRING(ac.HLX,1,2)='02' THEN '销项发票' ELSE '进项发票' END  and year(f4.[date])<'{0}'),0.00) AS 已开票前
 ,ISNULL((select sum(rmb) from afkxx f5 where f5.hth=ac.hcode and type= CASE WHEN SUBSTRING(ac.HLX,1,2)='02' THEN '销项发票' ELSE '进项发票' END  and year(f5.[date])='{0}' and month(f5.[date])='{1}'),0.00) AS 已开票本月
 ,ISNULL((select sum(rmb) from afkxx f6 where f6.hth=ac.hcode and type= CASE WHEN SUBSTRING(ac.HLX,1,2)='02' THEN '销项发票' ELSE '进项发票' END  and year(f6.[date])='{0}' and month(f6.[date])<='{1}'),0.00) AS 已开票本年
- from acontract ac,alx al where 1=1 and ac.hlx=al.lid and ac.hdw='"
-                + ClassCustom.codeSub(this.HDW.Text)
-                + "' and ac.hlx like '" + ClassCustom.codeSub(this.HLX.Text)
+ from acontract ac,alx al where 1=1 and ac.hlx=al.lid and " + containTwo + " and ac.hlx like '" + ClassCustom.codeSub(this.HLX.Text)
                 + "%' and (year(ac.hdate)<'"
                 + this.YEAR.Text
                 + "' or (year(ac.hdate)='"
@@ -657,6 +697,16 @@ where hdw='" + ClassCustom.codeSub(this.HDW.Text) + "'and year(ca.ExchangeDate)=
             this.reportViewer1.ProcessingMode = ProcessingMode.Local;
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "contract.Reports.Report签订明细.rdlc";
             this.reportViewer1.LocalReport.DataSources.Clear();
+            string containTwo = string.Empty;
+            if (this.checkBox1.Checked)
+            {
+                containTwo = string.Format(" SUBSTRING(HDW,3,2)='{0}' ", ClassCustom.codeSub(HDW.Text).Substring(2));
+            }
+            else
+            {
+                containTwo = string.Format(" HDW = '{0}' ", ClassCustom.codeSub(HDW.Text));
+            }
+
             string s1 = string.Format(" CASE MONTH(co.hdate) WHEN {0} THEN co.hjsje ELSE 0.00 END ", this.MONTH.Text);
             // string s2 = string.Format(" CASE MONTH(co.hdate) WHEN {0} THEN 0.00 ELSE co.hjsje END ", this.MONTH.Text);
             //this.button1.Enabled = false;
@@ -668,7 +718,7 @@ where hdw='" + ClassCustom.codeSub(this.HDW.Text) + "'and year(ca.ExchangeDate)=
 (select sum(gsl) from asp a3 where a3.hth=co.HCODE)as 数量,
 (select avg(dj2)  gname from asp a4 where a4.hth=co.HCODE)as 价格吨 
                     from acontract co,ACLIENTS cl where 1=1 
-                    and hdw='{0}' and hywy like '{1}%' and hlx like '{2}%' and co.hkh=cl.ccode and year(co.hdate)='{3}' and month(co.hdate)<='{4}' ",
+                    and  " + containTwo + " and hywy like '{1}%' and hlx like '{2}%' and co.hkh=cl.ccode and year(co.hdate)='{3}' and month(co.hdate)<='{4}' ",
                       new string[] { ClassCustom.codeSub(this.HDW.Text), ClassCustom.codeSub(this.HBM.Text), ClassCustom.codeSub(this.HLX.Text), this.YEAR.Text, this.MONTH.Text });
 
             DataTable dt = DBAdo.DtFillSql(sql);
@@ -704,6 +754,9 @@ where hdw='" + ClassCustom.codeSub(this.HDW.Text) + "'and year(ca.ExchangeDate)=
             this.reportViewer1.RefreshReport();
         }
 
+        /// <summary>
+        /// 未知表
+        /// </summary>
         private void getReport_合同总览表_按类型()
         {
             try
@@ -711,8 +764,16 @@ where hdw='" + ClassCustom.codeSub(this.HDW.Text) + "'and year(ca.ExchangeDate)=
                 this.reportViewer1.ProcessingMode = ProcessingMode.Local;
                 this.reportViewer1.LocalReport.ReportEmbeddedResource = "contract.Reports.Report合同总览表_按类型.rdlc";
                 this.reportViewer1.LocalReport.DataSources.Clear();
-
-                string sql = string.Format("SELECT 0.00 J1,0.00 J2,0.00 J3,0.00 J4,合同号,客户名,结算金额,HKH 客户码,0年,DBO.GetCustomerCate(HKH) as 客户类型 FROM VCONTRACTS WHERE 1=1 AND HLX LIKE '{3}%' AND HDW = '{4}' AND HYWY LIKE '{5}%' AND (YEAR(签定日期)<{6} OR (YEAR(签定日期)={6} AND MONTH(签定日期)<= {7}))",
+                string containTwo = string.Empty;
+                if (this.checkBox1.Checked)
+                {
+                    containTwo = string.Format(" SUBSTRING(HDW,3,2)='{0}' ", ClassCustom.codeSub(HDW.Text).Substring(2));
+                }
+                else
+                {
+                    containTwo = string.Format(" HDW = '{0}' ", ClassCustom.codeSub(HDW.Text));
+                }
+                string sql = string.Format("SELECT 0.00 J1,0.00 J2,0.00 J3,0.00 J4,合同号,客户名,结算金额,HKH 客户码,0年,DBO.GetCustomerCate(HKH) as 客户类型 FROM VCONTRACTS WHERE 1=1 AND HLX LIKE '{3}%' AND " + containTwo + "  AND HYWY LIKE '{5}%' AND (YEAR(签定日期)<{6} OR (YEAR(签定日期)={6} AND MONTH(签定日期)<= {7}))",
                    new object[] { ClassConstant.NB, ClassConstant.WB, ClassConstant.NHI, ClassCustom.codeSub(HLX.Text), ClassCustom.codeSub(HDW.Text), ClassCustom.codeSub(HBM.Text), YEAR.Text, MONTH.Text, ClassConstant.ZJ });
                 DataTable dt = DBAdo.DtFillSql(sql);
                 dt.Columns.Add("A1", typeof(decimal));
@@ -796,9 +857,12 @@ where hdw='" + ClassCustom.codeSub(this.HDW.Text) + "'and year(ca.ExchangeDate)=
             }
 
         }
-
+        /// <summary>
+        /// 集团表
+        /// </summary>
         private void getReport_JT_合同类型汇总表()
         {
+
             #region old
             //this.reportViewer1.ProcessingMode = ProcessingMode.Local;
             //this.reportViewer1.LocalReport.ReportEmbeddedResource = "contract.Reports.Report_JT_合同类型汇总表.rdlc";
@@ -908,6 +972,15 @@ where hdw='" + ClassCustom.codeSub(this.HDW.Text) + "'and year(ca.ExchangeDate)=
                 this.reportViewer1.ProcessingMode = ProcessingMode.Local;
                 this.reportViewer1.LocalReport.ReportEmbeddedResource = "contract.Reports.Report_JT_合同类型汇总表.rdlc";
                 this.reportViewer1.LocalReport.DataSources.Clear();
+                string containTwo = string.Empty;
+                if (this.checkBox1.Checked)
+                {
+                    containTwo = " 1= 1 ";
+                }
+                else
+                {
+                    containTwo = string.Format(" HDW LIKE '{0}%' ", ClassConstant.AccountingBook);
+                }
 
                 //string sql = string.Format("SELECT 合同号,客户名,结算金额,HKH 客户码,0 年,CASE substring(HKH,1,2) WHEN '{0}' THEN '内部' WHEN '{1}' THEN '外部' WHEN '{2}' THEN '北方重工' WHEN '{8}' THEN '在建工程' ELSE '鼓风' END as 客户类型,hdw FROM VCONTRACTS WHERE 1=1 AND HLX LIKE '{3}%' AND HDW LIKE '%' AND HYWY LIKE '{5}%' AND (YEAR(签定日期)<{6} OR (YEAR(签定日期)={6} AND MONTH(签定日期)<= {7}))",
                 //   new object[] { ClassConstant.NB, ClassConstant.WB, ClassConstant.NHI, ClassCustom.codeSub(HLX1.Text), ClassCustom.codeSub(HDW.Text), ClassCustom.codeSub(HBM.Text), YEAR.Text, MONTH.Text, ClassConstant.ZJ });
@@ -918,7 +991,7 @@ where hdw='" + ClassCustom.codeSub(this.HDW.Text) + "'and year(ca.ExchangeDate)=
                                             ,ISNULL((SELECT SUM(RMB) FROM AFKXX F4 WHERE  F4.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '销项发票' ELSE '进项发票' END  AND YEAR(DATE)<{6}),0.00) AS B1 
                                             ,ISNULL((SELECT SUM(RMB) FROM AFKXX F5 WHERE  F5.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '销项发票' ELSE '进项发票' END  AND YEAR(DATE)={6} AND MONTH(DATE)={7}),0.00) AS B2 
                                             ,ISNULL((SELECT SUM(RMB) FROM AFKXX F6 WHERE  F6.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '销项发票' ELSE '进项发票' END  AND YEAR(DATE)={6} AND MONTH(DATE)<={7}),0.00) AS B3 
-                                            FROM VCONTRACTS H inner join bcode b on h.hdw=b.bcode WHERE H.HDW LIKE '{9}%' AND HLX LIKE '{3}%'   AND (YEAR(签定日期)<{6} OR (YEAR(签定日期)={6} AND MONTH(签定日期)<= {7}))",
+                                            FROM VCONTRACTS H inner join bcode b on h.hdw=b.bcode WHERE  " + containTwo + "  AND HLX LIKE '{3}%'   AND (YEAR(签定日期)<{6} OR (YEAR(签定日期)={6} AND MONTH(签定日期)<= {7}))",
                         new object[] {
                          ClassConstant.NB, 
                          ClassConstant.WB, 
@@ -1058,14 +1131,24 @@ where hdw='" + ClassCustom.codeSub(this.HDW.Text) + "'and year(ca.ExchangeDate)=
                 //     + "GROUP BY HDW,SUBSTRING(CCODE,1,2) ,TYPE,year(exchangedate),month(exchangedate) "
                 //     + "ORDER BY  HDW ,SUBSTRING(CCODE,1,2)  ,TYPE,year(exchangedate),month(exchangedate) "
                 //     + "");
+
+                string containTwo = string.Empty;
+                if (this.checkBox1.Checked)
+                {
+                    containTwo = " 1= 1 ";
+                }
+                else
+                {
+                    containTwo = string.Format(" A.HDW LIKE '{0}' ", ClassConstant.AccountingBook);
+                }
                 string tj = (this.comboBox1.Text == "回款" ? " AND type = '回款' " : " AND type = '付款'");
                 string s = string.Format("CASE substring(ccode,1,2) WHEN '{0}' THEN '内部' WHEN '{1}' THEN '外部' WHEN '{2}' THEN '北方重工' WHEN '{3}' THEN '在建工程' ELSE '鼓风' END as 客户类型", new object[] { ClassConstant.NB, ClassConstant.WB, ClassConstant.NHI, ClassConstant.ZJ });
                 string sql = "";
                 string s1 = " SUM(CASH) 现汇本月,0.00 现汇本年,SUM(NOTE) 票据本月,0.00  票据本年,SUM(MZ) 抹账本月 ,0.00  抹账本年";
                 string s2 = " 0.00  现汇本月,SUM(CASH) 现汇本年,0.00  票据本月,SUM(NOTE) 票据本年,0.00  抹账本月 ,SUM(MZ) 抹账本年";
-                sql += string.Format("select b.bname 公司,{0}, TYPE 进度类型,{1} from acash a inner join bcode b on a.hdw=b.bcode where A.HDW LIKE '" + ClassConstant.AccountingBook + "%'  AND {2} GROUP BY b.bname,SUBSTRING(CCODE,1,2) ,TYPE "
+                sql += string.Format("select b.bname 公司,{0}, TYPE 进度类型,{1} from acash a inner join bcode b on a.hdw=b.bcode where  " + containTwo + "  AND {2} GROUP BY b.bname,SUBSTRING(CCODE,1,2) ,TYPE "
                     , s, s1, string.Format(" year(exchangedate) = {0} and  month(exchangedate) = {1} " + tj, YEAR.Text, MONTH.Text));
-                sql += string.Format(" union select b.bname 公司,{0}, TYPE 进度类型,{1} from acash a inner join bcode b on a.hdw=b.bcode where  A.HDW LIKE '" + ClassConstant.AccountingBook + "%'   AND {2} GROUP BY b.bname,SUBSTRING(CCODE,1,2) ,TYPE "
+                sql += string.Format(" union select b.bname 公司,{0}, TYPE 进度类型,{1} from acash a inner join bcode b on a.hdw=b.bcode where   " + containTwo + "   AND {2} GROUP BY b.bname,SUBSTRING(CCODE,1,2) ,TYPE "
                     , s, s2, string.Format(" year(exchangedate) = {0} and  month(exchangedate) <= {1} " + tj, YEAR.Text, MONTH.Text));
                 DataTable dt = DBAdo.DtFillSql(sql);
 
@@ -1126,7 +1209,15 @@ where hdw='" + ClassCustom.codeSub(this.HDW.Text) + "'and year(ca.ExchangeDate)=
                 this.reportViewer1.ProcessingMode = ProcessingMode.Local;
                 this.reportViewer1.LocalReport.ReportEmbeddedResource = "contract.Reports.Report_JT_各单位货款同期对比表.rdlc";
                 this.reportViewer1.LocalReport.DataSources.Clear();
-
+                string containTwo = string.Empty;
+                if (this.checkBox1.Checked)
+                {
+                    containTwo = " 1= 1 ";
+                }
+                else
+                {
+                    containTwo = string.Format(" A.HDW LIKE '{0}%' ", ClassConstant.AccountingBook);
+                }
                 string tj = (this.comboBox1.Text == "回款" ? " AND type = '回款' " : " AND type = '付款'");
                 string s = string.Format("CASE substring(ccode,1,2) WHEN '{0}' THEN '内部' WHEN '{1}' THEN '外部' WHEN '{2}' THEN '北方重工' WHEN '{3}' THEN '在建工程' ELSE '鼓风' END as 客户类型", new object[] { ClassConstant.NB, ClassConstant.WB, ClassConstant.NHI, ClassConstant.ZJ });
                 string sql = "";
@@ -1134,13 +1225,13 @@ where hdw='" + ClassCustom.codeSub(this.HDW.Text) + "'and year(ca.ExchangeDate)=
                 string s2 = " 0.00 本年本月,SUM(CASH+note+mz) 本年累计,0.00 同期本月,0.00  同期本年 ";
                 string s3 = " 0.00 本年本月,0.00 本年累计,SUM(CASH+note+mz) 同期本月,0.00  同期本年 ";
                 string s4 = " 0.00 本年本月,0.00 本年累计,0.00 同期本月,SUM(CASH+note+mz)  同期本年 ";
-                sql += string.Format("select b.bname 公司,{0},{1} from acash  a inner join bcode b on a.hdw=b.bcode  where A.HDW LIKE '" + ClassConstant.AccountingBook + "%'   AND {2} GROUP BY b.bname,SUBSTRING(CCODE,1,2)  "
+                sql += string.Format("select b.bname 公司,{0},{1} from acash  a inner join bcode b on a.hdw=b.bcode  where  " + containTwo + "   AND {2} GROUP BY b.bname,SUBSTRING(CCODE,1,2)  "
                     , s, s1, string.Format(" year(exchangedate) = {0} and  month(exchangedate) = {1} " + tj, YEAR.Text, MONTH.Text));
-                sql += string.Format(" union select b.bname 公司,{0},{1} from acash a inner join bcode b on a.hdw=b.bcode  where A.HDW LIKE '" + ClassConstant.AccountingBook + "%'  AND {2} GROUP BY b.bname,SUBSTRING(CCODE,1,2) "
+                sql += string.Format(" union select b.bname 公司,{0},{1} from acash a inner join bcode b on a.hdw=b.bcode  where  " + containTwo + "  AND {2} GROUP BY b.bname,SUBSTRING(CCODE,1,2) "
                     , s, s2, string.Format(" year(exchangedate) = {0} and  month(exchangedate) <= {1} " + tj, YEAR.Text, MONTH.Text));
-                sql += string.Format(" union select b.bname 公司,{0},{1} from acash a inner join bcode b on a.hdw=b.bcode  where  A.HDW LIKE '" + ClassConstant.AccountingBook + "%'   AND {2} GROUP BY b.bname,SUBSTRING(CCODE,1,2) "
+                sql += string.Format(" union select b.bname 公司,{0},{1} from acash a inner join bcode b on a.hdw=b.bcode  where  " + containTwo + "    AND {2} GROUP BY b.bname,SUBSTRING(CCODE,1,2) "
                     , s, s3, string.Format(" year(exchangedate) = {0} and  month(exchangedate) <= {1} " + tj, (int.Parse(YEAR.Text) - 1).ToString(), MONTH.Text));
-                sql += string.Format(" union select b.bname 公司,{0},{1} from acash  a inner join bcode b on a.hdw=b.bcode where  A.HDW LIKE '" + ClassConstant.AccountingBook + "%'   AND {2} GROUP BY b.bname,SUBSTRING(CCODE,1,2)  "
+                sql += string.Format(" union select b.bname 公司,{0},{1} from acash  a inner join bcode b on a.hdw=b.bcode where " + containTwo + "    AND {2} GROUP BY b.bname,SUBSTRING(CCODE,1,2)  "
                     , s, s4, string.Format(" year(exchangedate) = {0} and  month(exchangedate) <= {1} " + tj, (int.Parse(YEAR.Text) - 1).ToString(), MONTH.Text));
                 DataTable dt = DBAdo.DtFillSql(sql);
 
@@ -1204,9 +1295,18 @@ where hdw='" + ClassCustom.codeSub(this.HDW.Text) + "'and year(ca.ExchangeDate)=
                 this.reportViewer1.ProcessingMode = ProcessingMode.Local;
                 this.reportViewer1.LocalReport.ReportEmbeddedResource = "contract.Reports.Report_JT_各单位签订合同情况表.rdlc";
                 this.reportViewer1.LocalReport.DataSources.Clear();
+                string containTwo = string.Empty;
+                if (this.checkBox1.Checked)
+                {
+                    containTwo = " 1= 1 ";
+                }
+                else
+                {
+                    containTwo = string.Format(" HDW LIKE '{0}%' ", ClassConstant.AccountingBook);
+                }
                 string khtype = string.Format(" CASE substring(HKH,1,2) WHEN '{0}' THEN '内部' WHEN '{1}' THEN '外部' WHEN '{2}' THEN '北方重工' WHEN '{3}' THEN '在建工程' ELSE '鼓风' END ", ClassConstant.NB, ClassConstant.WB, ClassConstant.NHI, ClassConstant.ZJ);
-                string sql = string.Format(" select H.HCODE 合同号,{0} as 客户类型,H.HDATE 签订日期,H.ZBFS 中标方式  ,HKH 客户码,b.bname 公司,HLX 合同类型,(select sum(zz) from asp where hth=h.hcode) 总重,(select avg(dj2)  from asp where  hth=h.hcode) 平均价格,hjsje 金额本月,0.00 金额本年 from ACONTRACT H inner join bcode b on h.hdw=b.bcode  where h.hdw like '{4}%' and hlx like '{3}%' and (year(h.hdate)= {1} and month(h.hdate)= {2}) ", new object[] { khtype, this.YEAR.Text, this.MONTH.Text, ClassCustom.codeSub(this.HLX1.Text), ClassConstant.AccountingBook });
-                sql += string.Format(" union select H.HCODE 合同号,{0} as 客户类型,H.HDATE 签订日期,H.ZBFS 中标方式  ,HKH 客户码,b.bname 公司,HLX 合同类型,(select sum(zz) from asp where hth=h.hcode) 总重,(select avg(dj2)  from asp where  hth=h.hcode) 平均价格,0.00 金额本月,hjsje 金额本年 from ACONTRACT H inner join bcode b on h.hdw=b.bcode  where h.hdw like '{4}%' and hlx like '{3}%' and (year(h.hdate)= {1} and month(h.hdate)<= {2}) ", new object[] { khtype, this.YEAR.Text, this.MONTH.Text, ClassCustom.codeSub(this.HLX1.Text), ClassConstant.AccountingBook });
+                string sql = string.Format(" select H.HCODE 合同号,{0} as 客户类型,H.HDATE 签订日期,H.ZBFS 中标方式  ,HKH 客户码,b.bname 公司,HLX 合同类型,(select sum(zz) from asp where hth=h.hcode) 总重,(select avg(dj2)  from asp where  hth=h.hcode) 平均价格,hjsje 金额本月,0.00 金额本年 from ACONTRACT H inner join bcode b on h.hdw=b.bcode  where  " + containTwo + "  and hlx like '{3}%' and (year(h.hdate)= {1} and month(h.hdate)= {2}) ", new object[] { khtype, this.YEAR.Text, this.MONTH.Text, ClassCustom.codeSub(this.HLX1.Text), ClassConstant.AccountingBook });
+                sql += string.Format(" union select H.HCODE 合同号,{0} as 客户类型,H.HDATE 签订日期,H.ZBFS 中标方式  ,HKH 客户码,b.bname 公司,HLX 合同类型,(select sum(zz) from asp where hth=h.hcode) 总重,(select avg(dj2)  from asp where  hth=h.hcode) 平均价格,0.00 金额本月,hjsje 金额本年 from ACONTRACT H inner join bcode b on h.hdw=b.bcode  where  " + containTwo + " and hlx like '{3}%' and (year(h.hdate)= {1} and month(h.hdate)<= {2}) ", new object[] { khtype, this.YEAR.Text, this.MONTH.Text, ClassCustom.codeSub(this.HLX1.Text), ClassConstant.AccountingBook });
 
                 DataTable dt = DBAdo.DtFillSql(sql);
                 ReportDataSource reportDataSource = new ReportDataSource("Contract1DataSet_R_JT_签订合同", dt);
@@ -1291,7 +1391,15 @@ where hdw='" + ClassCustom.codeSub(this.HDW.Text) + "'and year(ca.ExchangeDate)=
                 this.reportViewer1.ProcessingMode = ProcessingMode.Local;
                 this.reportViewer1.LocalReport.ReportEmbeddedResource = "contract.Reports.Report_JT_集团合同类型汇总表.rdlc";
                 this.reportViewer1.LocalReport.DataSources.Clear();
-
+                string containTwo = string.Empty;
+                if (this.checkBox1.Checked)
+                {
+                    containTwo = " 1= 1 ";
+                }
+                else
+                {
+                    containTwo = string.Format(" H.HDW LIKE '{0}' ", ClassConstant.AccountingBook);
+                }
                 //string sql = string.Format("SELECT 合同号,客户名,结算金额,HKH 客户码,year(签定日期) 年,CASE substring(HKH,1,2) WHEN '{0}' THEN '内部' WHEN '{1}' THEN '外部' WHEN '{2}' THEN '北方重工' WHEN '{8}' THEN '在建工程' ELSE '鼓风' END as 客户类型 FROM VCONTRACTS WHERE 1=1 AND HLX LIKE '{3}%' AND HDW = '{4}' AND HYWY LIKE '{5}%' AND (YEAR(签定日期)<{6} OR (YEAR(签定日期)={6} AND MONTH(签定日期)<= {7}))",
                 //   new object[] { ClassConstant.NB, ClassConstant.WB, ClassConstant.NHI, ClassCustom.codeSub(HLX.Text), ClassCustom.codeSub(HDW.Text), ClassCustom.codeSub(HBM.Text), YEAR.Text, MONTH.Text, ClassConstant.ZJ });
                 //string sql = string.Format("SELECT 合同号,客户名,结算金额,HKH 客户码,0 年,CASE substring(HKH,1,2) WHEN '{0}' THEN '内部' WHEN '{1}' THEN '外部' WHEN '{2}' THEN '北方重工' WHEN '{8}' THEN '在建工程' ELSE '鼓风' END as 客户类型,HLX,HDW FROM VCONTRACTS WHERE 1=1 AND HLX LIKE '{3}%'  AND HYWY LIKE '{5}%' AND (YEAR(签定日期)<{6} OR (YEAR(签定日期)={6} AND MONTH(签定日期)<= {7}))",
@@ -1308,7 +1416,7 @@ where hdw='" + ClassCustom.codeSub(this.HDW.Text) + "'and year(ca.ExchangeDate)=
                                             ,ISNULL((SELECT SUM(RMB) FROM AFKXX F4 WHERE  F4.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '销项发票' ELSE '进项发票' END  AND YEAR(DATE)<{6}),0.00) AS B1 
                                             ,ISNULL((SELECT SUM(RMB) FROM AFKXX F5 WHERE  F5.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '销项发票' ELSE '进项发票' END  AND YEAR(DATE)={6} AND MONTH(DATE)={7}),0.00) AS B2 
                                             ,ISNULL((SELECT SUM(RMB) FROM AFKXX F6 WHERE  F6.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '销项发票' ELSE '进项发票' END  AND YEAR(DATE)={6} AND MONTH(DATE)<={7}),0.00) AS B3 
-                                            FROM VCONTRACTS H inner join bcode b on h.hdw=b.bcode WHERE H.HDW LIKE '{9}%' AND HLX LIKE '{3}%'   AND (YEAR(签定日期)<{6} OR (YEAR(签定日期)={6} AND MONTH(签定日期)<= {7}))",
+                                            FROM VCONTRACTS H inner join bcode b on h.hdw=b.bcode WHERE  " + containTwo + "  AND HLX LIKE '{3}%'   AND (YEAR(签定日期)<{6} OR (YEAR(签定日期)={6} AND MONTH(签定日期)<= {7}))",
         new object[] {
                          ClassConstant.NB, 
                          ClassConstant.WB, 
@@ -1437,6 +1545,15 @@ where hdw='" + ClassCustom.codeSub(this.HDW.Text) + "'and year(ca.ExchangeDate)=
                 this.reportViewer1.ProcessingMode = ProcessingMode.Local;
                 this.reportViewer1.LocalReport.ReportEmbeddedResource = "contract.Reports.Report_毛利表.rdlc";
                 this.reportViewer1.LocalReport.DataSources.Clear();
+                string containTwo = string.Empty;
+                if (this.checkBox1.Checked)
+                {
+                    containTwo = string.Format(" SUBSTRING(HDW,3,2)='{0}' ", ClassCustom.codeSub(HDW.Text).Substring(2));
+                }
+                else
+                {
+                    containTwo = string.Format(" HDW = '{0}' ", ClassCustom.codeSub(HDW.Text));
+                }
                 string ccodetype = string.Format(" CASE SUBSTRING(HKH,1,2) WHEN '{0}' THEN '内部' WHEN '{1}' THEN '外部' WHEN '{2}' THEN '北方重工' when  '{3}' then '在建工程' ELSE '鼓风'  END as 客户类别 ", new string[] { ClassConstant.NB, ClassConstant.WB, ClassConstant.NHI, ClassConstant.ZJ });
                 string dateFilter = string.Format(" AND (YEAR(签定日期)<{0} OR (YEAR(签定日期)={0} AND MONTH(签定日期)<= {1} ", YEAR.Text, MONTH.Text);
                 string sql = "";
@@ -1447,7 +1564,7 @@ where hdw='" + ClassCustom.codeSub(this.HDW.Text) + "'and year(ca.ExchangeDate)=
 ,ISNULL(( SELECT SUM(hjsje/(CASE SUBSTRING(HKH,1,2) WHEN '01' THEN 1 ELSE 1.17 END)) hjsje FROM ACONTRACT WHERE HCODE IN (SELECT WXHTH FROM AWX WHERE XSHTH =T0.合同号))*0.17,0.00) 税额1
 ,ISNULL(( SELECT SUM(HJSJE) FROM ACONTRACT WHERE HCODE IN (SELECT WXHTH FROM AWX WHERE XSHTH =T0.合同号)),0.00) 小计1 
 FROM (SELECT 合同号," + ccodetype + ",客户名, CASE SUBSTRING(HKH,1,2) WHEN '01' THEN 结算金额 ELSE 结算金额/1.17 END  成本,结算金额- CASE SUBSTRING(HKH,1,2) WHEN '01' THEN 结算金额 ELSE 结算金额/1.17 END 税额,结算金额 小计,签定日期,SUBSTRING(HYWY,1,6) 部门  ";
-                sql += " FROM VCONTRACTS WHERE HLX LIKE @HLX AND HDW LIKE @HDW " + dateFilter + "))) T0,aywy t1 ";
+                sql += " FROM VCONTRACTS WHERE HLX LIKE @HLX AND  " + containTwo + dateFilter + "))) T0,aywy t1 ";
                 sql += " WHERE T0.部门=T1.YCODE " + dateFilter + "))";
 
                 DataTable dt = DBAdo.DtFillSql(sql);
@@ -1517,6 +1634,15 @@ FROM (SELECT 合同号," + ccodetype + ",客户名, CASE SUBSTRING(HKH,1,2) WHEN
                 {
                     state = " AND WXState='" + this.comboBox2.Text + "' ";
                 }
+                string containTwo = string.Empty;
+                if (this.checkBox1.Checked)
+                {
+                    containTwo = string.Format(" SUBSTRING(HDW,3,2)='{0}' ", ClassCustom.codeSub(HDW.Text).Substring(2));
+                }
+                else
+                {
+                    containTwo = string.Format(" HDW = '{0}' ", ClassCustom.codeSub(HDW.Text));
+                }
 
                 string s = @"SELECT [合同号1]
       ,[客户1]
@@ -1536,7 +1662,7 @@ FROM (SELECT 合同号," + ccodetype + ",客户名, CASE SUBSTRING(HKH,1,2) WHEN
       CASE WHEN [毛利] -[已收货款]+[已付货款]<0 THEN 0 ELSE [毛利] -[已收货款]+[已付货款] END AS '未到毛利' ,
       CASE WHEN [毛利] -[已收货款]+[已付货款]<0 THEN [已收货款]-[已付货款] -[毛利]  ELSE 0 END AS '未付外协款' 
       FROM V_GrossProfit
-        where  1=1  AND HDW like '{0}' ";
+        where  1=1  AND " + containTwo + "  ";
                 if (this.radioButton1.Checked)
                 {
                     s += "   AND 签订日期1 BETWEEN '{1}' AND '{2}'   ";
@@ -1587,7 +1713,15 @@ FROM (SELECT 合同号," + ccodetype + ",客户名, CASE SUBSTRING(HKH,1,2) WHEN
                 //                   new object[] { ClassConstant.NB, ClassConstant.WB, ClassConstant.NHI, ClassCustom.codeSub(HLX1.Text), ClassCustom.codeSub(HDW.Text), ClassCustom.codeSub(HBM.Text), YEAR.Text, MONTH.Text, ClassConstant.ZJ });
 
 
-
+                string containTwo = string.Empty;
+                if (this.checkBox1.Checked)
+                {
+                    containTwo = " 1= 1 ";
+                }
+                else
+                {
+                    containTwo = string.Format(" H.HDW LIKE '{0}' ", ClassConstant.AccountingBook);
+                }
 
 
                 string sql = string.Format(@"SELECT 合同号,客户名,结算金额,HKH 客户码,(SELECT  YEAR(MAX(DATE)) FROM AFKXX F0 WHERE H.合同号=F0.HTH) as 年,DBO.GetCustomerCate(HKH) as 客户类型 ,b.bname as hdw ,h.合同类型 hlx
@@ -1602,7 +1736,7 @@ FROM (SELECT 合同号," + ccodetype + ",客户名, CASE SUBSTRING(HKH,1,2) WHEN
                                             ,ISNULL((SELECT SUM(RMB) FROM AFKXX F4 WHERE  F4.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '销项发票' ELSE '进项发票' END  AND YEAR(DATE)<{6}),0.00) AS B1 
                                             ,ISNULL((SELECT SUM(RMB) FROM AFKXX F5 WHERE  F5.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '销项发票' ELSE '进项发票' END  AND YEAR(DATE)={6} AND MONTH(DATE)={7}),0.00) AS B2 
                                             ,ISNULL((SELECT SUM(RMB) FROM AFKXX F6 WHERE  F6.HTH =H.合同号 AND TYPE = CASE WHEN SUBSTRING(H.HLX,1,2)='02' THEN '销项发票' ELSE '进项发票' END  AND YEAR(DATE)={6} AND MONTH(DATE)<={7}),0.00) AS B3 
-                                            FROM VCONTRACTS H inner join bcode b on h.hdw=b.bcode WHERE H.HDW LIKE '{9}%' AND HLX LIKE '{3}%'   AND (YEAR(签定日期)<{6} OR (YEAR(签定日期)={6} AND MONTH(签定日期)<= {7})) and h.结算金额<>0",
+                                            FROM VCONTRACTS H inner join bcode b on h.hdw=b.bcode WHERE  " + containTwo + "  AND HLX LIKE '{3}%'   AND (YEAR(签定日期)<{6} OR (YEAR(签定日期)={6} AND MONTH(签定日期)<= {7})) and h.结算金额<>0",
                                                                                                                                                                                                                        new object[] {
                          ClassConstant.NB, 
                          ClassConstant.WB, 
@@ -1722,6 +1856,17 @@ FROM (SELECT 合同号," + ccodetype + ",客户名, CASE SUBSTRING(HKH,1,2) WHEN
                 {
                     state = " AND WXState='" + this.comboBox2.Text + "' ";
                 }
+
+                string containTwo = string.Empty;
+                if (this.checkBox1.Checked)
+                {
+                    containTwo = string.Format(" SUBSTRING(HDW,3,2)='{0}' ", ClassCustom.codeSub(HDW.Text).Substring(2));
+                }
+                else
+                {
+                    containTwo = string.Format(" HDW = '{0}' ", ClassCustom.codeSub(HDW.Text));
+                }
+
                 string sql = string.Format(@"SELECT [合同号1]
       ,[客户1]
       ,[签订日期1]
@@ -1740,7 +1885,7 @@ FROM (SELECT 合同号," + ccodetype + ",客户名, CASE SUBSTRING(HKH,1,2) WHEN
       CASE WHEN [毛利] -[已收货款]+[已付货款]<0 THEN 0 ELSE [毛利] -[已收货款]+[已付货款] END AS '未到毛利' ,
       CASE WHEN [毛利] -[已收货款]+[已付货款]<0 THEN [已收货款]-[已付货款] -[毛利]  ELSE 0 END AS '未付外协款' 
       FROM V_GrossProfit
-        where  签订日期1 BETWEEN '{1}' AND '{2}' AND HDW = '{0}' " + state, ClassCustom.codeSub(this.HDW.Text), this.dateTimePicker1.Value.ToShortDateString(), this.dateTimePicker2.Value.ToShortDateString());
+        where  签订日期1 BETWEEN '{1}' AND '{2}' AND  " + containTwo + " " + state, ClassCustom.codeSub(this.HDW.Text), this.dateTimePicker1.Value.ToShortDateString(), this.dateTimePicker2.Value.ToShortDateString());
                 DataTable dt = DBAdo.DtFillSql(sql);
                 this.progressBar1.Value = 0;
                 this.progressBar1.Maximum = dt.Rows.Count;
@@ -1792,11 +1937,22 @@ FROM (SELECT 合同号," + ccodetype + ",客户名, CASE SUBSTRING(HKH,1,2) WHEN
 
         private void getReprot_集团毛利新()
         {
+
             try
             {
                 this.reportViewer1.ProcessingMode = ProcessingMode.Local;
                 this.reportViewer1.LocalReport.ReportEmbeddedResource = "contract.Reports.Report_JT_毛利.rdlc";
                 this.reportViewer1.LocalReport.DataSources.Clear();
+
+                string containTwo = string.Empty;
+                if (this.checkBox1.Checked)
+                {
+                    containTwo = " 1= 1 ";
+                }
+                else
+                {
+                    containTwo = string.Format(" HDW LIKE '{0}' ", ClassConstant.AccountingBook);
+                }
                 /*                    */
                 string state = "";
                 if (this.comboBox2.Text == "" || this.comboBox2.Text == "全部")
@@ -1825,7 +1981,7 @@ FROM (SELECT 合同号," + ccodetype + ",客户名, CASE SUBSTRING(HKH,1,2) WHEN
       CASE WHEN [毛利] -[已收货款]+[已付货款]<0 THEN 0 ELSE [毛利] -[已收货款]+[已付货款] END AS '未到毛利' ,
       CASE WHEN [毛利] -[已收货款]+[已付货款]<0 THEN [已收货款]-[已付货款] -[毛利]  ELSE 0 END AS '未付外协款' 
       FROM V_GrossProfit
-        where  hdw like '" + ClassConstant.AccountingBook + "%' AND HDW like '{0}' ";
+        where  " + containTwo + "  ";
                 if (this.radioButton1.Checked)
                 {
                     s += "   AND 签订日期1 BETWEEN '{1}' AND '{2}'   ";
