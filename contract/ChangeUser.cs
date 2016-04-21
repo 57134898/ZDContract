@@ -82,7 +82,7 @@ namespace contract
                 MessageBox.Show("密码错误");
                 return;
             }
-            ClassConstant.DW_ID = ClassCustom.codeSub(this.comboBox1.Text);
+            ClassConstant.DW_ID = ClassCustom.codeSub(this.comboBox4.Text) + ClassCustom.codeSub(this.comboBox1.Text).Substring(2);
             ClassConstant.DW_NAME = ClassCustom.codeSub1(this.comboBox1.Text);
             ClassConstant.BCODE = ClassCustom.codeSub(this.comboBox2.Text);
             ClassConstant.BNAME = ClassCustom.codeSub1(this.comboBox2.Text);

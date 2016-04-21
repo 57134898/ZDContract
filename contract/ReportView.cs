@@ -547,7 +547,7 @@ namespace contract
 (SELECT sum(crmb.note)FROM ACASH crmb WHERE crmb.hdw=ca.hdw AND crmb.ccode=ca.ccode AND month(crmb.ExchangeDate)='{0}' AND year(crmb.ExchangeDate) = '{1}' {2}) 票据本月, sum(ca.note) 票据本年累计,
 (SELECT sum(crmb.mz)FROM ACASH crmb WHERE crmb.hdw=ca.hdw AND crmb.ccode=ca.ccode AND month(crmb.ExchangeDate)='{0}' AND year(crmb.ExchangeDate) = '{1}'   {2}) 抹账本月, sum(ca.mz) 抹账本年累计 
 from ACASH ca,ACLIENTS cl
-where " + containTwo + "'and year(ca.ExchangeDate)='" + this.YEAR.Text + "' and month(ca.ExchangeDate)<='" + this.MONTH.Text + "' and ca.ccode=cl.ccode " + type
+where " + containTwo + " and year(ca.ExchangeDate)='" + this.YEAR.Text + "' and month(ca.ExchangeDate)<='" + this.MONTH.Text + "' and ca.ccode=cl.ccode " + type
              + "   AND CA.CID IN (SELECT DISTINCT CID FROM AFKXX T0 INNER JOIN ACONTRACT T1 ON T0.hth=T1.HCODE WHERE HLX LIKE '" + ClassCustom.codeSub(this.HLX.Text) + "__') group by ca.hdw,ca.ccode,cl.cname", this.MONTH.Text, this.YEAR.Text, type));
 
 
@@ -1139,7 +1139,7 @@ where " + containTwo + "'and year(ca.ExchangeDate)='" + this.YEAR.Text + "' and 
                 }
                 else
                 {
-                    containTwo = string.Format(" A.HDW LIKE '{0}' ", ClassConstant.AccountingBook);
+                    containTwo = string.Format(" A.HDW LIKE '{0}%' ", ClassConstant.AccountingBook);
                 }
                 string tj = (this.comboBox1.Text == "回款" ? " AND type = '回款' " : " AND type = '付款'");
                 string s = string.Format("CASE substring(ccode,1,2) WHEN '{0}' THEN '内部' WHEN '{1}' THEN '外部' WHEN '{2}' THEN '北方重工' WHEN '{3}' THEN '在建工程' ELSE '鼓风' END as 客户类型", new object[] { ClassConstant.NB, ClassConstant.WB, ClassConstant.NHI, ClassConstant.ZJ });
@@ -1398,7 +1398,7 @@ where " + containTwo + "'and year(ca.ExchangeDate)='" + this.YEAR.Text + "' and 
                 }
                 else
                 {
-                    containTwo = string.Format(" H.HDW LIKE '{0}' ", ClassConstant.AccountingBook);
+                    containTwo = string.Format(" H.HDW LIKE '{0}%' ", ClassConstant.AccountingBook);
                 }
                 //string sql = string.Format("SELECT 合同号,客户名,结算金额,HKH 客户码,year(签定日期) 年,CASE substring(HKH,1,2) WHEN '{0}' THEN '内部' WHEN '{1}' THEN '外部' WHEN '{2}' THEN '北方重工' WHEN '{8}' THEN '在建工程' ELSE '鼓风' END as 客户类型 FROM VCONTRACTS WHERE 1=1 AND HLX LIKE '{3}%' AND HDW = '{4}' AND HYWY LIKE '{5}%' AND (YEAR(签定日期)<{6} OR (YEAR(签定日期)={6} AND MONTH(签定日期)<= {7}))",
                 //   new object[] { ClassConstant.NB, ClassConstant.WB, ClassConstant.NHI, ClassCustom.codeSub(HLX.Text), ClassCustom.codeSub(HDW.Text), ClassCustom.codeSub(HBM.Text), YEAR.Text, MONTH.Text, ClassConstant.ZJ });
@@ -1720,7 +1720,7 @@ FROM (SELECT 合同号," + ccodetype + ",客户名, CASE SUBSTRING(HKH,1,2) WHEN
                 }
                 else
                 {
-                    containTwo = string.Format(" H.HDW LIKE '{0}' ", ClassConstant.AccountingBook);
+                    containTwo = string.Format(" H.HDW LIKE '{0}%' ", ClassConstant.AccountingBook);
                 }
 
 
@@ -1951,7 +1951,7 @@ FROM (SELECT 合同号," + ccodetype + ",客户名, CASE SUBSTRING(HKH,1,2) WHEN
                 }
                 else
                 {
-                    containTwo = string.Format(" HDW LIKE '{0}' ", ClassConstant.AccountingBook);
+                    containTwo = string.Format(" HDW LIKE '{0}%' ", ClassConstant.AccountingBook);
                 }
                 /*                    */
                 string state = "";

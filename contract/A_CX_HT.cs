@@ -264,7 +264,7 @@ FROM [Bcode] WHERE LEN(Bcode)<=4 AND (Bcode LIKE '01%' OR  Bcode LIKE '02%')";
                 {
                     filter += " AND (结算金额 <> 金额 OR 结算金额 <> 发票 OR 金额 <> 发票)";
                 }
-                string sql = string.Format(@"SELECT FLAG 审批, [客户名], [合同号], [签定日期],[标号],[合同金额], [结算金额], [质保金], [运费], [其它费用], [合同类型],({0}) AS [金额],0.00 [发票],0.00 [金额1],({1}) AS [发票1],({2}) AS [估验],0.00 [财务余额], [地区],签订日期, 中标方式,[合同备注], [业务员], [状态], [交货日期], [操作员], [含税], [比例],[HAREA], [HLX], [HKH], [HYWY], [HDW], [HID], [代理费], [选型费], [标书费] 
+                string sql = string.Format(@"SELECT FLAG 审批, [客户名], [合同号], [签定日期],[标号],[合同金额], [结算金额], [质保金], [运费], [其它费用], [合同类型],isnull(({0}),0.00) AS [金额],isnull(({1}),0.00) [发票],0.00 [金额1],0.00 AS [发票1],({2}) AS [估验],0.00 [财务余额], [地区],签订日期, 中标方式,[合同备注], [业务员], [状态], [交货日期], [操作员], [含税], [比例],[HAREA], [HLX], [HKH], [HYWY], [HDW], [HID], [代理费], [选型费], [标书费] 
                                             FROM [vcontracts] h  WHERE 合同号 IN (SELECT DISTINCT 合同号 FROM VCX1 WHERE 1=1 " + filter + ")"
                                             , "select sum(rmb) from afkxx f1 where 1=1 and f1.hth = h.[合同号] and type = (case when Substring(h.[HLX],1,2)='02' then '回款' else '付款' end) and f1.DATE between '" + this.dateTimePicker3.Value.ToShortDateString() + "' and '" + this.dateTimePicker4.Value.ToShortDateString() + "'",
                                             "select sum(rmb) from afkxx f2 where 1=1 and f2.hth = h.[合同号] and type = (case when Substring(h.[HLX],1,2)='02' then '销项发票' else '进项发票' end) and f2.DATE between '" + this.dateTimePicker3.Value.ToShortDateString() + "' and '" + this.dateTimePicker4.Value.ToShortDateString() + "'",
