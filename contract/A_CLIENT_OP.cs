@@ -139,7 +139,7 @@ namespace contract
 
                 if (op == 1)
                 {
-                    if (DBAdo.ExecuteScalarSql("SELECT COUNT(*) FROM ACLIENTS WHERE SUBSTRING(CCODE,3,2)='" + ClassConstant.DW_ID.Substring(2) + "' and CNAME = '" + this.cNAMETextBox.Text + "'").ToString() == "0")
+                    if (DBAdo.ExecuteScalarSql("SELECT COUNT(*) FROM ACLIENTS WHERE ccode like '" + this.cCODETextBox.Tag.ToString() + "%' and SUBSTRING(CCODE,3,2)='" + ClassConstant.DW_ID.Substring(2) + "' and CNAME = '" + this.cNAMETextBox.Text + "'").ToString() == "0")
                     { }
                     else
                     {
@@ -151,7 +151,7 @@ namespace contract
                 }
                 if (op == 3)
                 {
-                    if (DBAdo.ExecuteScalarSql("SELECT COUNT(*) FROM ACLIENTS WHERE  SUBSTRING(CCODE,3,2)='" + ClassConstant.DW_ID.Substring(2) + "' and  CNAME = '" + this.cNAMETextBox.Text + "' AND CID != '" + dgvr.Cells[0].Value.ToString() + "'").ToString() == "0")
+                    if (DBAdo.ExecuteScalarSql("SELECT COUNT(*) FROM ACLIENTS WHERE  ccode like '" + this.cCODETextBox.Tag.ToString() + "%' and  SUBSTRING(CCODE,3,2)='" + ClassConstant.DW_ID.Substring(2) + "' and  CNAME = '" + this.cNAMETextBox.Text + "' AND CID != '" + dgvr.Cells[0].Value.ToString() + "'").ToString() == "0")
                     { }
                     else
                     {
@@ -328,14 +328,14 @@ namespace contract
             {
                 if (op == 1)
                 {
-                    if (DBAdo.ExecuteScalarSql("SELECT COUNT(*) FROM ACLIENTS WHERE SUBSTRING(CCODE,3,2)='" + ClassConstant.DW_ID.Substring(2) + "' and CNAME = '" + this.cNAMETextBox.Text + "'").ToString() == "0")
+                    if (DBAdo.ExecuteScalarSql("SELECT COUNT(*) FROM ACLIENTS WHERE  ccode like '" + this.cCODETextBox.Tag.ToString() + "%' and SUBSTRING(CCODE,3,2)='" + ClassConstant.DW_ID.Substring(2) + "' and CNAME = '" + this.cNAMETextBox.Text + "'").ToString() == "0")
                         return;
                     MessageBox.Show((ctype ? "客户名已经存在！" : "供应商已经存在！"));
                     this.cNAMETextBox.Text = "";
                 }
                 if (op == 3)
                 {
-                    if (DBAdo.ExecuteScalarSql("SELECT COUNT(*) FROM ACLIENTS WHERE  SUBSTRING(CCODE,3,2)='" + ClassConstant.DW_ID.Substring(2) + "' and  CNAME = '" + this.cNAMETextBox.Text + "' AND CID != '" + dgvr.Cells[0].Value.ToString() + "'").ToString() == "0")
+                    if (DBAdo.ExecuteScalarSql("SELECT COUNT(*) FROM ACLIENTS WHERE  ccode like '" + this.cCODETextBox.Tag.ToString() + "%' and  SUBSTRING(CCODE,3,2)='" + ClassConstant.DW_ID.Substring(2) + "' and  CNAME = '" + this.cNAMETextBox.Text + "' AND CID != '" + dgvr.Cells[0].Value.ToString() + "'").ToString() == "0")
                         return;
                     MessageBox.Show((ctype ? "客户名已经存在！" : "供应商已经存在！"));
                     this.cNAMETextBox.Text = "";
