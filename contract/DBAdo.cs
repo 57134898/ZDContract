@@ -38,6 +38,7 @@ namespace contract
             {
                 Console.WriteLine(sql);
                 conn = new OleDbConnection(constr);
+                
                 conn.Open();
                 OTrans = conn.BeginTransaction();
                 OleDbCommand cmd = new OleDbCommand(sql, conn, OTrans);

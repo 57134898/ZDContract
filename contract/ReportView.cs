@@ -626,6 +626,7 @@ where " + containTwo + " and year(ca.ExchangeDate)='" + this.YEAR.Text + "' and 
                 + this.YEAR.Text
                 + "' and month(ac.hdate)<='"
                 + this.MONTH.Text + "'))", this.YEAR.Text, this.MONTH.Text);
+
             DataTable dt = DBAdo.DtFillSql(sql);
 
             //dt.Columns.Add("合同前", typeof(decimal));

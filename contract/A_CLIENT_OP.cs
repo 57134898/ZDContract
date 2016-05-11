@@ -49,6 +49,7 @@ namespace contract
                 this.Text = (ctype ? "客户" : "供应商") + "-修改";
 
                 this.cCODETextBox.Text = this.dgvr.Cells["CCODE"].Value.ToString();
+                this.cCODETextBox.Tag = this.dgvr.Cells["CCODE"].Value.ToString();
                 this.cNAMETextBox.Text = this.dgvr.Cells["CNAME"].Value.ToString();
                 this.cSHORTCODETextBox.Text = this.dgvr.Cells["CSHORTCODE"].Value.ToString();
                 this.cADDRESSTextBox.Text = this.dgvr.Cells["CADDRESS"].Value.ToString();

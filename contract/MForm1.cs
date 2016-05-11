@@ -282,13 +282,14 @@ namespace contract
 
             ClassConstant.MF1 = this;
             ClassConstant.CW_IP = "192.168.7.70";
-            DBAdo.setConStr("Provider=SQLOLEDB;Data Source=192.168.7.70;User ID=sa;Initial Catalog=contract1");
+            DBAdo.setConStr("Provider=SQLOLEDB;Data Source=192.168.7.70;User ID=sa;Initial Catalog=contract1;Connect Timeout=60;General Timeout=60;");
+            //MessageBox.Show("Test");
             if (System.Environment.GetCommandLineArgs().Length > 1)
             {
                 ClassConstant.CONNECT_STRING = "Data Source=127.0.0.1;Initial Catalog=n7_铸锻公司;Provider=SQLOLEDB;User ID=sa";
                 ClassConstant.CW_IP = "192.168.1.105";
                 //DBAdo.setConStr("Provider=SQLOLEDB;Data Source=.;Integrated Security=SSPI;Initial Catalog=contract1");
-                DBAdo.setConStr("Provider=SQLOLEDB;Data Source=127.0.0.1;User ID=sa;password=abcd_1234;Initial Catalog=contract1");
+                DBAdo.setConStr("Provider=SQLOLEDB;Data Source=127.0.0.1;User ID=sa;password=abcd_1234;Initial Catalog=contract1;Connect Timeout=60");
                 //DBAdo.setConStr(@"Provider=SQLOLEDB;Data Source=10.1.9.187;Persist Security Info=True;Password=abcd_1234;User ID=sa;Initial Catalog=contract1");
                 //ClassConstant.CW_IP = ".";
                 //DBAdo.setConStr("Provider=SQLOLEDB;Data Source=.;User ID=sa;Initial Catalog=contract1");
