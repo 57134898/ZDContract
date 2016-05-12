@@ -543,12 +543,13 @@ namespace contract
                 }
 
                 DataTable dty = DBAdo.DtFillSql(string.Format(@"select DBO.GetCustomerCate(ca.ccode)  as 客户类型, cl.cname 客户名,
-(SELECT sum(crmb.cash)FROM ACASH crmb WHERE crmb.hdw=ca.hdw AND crmb.ccode=ca.ccode AND month(crmb.ExchangeDate)='{0}' AND year(crmb.ExchangeDate) = '{1}' {2}) 现汇本月, sum(ca.cash) 现汇本年累计,
-(SELECT sum(crmb.note)FROM ACASH crmb WHERE crmb.hdw=ca.hdw AND crmb.ccode=ca.ccode AND month(crmb.ExchangeDate)='{0}' AND year(crmb.ExchangeDate) = '{1}' {2}) 票据本月, sum(ca.note) 票据本年累计,
-(SELECT sum(crmb.mz)FROM ACASH crmb WHERE crmb.hdw=ca.hdw AND crmb.ccode=ca.ccode AND month(crmb.ExchangeDate)='{0}' AND year(crmb.ExchangeDate) = '{1}'   {2}) 抹账本月, sum(ca.mz) 抹账本年累计 
+(SELECT sum(crmb.cash)FROM ACASH crmb WHERE crmb.hdw=ca.hdw AND crmb.ccode=ca.ccode AND month(crmb.ExchangeDate)='{0}' AND year(crmb.ExchangeDate) = '{1}' {2} {3}) '现汇本月', sum(ca.cash) '现汇本年累计',
+(SELECT sum(crmb.note)FROM ACASH crmb WHERE crmb.hdw=ca.hdw AND crmb.ccode=ca.ccode AND month(crmb.ExchangeDate)='{0}' AND year(crmb.ExchangeDate) = '{1}' {2} {3}) '票据本月', sum(ca.note) '票据本年累计',
+(SELECT sum(crmb.mz)FROM ACASH crmb WHERE crmb.hdw=ca.hdw AND crmb.ccode=ca.ccode AND month(crmb.ExchangeDate)='{0}' AND year(crmb.ExchangeDate) = '{1}'   {2} {3}) '抹账本月', sum(ca.mz) '抹账本年累计' 
 from ACASH ca,ACLIENTS cl
 where " + containTwo + " and year(ca.ExchangeDate)='" + this.YEAR.Text + "' and month(ca.ExchangeDate)<='" + this.MONTH.Text + "' and ca.ccode=cl.ccode " + type
-             + "   AND CA.CID IN (SELECT DISTINCT CID FROM AFKXX T0 INNER JOIN ACONTRACT T1 ON T0.hth=T1.HCODE WHERE HLX LIKE '" + ClassCustom.codeSub(this.HLX.Text) + "__') group by ca.hdw,ca.ccode,cl.cname", this.MONTH.Text, this.YEAR.Text, type));
+             + "   AND CA.CID IN (SELECT DISTINCT CID FROM AFKXX T0 INNER JOIN ACONTRACT T1 ON T0.hth=T1.HCODE WHERE HLX LIKE '" + ClassCustom.codeSub(this.HLX.Text) + "__') group by ca.hdw,ca.ccode,cl.cname", new object[] { this.MONTH.Text, this.YEAR.Text, type
+                 , "   AND crmb.CID IN (SELECT DISTINCT CID FROM AFKXX T0 INNER JOIN ACONTRACT T1 ON T0.hth=T1.HCODE WHERE HLX LIKE '" + ClassCustom.codeSub(this.HLX.Text) + "__') " }));
 
 
                 progressBar1.Value = 0;
