@@ -135,7 +135,7 @@ namespace contract
                 DataTable dt1 = DBAdo.DtFillSql("SELECT CCODE,CNAME FROM ACLIENTS WHERE LEN(CCODE)=" + ClassConstant.GetLeveLChar("LEVEL_KH", 0).Length + "  ORDER BY CCODE");
                 foreach (DataRow dr in dt1.Rows)
                 {
-                    DataTable dt2 = DBAdo.DtFillSql("SELECT CCODE,CNAME FROM ACLIENTS WHERE (SUBSTRING(CCODE,3,2) LIKE '" + (ClassConstant.USER_ID == "0101999999" ? "__" : ClassConstant.DW_ID.Substring(2)) + "' OR CCODE LIKE '01%'  OR CCODE LIKE '05%' ) AND  CCODE LIKE'" + dr[0].ToString() + ClassConstant.GetLeveLChar("LEVEL_KH", 1) + "'  ORDER BY CCODE");
+                    DataTable dt2 = DBAdo.DtFillSql("SELECT CCODE,CNAME FROM ACLIENTS WHERE (SUBSTRING(CCODE,3,2) LIKE '" + (ClassConstant.USER_ID == "0101999999" ? "__" : ClassConstant.DW_ID.Substring(2)) + "' OR CCODE LIKE '01%' OR CCODE LIKE '11%'  OR CCODE LIKE '05%' ) AND  CCODE LIKE'" + dr[0].ToString() + ClassConstant.GetLeveLChar("LEVEL_KH", 1) + "'  ORDER BY CCODE");
                     TreeNode tn = new TreeNode(dr[1].ToString());
                     tn.Tag = dr[0].ToString();
                     tn.Name = dr[0].ToString();
@@ -172,7 +172,7 @@ namespace contract
                 {
                     if (this.treeView1.SelectedNode.Nodes.Count != 0)
                         return;
-                    if (this.treeView1.SelectedNode.Tag.ToString().Substring(0, 2) == "01")
+                    if (this.treeView1.SelectedNode.Tag.ToString().Substring(0, 2) == "01" || this.treeView1.SelectedNode.Tag.ToString().Substring(0, 2) == "11")
                     {
                         if (this.treeView1.SelectedNode.Tag.ToString().Length != 4)
                             return;

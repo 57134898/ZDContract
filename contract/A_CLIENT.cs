@@ -145,7 +145,7 @@ namespace contract
         {
             try
             {
-                dt = DBAdo.DtFillSql("SELECT [CID], [CCODE], [CNAME], [CSHORTCODE], [CADDRESS], [CTEL], [CLINKMAN], [CPHONE], [CFAXNO], [CPOSNO], [CBANKNAME], [CACCOUNT], [CEMAIL], A.ANAME [CAREA],[CFR], [CSH],[CFPTEL], [CFPBAND],[CFPPHONE],[CMEMO], [ACODE],  [FLAG] FROM [ACLIENTS] C LEFT JOIN AREAS A ON C.CAREA=A.ACODE  WHERE FLAG = 1 AND (CCODE like '01%'  OR CCODE LIKE '05%' OR CCODE LIKE '02" + ClassConstant.DW_ID.Substring(2) + "%' OR CCODE LIKE '03" + ClassConstant.DW_ID.Substring(2) + "%') ORDER BY CCODE");
+                dt = DBAdo.DtFillSql("SELECT [CID], [CCODE], [CNAME], [CSHORTCODE], [CADDRESS], [CTEL], [CLINKMAN], [CPHONE], [CFAXNO], [CPOSNO], [CBANKNAME], [CACCOUNT], [CEMAIL], A.ANAME [CAREA],[CFR], [CSH],[CFPTEL], [CFPBAND],[CFPPHONE],[CMEMO], [ACODE],  [FLAG] FROM [ACLIENTS] C LEFT JOIN AREAS A ON C.CAREA=A.ACODE  WHERE FLAG = 1 AND (CCODE like '01%'  OR CCODE like '11%'  OR CCODE LIKE '05%' OR CCODE LIKE '02" + ClassConstant.DW_ID.Substring(2) + "%' OR CCODE LIKE '03" + ClassConstant.DW_ID.Substring(2) + "%') ORDER BY CCODE");
                 dv = dt.DefaultView;
                 this.dataGridView1.DataSource = dv;
                 DgvCssSet();
