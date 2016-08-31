@@ -1306,7 +1306,7 @@ where " + containTwo + " and year(ca.ExchangeDate)='" + this.YEAR.Text + "' and 
                 {
                     containTwo = string.Format(" HDW LIKE '{0}%' ", ClassConstant.AccountingBook);
                 }
-                string khtype = string.Format(" CASE substring(HKH,1,2) WHEN '{0}' THEN '内部' WHEN '{1}' THEN '外部' WHEN '{2}' THEN '北方重工' WHEN '{3}' THEN '在建工程' ELSE '鼓风' END ", ClassConstant.NB, ClassConstant.WB, ClassConstant.NHI, ClassConstant.ZJ);
+                string khtype = string.Format(" DBO.GetCustomerCate(HKH) ");
                 string sql = string.Format(" select H.HCODE 合同号,{0} as 客户类型,H.HDATE 签订日期,H.ZBFS 中标方式  ,HKH 客户码,b.bname 公司,HLX 合同类型,(select sum(zz) from asp where hth=h.hcode) 总重,(select avg(dj2)  from asp where  hth=h.hcode) 平均价格,hjsje 金额本月,0.00 金额本年 from ACONTRACT H inner join bcode b on h.hdw=b.bcode  where  " + containTwo + "  and hlx like '{3}%' and (year(h.hdate)= {1} and month(h.hdate)= {2}) ", new object[] { khtype, this.YEAR.Text, this.MONTH.Text, ClassCustom.codeSub(this.HLX1.Text), ClassConstant.AccountingBook });
                 sql += string.Format(" union select H.HCODE 合同号,{0} as 客户类型,H.HDATE 签订日期,H.ZBFS 中标方式  ,HKH 客户码,b.bname 公司,HLX 合同类型,(select sum(zz) from asp where hth=h.hcode) 总重,(select avg(dj2)  from asp where  hth=h.hcode) 平均价格,0.00 金额本月,hjsje 金额本年 from ACONTRACT H inner join bcode b on h.hdw=b.bcode  where  " + containTwo + " and hlx like '{3}%' and (year(h.hdate)= {1} and month(h.hdate)<= {2}) ", new object[] { khtype, this.YEAR.Text, this.MONTH.Text, ClassCustom.codeSub(this.HLX1.Text), ClassConstant.AccountingBook });
 
@@ -1556,7 +1556,7 @@ where " + containTwo + " and year(ca.ExchangeDate)='" + this.YEAR.Text + "' and 
                 {
                     containTwo = string.Format(" HDW = '{0}' ", ClassCustom.codeSub(HDW.Text));
                 }
-                string ccodetype = string.Format(" CASE SUBSTRING(HKH,1,2) WHEN '{0}' THEN '内部' WHEN '{1}' THEN '外部' WHEN '{2}' THEN '北方重工' when  '{3}' then '在建工程' ELSE '鼓风'  END as 客户类别 ", new string[] { ClassConstant.NB, ClassConstant.WB, ClassConstant.NHI, ClassConstant.ZJ });
+                string ccodetype = string.Format(" DBO.GetCustomerCate(HKH) as 客户类别 ", new string[] { ClassConstant.NB, ClassConstant.WB, ClassConstant.NHI, ClassConstant.ZJ });
                 string dateFilter = string.Format(" AND (YEAR(签定日期)<{0} OR (YEAR(签定日期)={0} AND MONTH(签定日期)<= {1} ", YEAR.Text, MONTH.Text);
                 string sql = "";
                 sql += " DECLARE @HLX NVARCHAR(10), @HDW NVARCHAR(10) ";
