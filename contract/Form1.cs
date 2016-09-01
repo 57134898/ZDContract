@@ -30,7 +30,7 @@ namespace contract
                 if (ClassConstant.USER_NAME == "于萍" || ClassConstant.USER_ID == "0101999999")
                 {
                     this.comboBox2.Enabled = true;
-                    DataTable csouce2 = DBAdo.DtFillSql("SELECT CCODE+':'+CNAME CODENAME FROM N7_铸锻公司..CCODE WHERE CCODE LIKE '01__'");
+                    DataTable csouce2 = DBAdo.DtFillSql("SELECT CCODE+':'+CNAME CODENAME FROM N7_铸锻公司..CCODE WHERE CCODE LIKE '01__' OR CCODE LIKE '11__'");
                     //DataTable csouce1 = DBHelper.DtFillSql("SELECT ACODE+':'+ANAME CODENAME FROM N7_铸锻公司..ACODE WHERE ACODE IN ('1122','112201','1221','122103','122104','1604','160401','2202','220201','220202','2241','224104')");
                     //DataTable csouce3 = DBHelper.DtFillSql("SELECT LID+':'+LNAME CODENAME FROM ALX WHERE LEN(LID)=2 and ( lid like '01%' OR lid like '02%' OR lid like '03%' OR lid like '04%')");
                     //this.comboBox1.DataSource = csouce1;
@@ -42,7 +42,12 @@ namespace contract
                 }
                 else
                 {
-                    this.comboBox2.Items.Add(ClassConstant.DW_ID + ":" + ClassConstant.DW_NAME);
+                    string sql = string.Format("SELECT BCODE +':'+BNAME,SUBSTRING(BCODE,3,2) from N7_铸锻公司..Bcode where LEN(BCODE)=4 and BCODE <300 AND SUBSTRING(BCODE,3,2)='{0}'", ClassConstant.DW_ID.Substring(2, 2));
+                    DataTable dt = DBAdo.DtFillSql(sql);
+                    foreach (DataRow item in dt.Rows)
+                    {
+                        this.comboBox2.Items.Add(item[0].ToString());
+                    }
                     //this.comboBox2.Text = ClassConstant.DW_ID + ":" + ClassConstant.DW_NAME;
                     //this.comboBox2.Enabled = false;
                 }
@@ -85,28 +90,28 @@ namespace contract
                     lx = string.Format(" AND (HLX LIKE '04%' OR HLX LIKE '07%') ");
                     acode = " AND (acode like '160401%') ";
                     nb = "   AND ACODE LIKE  '122103%' AND DCODE LIKE '122103026%'    ";//新加
-                    sql = string.Format("SELECT CCODE 客户码,CNAME 客户名 FROM ACLIENTS WHERE 1=1 AND (CCODE LIKE '01%' OR CCODE LIKE '05%' OR CCODE LIKE '03{0}%') ORDER BY CCODE", dw.Substring(2));
+                    sql = string.Format("SELECT CCODE 客户码,CNAME 客户名 FROM ACLIENTS WHERE 1=1 AND (CCODE LIKE '01%' OR CCODE LIKE '11%' OR CCODE LIKE '05%' OR CCODE LIKE '03{0}%') ORDER BY CCODE", dw.Substring(2));
                 }
                 else if (this.comboBox1.Text == "销售合同")
                 {
                     lx = string.Format(" AND (HLX LIKE '02%') ");
                     acode = " AND (acode like '112201%') ";
                     nb = "   AND ACODE LIKE  '122103%' AND DCODE LIKE '122103004%'    ";
-                    sql = string.Format("SELECT CCODE 客户码,CNAME 客户名 FROM ACLIENTS WHERE 1=1 AND (CCODE LIKE '01%' OR CCODE LIKE '05%' OR CCODE LIKE '02{0}%') ORDER BY CCODE", dw.Substring(2));
+                    sql = string.Format("SELECT CCODE 客户码,CNAME 客户名 FROM ACLIENTS WHERE 1=1 AND (CCODE LIKE '01%' OR CCODE LIKE '11%'  OR CCODE LIKE '05%' OR CCODE LIKE '02{0}%') ORDER BY CCODE", dw.Substring(2));
                 }
                 else if (this.comboBox1.Text == "采购合同")
                 {
                     nb = "   AND ACODE LIKE  '122103%' AND DCODE LIKE '122103001%'    ";
                     lx = string.Format(" AND (HLX LIKE '01%') ");
                     acode = " AND (acode like '220201%') ";
-                    sql = string.Format("SELECT CCODE 客户码,CNAME 客户名 FROM ACLIENTS WHERE 1=1 AND (CCODE LIKE '01%' OR CCODE LIKE '05%' OR CCODE LIKE '02{0}%') ORDER BY CCODE", dw.Substring(2));
+                    sql = string.Format("SELECT CCODE 客户码,CNAME 客户名 FROM ACLIENTS WHERE 1=1 AND (CCODE LIKE '01%' OR CCODE LIKE '11%'  OR CCODE LIKE '05%' OR CCODE LIKE '02{0}%') ORDER BY CCODE", dw.Substring(2));
                 }
                 else if (this.comboBox1.Text == "外协合同")
                 {
                     nb = "   AND ACODE LIKE  '122103%' AND DCODE LIKE '122103002%'    ";
                     lx = string.Format(" AND (HLX LIKE '03%') ");
                     acode = " AND (acode like '220202%') ";
-                    sql = string.Format("SELECT CCODE 客户码,CNAME 客户名 FROM ACLIENTS WHERE 1=1 AND (CCODE LIKE '01%' OR CCODE LIKE '05%' OR CCODE LIKE '02{0}%') ORDER BY CCODE", dw.Substring(2));
+                    sql = string.Format("SELECT CCODE 客户码,CNAME 客户名 FROM ACLIENTS WHERE 1=1 AND (CCODE LIKE '01%' OR CCODE LIKE '11%'  OR CCODE LIKE '05%' OR CCODE LIKE '02{0}%') ORDER BY CCODE", dw.Substring(2));
 
                 }
                 else
@@ -151,13 +156,13 @@ namespace contract
                     r[2] = result;
                     //财务余额
                     string sqlcw = "";
-                    if (r[0].ToString().Substring(0, 2) != "01")
+                    if (r[0].ToString().Substring(0, 2) == "01" || r[0].ToString().Substring(0, 2) == "11")
                     {
-                        sqlcw = string.Format("SELECT SUM(RMBbalance) FROM N7_铸锻公司..BALANCE WHERE CCODE like '{0}%' {1} and bcode like '{2}%' and year = " + year + " and month = " + month, r[0].ToString(), acode, dw);
+                        sqlcw = string.Format("SELECT SUM(RMBbalance) FROM N7_铸锻公司..BALANCE WHERE CCODE like '{0}%' {1} and bcode like '{2}%' and year = " + year + " and month = " + month, r[0].ToString(), nb, dw);
                     }
                     else
                     {
-                        sqlcw = string.Format("SELECT SUM(RMBbalance) FROM N7_铸锻公司..BALANCE WHERE CCODE like '{0}%' {1} and bcode like '{2}%' and year = " + year + " and month = " + month, r[0].ToString(), nb, dw);
+                        sqlcw = string.Format("SELECT SUM(RMBbalance) FROM N7_铸锻公司..BALANCE WHERE CCODE like '{0}%' {1} and bcode like '{2}%' and year = " + year + " and month = " + month, r[0].ToString(), acode, dw);
                     }
                     object result1 = DBAdo.ExecuteScalarSql(sqlcw);
                     if (this.comboBox1.Text == "在建工程" || r[0].ToString().Substring(0, 2) == "01")
