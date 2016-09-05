@@ -217,7 +217,7 @@ namespace contract
 
         private void btn_Del(object sender, EventArgs e)
         {
-            if (this.dataGridView1.Rows.Count == 0)
+            if (this.dataGridView1.Rows.Count == 0 || bool.Parse(this.dataGridView1["FLAG", this.dataGridView1.SelectedRows[0].Index].Value.ToString().ToString()))
             {
                 return;
             }
