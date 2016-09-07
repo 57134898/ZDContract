@@ -165,7 +165,7 @@ namespace contract
                         sqlcw = string.Format("SELECT SUM(RMBbalance) FROM N7_铸锻公司..BALANCE WHERE CCODE like '{0}%' {1} and bcode like '{2}%' and year = " + year + " and month = " + month, r[0].ToString(), acode, dw);
                     }
                     object result1 = DBAdo.ExecuteScalarSql(sqlcw);
-                    if (this.comboBox1.Text == "在建工程" || r[0].ToString().Substring(0, 2) == "01" || r[0].ToString().Substring(0, 2) == "11")
+                    if (this.comboBox1.Text == "在建工程" || r[0].ToString().Substring(0, 2) == "01" || (r[0].ToString().Substring(0, 2) == "11" && (this.comboBox1.Text == "采购合同" || this.comboBox1.Text == "外协合同")))
                     {
                         r[3] = decimal.Parse((result1.ToString() == "" ? "0" : result1.ToString())) * (-1);
 
