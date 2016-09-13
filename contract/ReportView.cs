@@ -1144,13 +1144,13 @@ where " + containTwo + " and year(ca.ExchangeDate)='" + this.YEAR.Text + "' and 
                     containTwo = string.Format(" A.HDW LIKE '{0}%' ", ClassConstant.AccountingBook);
                 }
                 string tj = (this.comboBox1.Text == "回款" ? " AND type = '回款' " : " AND type = '付款'");
-                string s = string.Format("CASE substring(ccode,1,2) WHEN '{0}' THEN '内部' WHEN '{1}' THEN '外部' WHEN '{2}' THEN '北方重工' WHEN '{3}' THEN '在建工程' ELSE '鼓风' END as 客户类型", new object[] { ClassConstant.NB, ClassConstant.WB, ClassConstant.NHI, ClassConstant.ZJ });
+                string s = string.Format("DBO.GetCustomerCate(ccode) as 客户类型", new object[] { ClassConstant.NB, ClassConstant.WB, ClassConstant.NHI, ClassConstant.ZJ });
                 string sql = "";
                 string s1 = " SUM(CASH) 现汇本月,0.00 现汇本年,SUM(NOTE) 票据本月,0.00  票据本年,SUM(MZ) 抹账本月 ,0.00  抹账本年";
                 string s2 = " 0.00  现汇本月,SUM(CASH) 现汇本年,0.00  票据本月,SUM(NOTE) 票据本年,0.00  抹账本月 ,SUM(MZ) 抹账本年";
-                sql += string.Format("select b.bname 公司,{0}, TYPE 进度类型,{1} from acash a inner join bcode b on a.hdw=b.bcode where  " + containTwo + "  AND {2} GROUP BY b.bname,SUBSTRING(CCODE,1,2) ,TYPE "
+                sql += string.Format("select dbo.GetCompanyCate(B.BCODE) AS BCODE,b.bname 公司,{0}, TYPE 进度类型,{1} from acash a inner join bcode b on a.hdw=b.bcode where  " + containTwo + "  AND {2} GROUP BY dbo.GetCompanyCate(B.BCODE),b.bname,DBO.GetCustomerCate(ccode)  ,TYPE "
                     , s, s1, string.Format(" year(exchangedate) = {0} and  month(exchangedate) = {1} " + tj, YEAR.Text, MONTH.Text));
-                sql += string.Format(" union select b.bname 公司,{0}, TYPE 进度类型,{1} from acash a inner join bcode b on a.hdw=b.bcode where   " + containTwo + "   AND {2} GROUP BY b.bname,SUBSTRING(CCODE,1,2) ,TYPE "
+                sql += string.Format(" union select dbo.GetCompanyCate(B.BCODE) AS BCODE,b.bname 公司,{0}, TYPE 进度类型,{1} from acash a inner join bcode b on a.hdw=b.bcode where   " + containTwo + "   AND {2} GROUP BY dbo.GetCompanyCate(B.BCODE),b.bname,DBO.GetCustomerCate(ccode)  ,TYPE "
                     , s, s2, string.Format(" year(exchangedate) = {0} and  month(exchangedate) <= {1} " + tj, YEAR.Text, MONTH.Text));
                 DataTable dt = DBAdo.DtFillSql(sql);
 
@@ -1221,19 +1221,19 @@ where " + containTwo + " and year(ca.ExchangeDate)='" + this.YEAR.Text + "' and 
                     containTwo = string.Format(" A.HDW LIKE '{0}%' ", ClassConstant.AccountingBook);
                 }
                 string tj = (this.comboBox1.Text == "回款" ? " AND type = '回款' " : " AND type = '付款'");
-                string s = string.Format("CASE substring(ccode,1,2) WHEN '{0}' THEN '内部' WHEN '{1}' THEN '外部' WHEN '{2}' THEN '北方重工' WHEN '{3}' THEN '在建工程' ELSE '鼓风' END as 客户类型", new object[] { ClassConstant.NB, ClassConstant.WB, ClassConstant.NHI, ClassConstant.ZJ });
+                string s = string.Format("DBO.GetCustomerCate(ccode) as 客户类型", new object[] { ClassConstant.NB, ClassConstant.WB, ClassConstant.NHI, ClassConstant.ZJ });
                 string sql = "";
                 string s1 = " SUM(CASH+note+mz) 本年本月,0.00 本年累计,0.00 同期本月,0.00  同期本年 ";
                 string s2 = " 0.00 本年本月,SUM(CASH+note+mz) 本年累计,0.00 同期本月,0.00  同期本年 ";
                 string s3 = " 0.00 本年本月,0.00 本年累计,SUM(CASH+note+mz) 同期本月,0.00  同期本年 ";
                 string s4 = " 0.00 本年本月,0.00 本年累计,0.00 同期本月,SUM(CASH+note+mz)  同期本年 ";
-                sql += string.Format("select b.bname 公司,{0},{1} from acash  a inner join bcode b on a.hdw=b.bcode  where  " + containTwo + "   AND {2} GROUP BY b.bname,SUBSTRING(CCODE,1,2)  "
+                sql += string.Format("select b.bname 公司,{0},{1} from acash  a inner join bcode b on a.hdw=b.bcode  where  " + containTwo + "   AND {2} GROUP BY b.bname,DBO.GetCustomerCate(ccode)  "
                     , s, s1, string.Format(" year(exchangedate) = {0} and  month(exchangedate) = {1} " + tj, YEAR.Text, MONTH.Text));
-                sql += string.Format(" union select b.bname 公司,{0},{1} from acash a inner join bcode b on a.hdw=b.bcode  where  " + containTwo + "  AND {2} GROUP BY b.bname,SUBSTRING(CCODE,1,2) "
+                sql += string.Format(" union select b.bname 公司,{0},{1} from acash a inner join bcode b on a.hdw=b.bcode  where  " + containTwo + "  AND {2} GROUP BY b.bname,DBO.GetCustomerCate(ccode)  "
                     , s, s2, string.Format(" year(exchangedate) = {0} and  month(exchangedate) <= {1} " + tj, YEAR.Text, MONTH.Text));
-                sql += string.Format(" union select b.bname 公司,{0},{1} from acash a inner join bcode b on a.hdw=b.bcode  where  " + containTwo + "    AND {2} GROUP BY b.bname,SUBSTRING(CCODE,1,2) "
+                sql += string.Format(" union select b.bname 公司,{0},{1} from acash a inner join bcode b on a.hdw=b.bcode  where  " + containTwo + "    AND {2} GROUP BY b.bname,DBO.GetCustomerCate(ccode)  "
                     , s, s3, string.Format(" year(exchangedate) = {0} and  month(exchangedate) <= {1} " + tj, (int.Parse(YEAR.Text) - 1).ToString(), MONTH.Text));
-                sql += string.Format(" union select b.bname 公司,{0},{1} from acash  a inner join bcode b on a.hdw=b.bcode where " + containTwo + "    AND {2} GROUP BY b.bname,SUBSTRING(CCODE,1,2)  "
+                sql += string.Format(" union select b.bname 公司,{0},{1} from acash  a inner join bcode b on a.hdw=b.bcode where " + containTwo + "    AND {2} GROUP BY b.bname,DBO.GetCustomerCate(ccode)   "
                     , s, s4, string.Format(" year(exchangedate) = {0} and  month(exchangedate) <= {1} " + tj, (int.Parse(YEAR.Text) - 1).ToString(), MONTH.Text));
                 DataTable dt = DBAdo.DtFillSql(sql);
 
@@ -1306,7 +1306,7 @@ where " + containTwo + " and year(ca.ExchangeDate)='" + this.YEAR.Text + "' and 
                 {
                     containTwo = string.Format(" HDW LIKE '{0}%' ", ClassConstant.AccountingBook);
                 }
-                string khtype = string.Format(" DBO.GetCustomerCate(HKH) ");
+                string khtype = string.Format(" DBO.GetCustomerCate(hdw)  ", ClassConstant.NB, ClassConstant.WB, ClassConstant.NHI, ClassConstant.ZJ);
                 string sql = string.Format(" select H.HCODE 合同号,{0} as 客户类型,H.HDATE 签订日期,H.ZBFS 中标方式  ,HKH 客户码,b.bname 公司,HLX 合同类型,(select sum(zz) from asp where hth=h.hcode) 总重,(select avg(dj2)  from asp where  hth=h.hcode) 平均价格,hjsje 金额本月,0.00 金额本年 from ACONTRACT H inner join bcode b on h.hdw=b.bcode  where  " + containTwo + "  and hlx like '{3}%' and (year(h.hdate)= {1} and month(h.hdate)= {2}) ", new object[] { khtype, this.YEAR.Text, this.MONTH.Text, ClassCustom.codeSub(this.HLX1.Text), ClassConstant.AccountingBook });
                 sql += string.Format(" union select H.HCODE 合同号,{0} as 客户类型,H.HDATE 签订日期,H.ZBFS 中标方式  ,HKH 客户码,b.bname 公司,HLX 合同类型,(select sum(zz) from asp where hth=h.hcode) 总重,(select avg(dj2)  from asp where  hth=h.hcode) 平均价格,0.00 金额本月,hjsje 金额本年 from ACONTRACT H inner join bcode b on h.hdw=b.bcode  where  " + containTwo + " and hlx like '{3}%' and (year(h.hdate)= {1} and month(h.hdate)<= {2}) ", new object[] { khtype, this.YEAR.Text, this.MONTH.Text, ClassCustom.codeSub(this.HLX1.Text), ClassConstant.AccountingBook });
 
@@ -1556,7 +1556,7 @@ where " + containTwo + " and year(ca.ExchangeDate)='" + this.YEAR.Text + "' and 
                 {
                     containTwo = string.Format(" HDW = '{0}' ", ClassCustom.codeSub(HDW.Text));
                 }
-                string ccodetype = string.Format(" DBO.GetCustomerCate(HKH) as 客户类别 ", new string[] { ClassConstant.NB, ClassConstant.WB, ClassConstant.NHI, ClassConstant.ZJ });
+                string ccodetype = string.Format(" DBO.GetCustomerCate(ccode) as 客户类别 ", new string[] { ClassConstant.NB, ClassConstant.WB, ClassConstant.NHI, ClassConstant.ZJ });
                 string dateFilter = string.Format(" AND (YEAR(签定日期)<{0} OR (YEAR(签定日期)={0} AND MONTH(签定日期)<= {1} ", YEAR.Text, MONTH.Text);
                 string sql = "";
                 sql += " DECLARE @HLX NVARCHAR(10), @HDW NVARCHAR(10) ";
