@@ -24,20 +24,18 @@ namespace contract
             {
                 this.numericUpDown1.Value = DateTime.Now.Year;
                 this.numericUpDown2.Value = DateTime.Now.Month;
-                this.comboBox1.Text = ClassConstant.DW_ID + ":" + ClassConstant.DW_NAME;
-                string rowFilter = string.Format("公司码 = '{0}'", ClassConstant.DW_ID);
-                if (ClassConstant.USER_NAME == "于萍")
+                this.comboBox1.Enabled = true;
+                this.comboBox1.Items.Clear();
+                var sql1 = "SELECT * FROM BCODE WHERE LEN(BCODE)=4";
+                var souce = DBAdo.DtFillSql(sql1);
+                foreach (DataRow row in souce.Rows)
                 {
-                    this.comboBox1.Enabled = true;
-                    rowFilter = "";
+                    if (row[0].ToString().Substring(2, 2) == ClassConstant.DW_ID.Substring(2, 2))
+                    {
+                        this.comboBox1.Items.Add(string.Format("{0}:{1}", row[0].ToString(), row[1].ToString()));
+                    }
+
                 }
-                //CASE  WHEN '1' THEN '已结账' ELSE '未结账' END 
-                string sql = string.Format("SELECT  M.HDW 公司码,C.CNAME 公司名,M.[YEAR] 年, M.[MONTH] 月,M.[FLAG]是否结账, [USER] 结账人, [DATE] 结账时间 FROM [AMONTH] M,ACLIENTS C WHERE C.CCODE = M.HDW ORDER BY M.HDW ,M.[YEAR], M.[MONTH]");
-                dt = DBAdo.DtFillSql(sql);
-                DataView dv = dt.DefaultView;
-                dv.RowFilter = rowFilter;
-                this.dataGridView1.DataSource = dv;
-                this.dataGridView1.AutoResizeColumns();
             }
             catch (Exception ex)
             {
@@ -107,6 +105,29 @@ namespace contract
                 MessageBox.Show(ex.Message);
                 return;
             }
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (this.comboBox1.Text == "")
+            {
+                return;
+            }
+            string where = string.Empty;
+            if (ClassConstant.USER_NAME == "于萍")
+            {
+                where = " and 1=1 ";
+            }
+            else
+            {
+                where = string.Format("  AND  M.HDW ='{0}' ", ClassCustom.codeSub(this.comboBox1.Text));
+            }
+            //CASE  WHEN '1' THEN '已结账' ELSE '未结账' END 
+            string sql = string.Format("SELECT  M.HDW 公司码,C.CNAME 公司名,M.[YEAR] 年, M.[MONTH] 月,M.[FLAG]是否结账, [USER] 结账人, [DATE] 结账时间 FROM [AMONTH] M,ACLIENTS C WHERE C.CCODE = M.HDW {0} ORDER BY M.HDW ,M.[YEAR], M.[MONTH]", where);
+            dt = DBAdo.DtFillSql(sql);
+            DataView dv = dt.DefaultView;
+            this.dataGridView1.DataSource = dv;
+            this.dataGridView1.AutoResizeColumns();
         }
     }
 }

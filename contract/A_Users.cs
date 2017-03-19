@@ -114,7 +114,7 @@ namespace contract
                     MessageBox.Show("用户信息输入不完整！");
                     return;
                 }
-                string sql_check = string.Format(@"SELECT TOP 2 * FROM AUSERS WHERE UCODE = '{0}' OR UNAME = '{1}'", this.textBox1.Text, this.textBox2.Text);
+                string sql_check = string.Format(@"SELECT TOP 2 * FROM AUSERS WHERE UCODE = '{0}' ", this.textBox1.Text);
                 DataTable dt_check = DBAdo.DtFillSql(sql_check);
                 if (dt_check.Rows.Count > 0)
                 {

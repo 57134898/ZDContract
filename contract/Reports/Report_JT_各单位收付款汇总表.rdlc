@@ -131,11 +131,9 @@
             <Grouping Name="table2_Group1">
               <GroupExpressions>
                 <GroupExpression>=Fields!BCODE.Value</GroupExpression>
+                <GroupExpression>=Fields!客户类型.Value</GroupExpression>
               </GroupExpressions>
             </Grouping>
-            <Visibility>
-              <Hidden>true</Hidden>
-            </Visibility>
             <Footer>
               <TableRows>
                 <TableRow>
@@ -157,7 +155,7 @@
                           </Style>
                           <ZIndex>9</ZIndex>
                           <CanGrow>true</CanGrow>
-                          <Value>沈阳铸锻工业有限公司</Value>
+                          <Value>=Fields!BCODE.Value</Value>
                         </Textbox>
                       </ReportItems>
                     </TableCell>
@@ -346,222 +344,6 @@
               </TableRows>
             </Footer>
           </TableGroup>
-          <TableGroup>
-            <Grouping Name="table2_Group2">
-              <GroupExpressions>
-                <GroupExpression>=Fields!客户类型.Value</GroupExpression>
-              </GroupExpressions>
-            </Grouping>
-            <Header>
-              <TableRows>
-                <TableRow>
-                  <TableCells>
-                    <TableCell>
-                      <ReportItems>
-                        <Textbox Name="textbox91">
-                          <Style>
-                            <BorderStyle>
-                              <Default>Solid</Default>
-                            </BorderStyle>
-                            <FontWeight>700</FontWeight>
-                            <TextAlign>Center</TextAlign>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                          <ZIndex>28</ZIndex>
-                          <CanGrow>true</CanGrow>
-                          <Value>Fields!BCODE.Value</Value>
-                        </Textbox>
-                      </ReportItems>
-                    </TableCell>
-                    <TableCell>
-                      <ReportItems>
-                        <Textbox Name="textbox92">
-                          <Style>
-                            <BorderStyle>
-                              <Default>Solid</Default>
-                            </BorderStyle>
-                            <FontWeight>700</FontWeight>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                          <ZIndex>27</ZIndex>
-                          <CanGrow>true</CanGrow>
-                          <Value>=Fields!客户类型.Value</Value>
-                        </Textbox>
-                      </ReportItems>
-                    </TableCell>
-                    <TableCell>
-                      <ReportItems>
-                        <Textbox Name="textbox93">
-                          <Style>
-                            <BorderColor>
-                              <Left>Black</Left>
-                            </BorderColor>
-                            <BorderStyle>
-                              <Default>Solid</Default>
-                              <Left>Solid</Left>
-                            </BorderStyle>
-                            <BorderWidth>
-                              <Left>1pt</Left>
-                            </BorderWidth>
-                            <TextAlign>Right</TextAlign>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                          <ZIndex>26</ZIndex>
-                          <CanGrow>true</CanGrow>
-                          <Value>=Sum(Fields!现汇本月.Value)</Value>
-                        </Textbox>
-                      </ReportItems>
-                    </TableCell>
-                    <TableCell>
-                      <ReportItems>
-                        <Textbox Name="textbox94">
-                          <Style>
-                            <BorderStyle>
-                              <Default>Solid</Default>
-                            </BorderStyle>
-                            <TextAlign>Right</TextAlign>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                          <ZIndex>25</ZIndex>
-                          <CanGrow>true</CanGrow>
-                          <Value>=Sum(Fields!现汇本年.Value)</Value>
-                        </Textbox>
-                      </ReportItems>
-                    </TableCell>
-                    <TableCell>
-                      <ReportItems>
-                        <Textbox Name="textbox95">
-                          <Style>
-                            <BorderStyle>
-                              <Default>Solid</Default>
-                            </BorderStyle>
-                            <TextAlign>Right</TextAlign>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                          <ZIndex>24</ZIndex>
-                          <CanGrow>true</CanGrow>
-                          <Value>=Sum(Fields!票据本月.Value)</Value>
-                        </Textbox>
-                      </ReportItems>
-                    </TableCell>
-                    <TableCell>
-                      <ReportItems>
-                        <Textbox Name="textbox96">
-                          <Style>
-                            <BorderStyle>
-                              <Default>Solid</Default>
-                            </BorderStyle>
-                            <TextAlign>Right</TextAlign>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                          <ZIndex>23</ZIndex>
-                          <CanGrow>true</CanGrow>
-                          <Value>=Sum(Fields!票据本年.Value)</Value>
-                        </Textbox>
-                      </ReportItems>
-                    </TableCell>
-                    <TableCell>
-                      <ReportItems>
-                        <Textbox Name="textbox97">
-                          <Style>
-                            <BorderStyle>
-                              <Default>Solid</Default>
-                            </BorderStyle>
-                            <TextAlign>Right</TextAlign>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                          <ZIndex>22</ZIndex>
-                          <CanGrow>true</CanGrow>
-                          <Value>=Sum(Fields!抹账本月.Value)</Value>
-                        </Textbox>
-                      </ReportItems>
-                    </TableCell>
-                    <TableCell>
-                      <ReportItems>
-                        <Textbox Name="textbox98">
-                          <Style>
-                            <BorderStyle>
-                              <Default>Solid</Default>
-                            </BorderStyle>
-                            <TextAlign>Right</TextAlign>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                          <ZIndex>21</ZIndex>
-                          <CanGrow>true</CanGrow>
-                          <Value>=Sum(Fields!抹账本年.Value)</Value>
-                        </Textbox>
-                      </ReportItems>
-                    </TableCell>
-                    <TableCell>
-                      <ReportItems>
-                        <Textbox Name="textbox99">
-                          <Style>
-                            <BorderStyle>
-                              <Default>Solid</Default>
-                            </BorderStyle>
-                            <Format>N</Format>
-                            <TextAlign>Right</TextAlign>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                          <ZIndex>20</ZIndex>
-                          <CanGrow>true</CanGrow>
-                          <Value>=SUM(Fields!现汇本月.Value+Fields!票据本月.Value+Fields!抹账本月.Value)</Value>
-                        </Textbox>
-                      </ReportItems>
-                    </TableCell>
-                    <TableCell>
-                      <ReportItems>
-                        <Textbox Name="textbox100">
-                          <Style>
-                            <BorderStyle>
-                              <Default>Solid</Default>
-                            </BorderStyle>
-                            <Format>N</Format>
-                            <TextAlign>Right</TextAlign>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                          <ZIndex>19</ZIndex>
-                          <CanGrow>true</CanGrow>
-                          <Value>=SUM(Fields!现汇本年.Value+Fields!票据本年.Value+Fields!抹账本年.Value)</Value>
-                        </Textbox>
-                      </ReportItems>
-                    </TableCell>
-                  </TableCells>
-                  <Height>0.63492cm</Height>
-                </TableRow>
-              </TableRows>
-            </Header>
-          </TableGroup>
         </TableGroups>
         <Width>33.96168cm</Width>
         <Header>
@@ -592,7 +374,7 @@
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
-                      <ZIndex>44</ZIndex>
+                      <ZIndex>34</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value>公司</Value>
                     </Textbox>
@@ -622,7 +404,7 @@
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
-                      <ZIndex>43</ZIndex>
+                      <ZIndex>33</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value>客户类型</Value>
                     </Textbox>
@@ -647,7 +429,7 @@
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
-                      <ZIndex>42</ZIndex>
+                      <ZIndex>32</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value>现汇</Value>
                     </Textbox>
@@ -672,7 +454,7 @@
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
-                      <ZIndex>41</ZIndex>
+                      <ZIndex>31</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value>票据</Value>
                     </Textbox>
@@ -697,7 +479,7 @@
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
-                      <ZIndex>40</ZIndex>
+                      <ZIndex>30</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value>抹账</Value>
                     </Textbox>
@@ -722,7 +504,7 @@
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
-                      <ZIndex>39</ZIndex>
+                      <ZIndex>29</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value>小计</Value>
                     </Textbox>
@@ -748,7 +530,7 @@
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
-                      <ZIndex>38</ZIndex>
+                      <ZIndex>28</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value />
                     </Textbox>
@@ -769,7 +551,7 @@
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
-                      <ZIndex>37</ZIndex>
+                      <ZIndex>27</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value />
                     </Textbox>
@@ -799,7 +581,7 @@
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
-                      <ZIndex>36</ZIndex>
+                      <ZIndex>26</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value>本月</Value>
                     </Textbox>
@@ -823,7 +605,7 @@
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
-                      <ZIndex>35</ZIndex>
+                      <ZIndex>25</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value>本年</Value>
                     </Textbox>
@@ -847,7 +629,7 @@
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
-                      <ZIndex>34</ZIndex>
+                      <ZIndex>24</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value>本月</Value>
                     </Textbox>
@@ -871,7 +653,7 @@
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
-                      <ZIndex>33</ZIndex>
+                      <ZIndex>23</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value>本年</Value>
                     </Textbox>
@@ -895,7 +677,7 @@
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
-                      <ZIndex>32</ZIndex>
+                      <ZIndex>22</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value>本月</Value>
                     </Textbox>
@@ -919,7 +701,7 @@
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
-                      <ZIndex>31</ZIndex>
+                      <ZIndex>21</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value>本年</Value>
                     </Textbox>
@@ -943,7 +725,7 @@
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
-                      <ZIndex>30</ZIndex>
+                      <ZIndex>20</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value>本月</Value>
                     </Textbox>
@@ -967,7 +749,7 @@
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
-                      <ZIndex>29</ZIndex>
+                      <ZIndex>19</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value>本年</Value>
                     </Textbox>
@@ -1011,7 +793,7 @@
             <Width>3.02646cm</Width>
           </TableColumn>
         </TableColumns>
-        <Height>3.07301cm</Height>
+        <Height>2.43809cm</Height>
         <Footer>
           <TableRows>
             <TableRow>
@@ -1223,7 +1005,7 @@
       </Textbox>
       <Table Name="table1">
         <DataSetName>Contract1DataSet_DataTable1</DataSetName>
-        <Top>4cm</Top>
+        <Top>3.75cm</Top>
         <TableGroups>
           <TableGroup>
             <Grouping Name="table1_公司">
@@ -2280,7 +2062,7 @@
         </Footer>
       </Table>
     </ReportItems>
-    <Height>7.32301cm</Height>
+    <Height>7cm</Height>
   </Body>
   <Language>zh-CN</Language>
   <TopMargin>2.5cm</TopMargin>

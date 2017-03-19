@@ -359,7 +359,7 @@ namespace contract
                 }
                 this.treeView2.Visible = true;
                 this.treeView2.Nodes.Clear();
-                DataTable dt1 = DBAdo.DtFillSql("SELECT CCODE,CNAME FROM n7_铸锻公司..CCODE WHERE LEN(CCODE)=2 AND CCODE NOT LIKE '01%' and ccode not like '99%' AND CCODE NOT LIKE '05%'");
+                DataTable dt1 = DBAdo.DtFillSql("SELECT CCODE,CNAME FROM n7_铸锻公司..CCODE WHERE LEN(CCODE)=2 AND CCODE NOT LIKE '01%' and ccode not like '99%' AND CCODE NOT LIKE '05%'  AND CCODE NOT LIKE '11%'");
                 foreach (DataRow dr in dt1.Rows)
                 {
                     DataTable dt2 = DBAdo.DtFillSql("SELECT  CCODE,CNAME FROM n7_铸锻公司..CCODE WHERE CCODE LIKE'" + dr[0].ToString() + "" + ClassConstant.DW_ID.Substring(2) + "'");

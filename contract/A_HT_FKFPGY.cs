@@ -896,6 +896,23 @@ namespace contract
                         }
                     }
                 }
+                if (this.comboBox1.Text == "付款" || this.comboBox1.Text == "回款")
+                {
+                    if (e.ColumnIndex == this.customDataGridView1.Columns["本次金额"].Index)
+                    {
+                        if (e.FormattedValue != null)
+                        {
+                            if (e.FormattedValue.ToString() != "")
+                            {
+                                if (decimal.Parse(e.FormattedValue.ToString()) > decimal.Parse(this.customDataGridView1["余额", e.RowIndex].Value.ToString()))
+                                {
+                                    MessageBox.Show(string.Format("本次金额不能大于[{0}]金额", this.comboBox1.Text == "付款" ? "付款" : "回款"));
+                                    e.Cancel = true;
+                                }
+                            }
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {
